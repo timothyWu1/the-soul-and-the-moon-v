@@ -21,6 +21,12 @@ import SearchBlock from "./SearchBlock"
 import DropdownMenuItem from "./DropdownMenuItem"
 import UseWindowSize from "../../hooks/UseWindowSize"
 
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faInstagram
+} from "@fortawesome/free-brands-svg-icons"
+
 const Header = ({ header }) => {
   const [collapse, setCollapse] = React.useState(false)
   const size = UseWindowSize() // Viewport size hook
@@ -133,6 +139,40 @@ const Header = ({ header }) => {
           <Navbar.Brand>The Soul And The Moon</Navbar.Brand>
         </Link>
         {/* END LOGO */}
+
+        {/* SOCIAL & PHONE BLOCK */}
+
+        <ul className="list-inline mb-0">
+              <li className="list-inline-item">
+                <a
+                  className="text-reset text-hover-primary"
+                  href="https://www.instagram.com/the.soul.and.the.moon"
+                  aria-label="Go to instagram"
+                >
+                  <FontAwesomeIcon icon={faInstagram} />
+                  {/* <FontAwesomeIcon icon={faFacebookF} /> */}
+                  {/* <FontAwesomeIcon icon="fa-Instagram" /> */}
+                  {/* <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}
+                </a>
+              </li>
+              {/* <li className="list-inline-item me-4">
+                <a
+                  className="text-reset text-hover-primary"
+                  href="#"
+                  aria-label="Go to Twitter"
+                >
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+              </li> */}
+              {/* <li className="list-inline-item me-2">
+                <Icon icon="calls-1" className="me-2" />
+                020-800-456-747
+              </li> */}
+            </ul>
+          {/* END SOCIAL & PHONE BLOCK */}
+          {/* END ANNOUNCEMENT */}
+
+
 
         {/* TOP USER MOBILE ICONS */}
         <MainIcons className="d-block d-lg-none" />

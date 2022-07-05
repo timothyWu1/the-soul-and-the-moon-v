@@ -34,13 +34,13 @@
     ],
     "maincategories": [
         {
-            "name": "Bougie",
+            "name": "",
             "link": "/category-full",
             "button": "See",
             "img": "/img/product/bougies.jpg"
         },
         {
-            "name": "Autres",
+            "name": "",
             "link": "/category-full",
             "button": "See",
             "img": "/img/product/pot.png"

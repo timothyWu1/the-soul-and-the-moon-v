@@ -26,7 +26,7 @@ const About2 = () => {
                 <Row>
                   <Col xl="10">
                     <p className="text-lg text-muted mb-lg-0">
-                    The Soul & The Moon a vu le jour en 2000
+                    The Soul & The Moon a vu le jour en 2020
                     avec un objectif : proposer un magasin
                     d'accessoires de qualité dans la région de
                     Paris. Notre passion pour l'excellence a

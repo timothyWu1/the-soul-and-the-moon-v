@@ -64,7 +64,7 @@ const Checkout = () => {
         <Container>
           <Breadcrumb>
             <Link href="/" passHref>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>Accueil</Breadcrumb.Item>
             </Link>
             <Breadcrumb.Item active>Checkout </Breadcrumb.Item>
           </Breadcrumb>

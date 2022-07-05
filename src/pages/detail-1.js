@@ -57,7 +57,7 @@ const Detail1 = () => {
     },
   }
 
-  const images = dummyProduct.img.detail
+  const images = dummyProduct.image.detail
 
   return (
     <React.Fragment>
@@ -105,19 +105,19 @@ const Detail1 = () => {
               xl="7"
               className="pt-4 order-2 order-lg-1 photoswipe-gallery"
             >
-              {dummyProduct.img.detail.map((image, index) => (
+              {dummyProduct.image.detail.map((image, index) => (
                 <a
                   key={index}
                   onClick={(e) => onClick(e, index)}
                   className="d-block mb-4"
-                  href={image.img}
+                  href={image.image}
                 >
                   <Magnifier
                     mgShowOverflow={false}
                     mgWidth={2000}
                     mgHeight={2000}
-                    className="img-fluid"
-                    src={image.img}
+                    className="image-fluid"
+                    src={image.image}
                     alt={image.alt}
                     zoomFactor={0.11}
                     style={{ cursor: "pointer" }}
@@ -126,11 +126,11 @@ const Detail1 = () => {
               ))}
               {lightBoxOpen && (
                 <Lightbox
-                  mainSrc={images[activeImage].img}
-                  nextSrc={images[(activeImage + 1) % images.length].img}
+                  mainSrc={images[activeImage].image}
+                  nextSrc={images[(activeImage + 1) % images.length].image}
                   prevSrc={
                     images[(activeImage + images.length - 1) % images.length]
-                      .img
+                      .image
                   }
                   onCloseRequest={() => setLightBoxOpen(false)}
                   imageCaption={images[activeImage].caption}

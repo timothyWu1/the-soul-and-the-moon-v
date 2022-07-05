@@ -1,8 +1,5 @@
 [
-  {
-    "name": "Home"
-
-  },
+  
   {
     "name": "Shop",
     "groups": [
@@ -41,7 +38,6 @@
         ]
       },
       {
-        "name": "Product pages",
         "links": [
           {
             "name": "Product with sticky info",
@@ -58,7 +54,7 @@
         ]
       },
       {
-        "img": "/img/product/kyle-loftus-596319-unsplash-cropped.jpg"
+        "img": "/img/photo/a.jpg"
       }
     ]
   }

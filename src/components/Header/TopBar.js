@@ -119,37 +119,7 @@ const TopBar = ({ header }) => {
             
             
           </Col>
-           {/* SOCIAL & PHONE BLOCK */}
-
-           <ul className="list-inline mb-0">
-              <li className="list-inline-item">
-                <a
-                  className="text-reset text-hover-primary"
-                  href="https://www.instagram.com/the.soul.and.the.moon"
-                  aria-label="Go to instagram"
-                >
-                  <FontAwesomeIcon icon={faInstagram} />
-                  {/* <FontAwesomeIcon icon={faFacebookF} /> */}
-                  {/* <FontAwesomeIcon icon="fa-Instagram" /> */}
-                  {/* <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}
-                </a>
-              </li>
-              {/* <li className="list-inline-item me-4">
-                <a
-                  className="text-reset text-hover-primary"
-                  href="#"
-                  aria-label="Go to Twitter"
-                >
-                  <FontAwesomeIcon icon={faTwitter} />
-                </a>
-              </li> */}
-              {/* <li className="list-inline-item me-2">
-                <Icon icon="calls-1" className="me-2" />
-                020-800-456-747
-              </li> */}
-            </ul>
-          {/* END SOCIAL & PHONE BLOCK */}
-          {/* END ANNOUNCEMENT */}
+           
 
           {/* <Col md="4" sm="6" className="d-none d-sm-flex justify-content-end"> */}
             {/* LANGUAGE SWITCHER */}

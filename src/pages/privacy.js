@@ -17,15 +17,15 @@ const Privacy = () => {
         <Container>
           <Breadcrumb>
             <Link href="/" passHref>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>Accueil</Breadcrumb.Item>
             </Link>
-            <Breadcrumb.Item active>Customer zone</Breadcrumb.Item>
+            <Breadcrumb.Item active>politique de confidentialité</Breadcrumb.Item>
           </Breadcrumb>
           <div className="hero-content">
-            <h1 className="hero-heading mb-3">Privacy Policy</h1>
+            <h1 className="hero-heading mb-3">Politique de confidentialité</h1>
             <div>
               <p className="text-muted mb-0">
-                Effective date: November 22, 2019
+                Date d’entrée en vigueur : 05 juillet 2022
               </p>
             </div>
           </div>
@@ -34,107 +34,105 @@ const Privacy = () => {
       <section className="pb-6">
         <Container>
           <Row>
-            <Col xl="9" className="text-content">
+            <Col xl="10" className="text-content">
               <p>
-                Varkala ("us", "we", or "our") operates the https://example.com
-                website (the "Service").
+                Cette page vous informe de nos politiques concernant la
+                collecte, l’utilisation et la divulgation de données
+                personnelles lorsque vous utilisez notre Service et des choix
+                que vous avez associés à ces données.
               </p>
               <p>
-                This page informs you of our policies regarding the collection,
-                use, and disclosure of personal data when you use our Service
-                and the choices you have associated with that data. Our Privacy
-                Policy for Varkala is created with the help of the{" "}
-                <a href="https://www.freeprivacypolicy.com/free-privacy-policy-generator.php">
-                  Free Privacy Policy Generator
-                </a>
-                .
+                Nous utilisons vos données pour fournir et améliorer le Service.
+                En utilisant le Service, vous acceptez la collecte et
+                l’utilisation des informations conformément à la présente
+                politique. Sauf définition contraire dans le présent document
+                Politique de confidentialité, les termes utilisés dans cette
+                politique de confidentialité ont les mêmes significations comme
+                dans nos Termes et Conditions
               </p>
+              <h2>Collecte et utilisation des informations</h2>
               <p>
-                We use your data to provide and improve the Service. By using
-                the Service, you agree to the collection and use of information
-                in accordance with this policy. Unless otherwise defined in this
-                Privacy Policy, terms used in this Privacy Policy have the same
-                meanings as in our Terms and Conditions, accessible from
-                https://example.com
-              </p>
-              <h2>Information Collection And Use</h2>
-              <p>
-                We collect several different types of information for various
-                purposes to provide and improve our Service to you.
+                Nous recueillons plusieurs types d’informations pour divers afin
+                de vous fournir et d’améliorer notre Service.
               </p>
               <hr />
-              <h3>Types of Data Collected</h3>
-              <h4>Personal Data</h4>
+              <h3>Types de données collectées</h3>
+              <h4>Données personnelles</h4>
               <p>
-                While using our Service, we may ask you to provide us with
-                certain personally identifiable information that can be used to
-                contact or identify you ("Personal Data"). Personally
-                identifiable information may include, but is not limited to:
+                Lors de l’utilisation de notre Service, nous pouvons vous
+                demander de nous fournir certaines informations personnellement
+                identifiables qui peuvent être utilisées pour vous contacter ou
+                vous identifier (« Données personnelles »). Les informations
+                personnellement identifiables peuvent inclure, sans s’y limiter:
               </p>
               <ul className="list-icon">
-                <li>Email address</li>
-                <li>Cookies and Usage Data</li>
+                <li>Nom et prénom</li>
+                <li>Adresse courriel</li>
+
+                <li>Cookies et données d’utilisation</li>
               </ul>
-              <h4>Usage Data</h4>
+              <h4>Données d’utilisation</h4>
               <p>
-                We may also collect information how the Service is accessed and
-                used ("Usage Data"). This Usage Data may include information
-                such as your computer's Internet Protocol address (e.g. IP
-                address), browser type, browser version, the pages of our
-                Service that you visit, the time and date of your visit, the
-                time spent on those pages, unique device identifiers and other
-                diagnostic data.
+                Nous pouvons également collecter des informations sur la façon
+                dont le Service est accédé et utilisé (« Données d’utilisation
+                »). Ces données d’utilisation peuvent inclure des informations
+                telles que l’adresse de protocole Internet de votre ordinateur
+                (par exemple, l’adresse IP), le type de navigateur, la version
+                du navigateur, les pages de notre service que vous visitez,
+                l’heure et la date de votre visite, le temps passé sur ces
+                pages, les identifiants uniques de l’appareil et d’autres
+                données de diagnostic.
               </p>
-              <h4>Tracking & Cookies Data</h4>
+              <h4>Données de suivi et de cookies</h4>
               <p>
-                We use cookies and similar tracking technologies to track the
-                activity on our Service and hold certain information.
-              </p>
-              <p>
-                Cookies are files with small amount of data which may include an
-                anonymous unique identifier. Cookies are sent to your browser
-                from a website and stored on your device. Tracking technologies
-                also used are beacons, tags, and scripts to collect and track
-                information and to improve and analyze our Service.
+                Nous utilisons des cookies et des technologies de suivi
+                similaires pour suivre l’activité sur notre Service et conserver
+                certaines informations.
               </p>
               <p>
-                You can instruct your browser to refuse all cookies or to
-                indicate when a cookie is being sent. However, if you do not
-                accept cookies, you may not be able to use some portions of our
-                Service.
+                Les cookies sont des fichiers contenant une petite quantité de
+                données pouvant inclure un identifiant unique anonyme. Les
+                cookies sont envoyés à votre navigateur à partir d’un site Web
+                et stockés sur votre appareil. Les technologies de suivi
+                également utilisées sont des balises, des balises et des scripts
+                pour collecter et suivre des informations et pour améliorer et
+                analyser notre Service.
               </p>
-              <p>Examples of Cookies we use:</p>
+              <p>
+              Vous pouvez demander à votre navigateur de refuser tous les cookies ou d’indiquer quand un cookie est envoyé. Toutefois, si vous n’acceptez pas les cookies, vous ne pourrez peut-être pas utiliser certaines parties de notre Service.
+
+
+
+ 
+
+              </p>
+              <p>Exemples de cookies que nous utilisons :</p>
               <ul className="list-icon">
                 <li>
-                  <strong>Session Cookies.</strong> We use Session Cookies to
-                  operate our Service.
+                  <strong>Cookies de session. </strong> Nous utilisons des cookies de session pour faire fonctionner notre service.
                 </li>
                 <li>
-                  <strong>Preference Cookies.</strong> We use Preference Cookies
-                  to remember your preferences and various settings.
+                  <strong>Cookies de préférence.</strong>Nous utilisons des cookies de préférence pour mémoriser vos préférences et divers paramètres.
                 </li>
                 <li>
-                  <strong>Security Cookies.</strong> We use Security Cookies for
-                  security purposes.
+                  <strong>Cookies de sécurité.</strong> Nous utilisons des cookies de sécurité à des fins de sécurité.
                 </li>
               </ul>
               <hr />
-              <h2>Use of Data</h2>
-              <p>Varkala uses the collected data for various purposes:</p>
+              <h2>Utilisation des données</h2>
+              <p>The soul and the moon utilise les données collectées pour diverses buts :</p>
               <ul className="list-icon">
-                <li>To provide and maintain the Service</li>
-                <li>To notify you about changes to our Service</li>
+                <li>Pour fournir et maintenir le Service</li>
+                <li>Pour vous informer des modifications apportées à notre Service</li>
                 <li>
-                  To allow you to participate in interactive features of our
-                  Service when you choose to do so
+                Pour vous permettre de participer aux fonctionnalités interactives de notre Service lorsque vous choisissez de le faire
                 </li>
-                <li>To provide customer care and support</li>
+                <li>Pour fournir un service à la clientèle et un soutien</li>
                 <li>
-                  To provide analysis or valuable information so that we can
-                  improve the Service
+                Pour fournir des analyses ou des informations précieuses afin que nous puissions améliorer le Service
                 </li>
-                <li>To monitor the usage of the Service</li>
-                <li>To detect, prevent and address technical issues</li>
+                <li>Pour surveiller l’utilisation du Service</li>
+                <li>Détecter, prévenir et résoudre les problèmes techniques</li>
               </ul>
               <hr />
               <h2>Transfer Of Data</h2>

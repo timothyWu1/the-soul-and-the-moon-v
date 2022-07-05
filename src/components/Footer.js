@@ -106,8 +106,8 @@ const Footer = () => {
               <ul className="list-inline mb-0 mt-2 mt-md-0 text-center text-lg-end">
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="#">
-                    Termes et Conditions{" "}
+                  <a className="text-reset" href="/about-2">
+                    A propos de nous{" "}
                   </a>
                 </li>
                 {/* <li className="list-inline-item">
@@ -128,6 +128,13 @@ const Footer = () => {
                     Nous contacter{" "}
                   </a>
                 </li>
+                <li className="list-inline-item">
+                  {" "}
+                  <a className="text-reset" href="/privacy">
+                  Politique de confidentialité{" "}
+                  </a>
+                </li>
+                
               </ul>
             </Col>
           </Row>

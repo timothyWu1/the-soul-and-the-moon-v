@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Home"
+
+  },
+  {
+    "name": "Shop",
+    "groups": [
+      {
+        "name": "Shop pages",
+        "links": [
+          {
+            "name": "Full width",
+            "link": "/category-full"
+          },
+          {
+            "name": "Full width with category menu",
+            "link": "/category-full-sidebar"
+          },
+          {
+            "name": "Full width with big products",
+            "link": "/category-big-products"
+          },
+          {
+            "name": "Fixed width",
+            "link": "/category-boxed"
+          },
+          {
+            "name": "Fixed width & sidebar",
+            "link": "/category-sidebar"
+          },
+          {
+            "name": "Fixed width & masonry layout",
+            "link": "/category-masonry",
+            "new": true
+          },
+          {
+            "name": "Subcategories",
+            "link": "/category-categories"
+          }
+        ]
+      },
+      {
+        "name": "Product pages",
+        "links": [
+          {
+            "name": "Product with sticky info",
+            "link": "/detail-1"
+          },
+          {
+            "name": "Product with background",
+            "link": "/detail-2"
+          },
+          {
+            "name": "Product standard",
+            "link": "/detail-3"
+          }
+        ]
+      },
+      {
+        "img": "/img/product/kyle-loftus-596319-unsplash-cropped.jpg"
+      }
+    ]
+  }
+
+  
+]

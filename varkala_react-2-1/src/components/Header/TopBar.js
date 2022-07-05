@@ -112,7 +112,7 @@ const TopBar = ({ header }) => {
           
           <Col md="12" sm="8" className="text-start text-md-center">
            
-            <p className="mb-0"><h1>The Soul & The Moon</h1></p>
+            <p className="mb-0 px-0"><h1>The Soul & The Moon</h1></p>
             
             
           </Col>

@@ -1,4 +1,4 @@
-import React from "react"
+ import React, {useState, useEffect } from "react"
 
 import { Button, CloseButton, Modal } from "react-bootstrap"
 
@@ -7,13 +7,23 @@ import { removeCartItem } from "../hooks/UseCart"
 import Icon from "./Icon"
 import Link from "next/link"
 import Image from "./Image"
+import { commerce } from '../lib/commerce';
+
 
 const SidebarCart = (props) => {
-  const [cartItems, dispatch] = React.useContext(CartContext)
+  const [cartItems, dispatch] = useState([]);
+  const [total, addTotal] = useState(0);
+  // console.log((cartItems))
 
   const removeFromCart = (product) => {
-    dispatch({ type: "remove", payload: product })
-    removeCartItem(product)
+    commerce.cart.remove(product.id).then((response) => console.log(response));
+
+    var removeId = cartItems.indexOf(product);
+    console.log(removeId)
+    cartItems.splice(removeId, 1)
+    
+    dispatch(cartItems);
+    
   }
   const headerClose = (
     <CloseButton
@@ -23,6 +33,26 @@ const SidebarCart = (props) => {
     />
   )
 
+  const fetchCard = async () => {
+    
+      const data2 = await commerce.cart.contents();
+      var price = 0;
+      data2.map((item) => (
+        price += item.price.raw
+      ))
+      addTotal(price)
+      dispatch(data2)
+      console.log("requete get here")
+  }
+  
+fetchCard();
+
+  useEffect(() => {
+    fetchCard();
+    
+  }, [])
+
+  if (cartItems != undefined ){
   return (
     <Modal
       className="modal-right"
@@ -41,7 +71,7 @@ const SidebarCart = (props) => {
                     <a> */}
                       <Image
                         className="img-fluid navbar-cart-product-image"
-                        // src={item.image.url}
+                        src={item.image.url}
                         // alt={item.img.category[0].alt}
                         width={80}
                         height={103}
@@ -57,6 +87,7 @@ const SidebarCart = (props) => {
                       <Icon className="sidebar-cart-icon" icon="close-1" />
                     </a>
                     <div className="ps-3">
+                      {item.name}
                       {/* <Link href={`/${item.category[1]}/${item.slug}`}>
                         <a className="navbar-cart-product-link text-dark link-animated">
                           {item.name}
@@ -68,8 +99,8 @@ const SidebarCart = (props) => {
                       <strong className="d-block text-sm">
                         $
                         {item.quantity
-                          ? item.price * item.quantity
-                          : item.price}
+                          ? item.price.raw * item.quantity
+                          : item.price.raw}
                       </strong>
                     </div>
                   </div>
@@ -90,7 +121,7 @@ const SidebarCart = (props) => {
       <Modal.Footer className="sidebar-cart-footer">
         <div className="w-100">
           <h5 className="mb-4">
-            Subtotal: <span className="float-end">$465.32</span>
+            Subtotal: <span className="float-end">{total}</span>
           </h5>
           <Link passHref href="/cart">
             <Button variant="outline-dark" className="mb-3 w-100" href="/cart">
@@ -106,6 +137,7 @@ const SidebarCart = (props) => {
       </Modal.Footer>
     </Modal>
   )
+        }
 }
 
 export default SidebarCart

@@ -31,16 +31,20 @@ const Index = () => {
   const fetchProducts = async () => {
 
     const { data } = await commerce.products.list();
+
     
     setProductsFull(data);
 
-    // console.log(productsFull)
   };
 
+  // commerce.cart.contents().then((items) => console.log(items));
+
+
   
+ useEffect(() => {
 
-
-  fetchProducts();
+  fetchProducts(); 
+ }, [])
   
 
   if (productsFull[0] != null){

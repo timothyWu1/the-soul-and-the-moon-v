@@ -1,4 +1,4 @@
-import React from "react"
+ import React, {useState, useEffect } from "react"
 import Link from "next/link"
 
 import { Badge } from "react-bootstrap"
@@ -7,6 +7,8 @@ import Stars from "../Stars"
 import Icon from "../Icon"
 
 import Image from "../Image"
+import { commerce } from '../../lib/commerce';
+ 
 
 const CardProductDefault = ({
   product,
@@ -15,6 +17,19 @@ const CardProductDefault = ({
   addToWishlist,
   setQuickView,
 }) => {
+  const [cartItems, dispatch] = useState([]);
+
+  const fetchCard = async () => {
+      const data2 = await commerce.cart.contents();
+      dispatch(data2)
+  }
+
+
+  useEffect(() => {
+
+    console.log("test")
+  }, [])
+
   return (
     <div
       className={`product product-type-0`}
@@ -59,18 +74,20 @@ const CardProductDefault = ({
           {/* </a>
         </Link> */}
         <div className="product-hover-overlay">
-          <a
+          <button
             className="text-dark text-sm"
             aria-label="add to cart"
-            href="#"
-            onClick={(e) => addToCart(e, product)}
+            onClick={() => {
+              commerce.cart.add(product.id, 1).then((response) => console.log(response))
+              fetchCard();
+            }}
           >
             <Icon
               className="text-hover-primary svg-icon-heavy d-sm-none"
               icon="retail-bag-1"
             />
             <span className="d-none d-sm-inline">Add to cart</span>
-          </a>
+          </button>
           <div>
             <a
               className="text-dark text-hover-primary me-2"
@@ -96,6 +113,7 @@ const CardProductDefault = ({
       </div>
       <div className="position-relative">
         <h3 className="text-base mb-1">
+          {product.name}
           {/* <Link
             href={
               product.category

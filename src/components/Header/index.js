@@ -11,6 +11,9 @@ import MainIcons from "./MainIcons"
 
 import initialProducts from "../../data/products-clothes.json" // Remove on production
 
+import { commerce } from '../../lib/commerce';
+
+
 import { CartContext } from "../CartContext"
 
 import { addCartItem } from "../../hooks/UseCart"
@@ -69,24 +72,15 @@ const Header = ({ header }) => {
     })
   }
 
+  const fetchCard = async () => {
+      const data2 = await commerce.cart.contents();
+      dispatch(data2)
+  }
+
   useEffect(() => {
     highlightDropdownParent()
 
-    if (localStorage.getItem("cart")) {
-      // If localStorage exists set cart items to cart context
-      JSON.parse(localStorage.getItem("cart")).map((product) =>
-        dispatch({ type: "add", payload: product })
-      )
-    }
-    // Remove on production START -->
-    else {
-      // Set first six product items to cart on demo
-      initialProducts.slice(0, 6).map((product) => {
-        addCartItem(product, 1)
-        dispatch({ type: "add", payload: product, quantity: 1 })
-      })
-    }
-    // <-- END remove
+    fetchCard();
 
     if (localStorage.getItem("wishlist")) {
       // If localStorage exists set wishlist items to wishlist context
@@ -94,15 +88,6 @@ const Header = ({ header }) => {
         wishlistDispatch({ type: "add", payload: product })
       )
     }
-    // Remove on production START -->
-    else {
-      // Set 6th, 7th & 8th product item to cart on demo
-      initialProducts.slice(5, 8).map((product) => {
-        addWishlistItem(product)
-        wishlistDispatch({ type: "add", payload: product })
-      })
-    }
-    // <-- END remove
   }, [])
 
   const onLinkClick = (parent) => {
@@ -175,7 +160,7 @@ const Header = ({ header }) => {
 
 
         {/* TOP USER MOBILE ICONS */}
-        <MainIcons className="d-block d-lg-none" />
+        <MainIcons className="d-block d-lg-none" CartContext={cartItems}/>
         {/* TOP USER MOBILE ICONS */}
 
         {/* NAV MOBILE TOGGLER  */}

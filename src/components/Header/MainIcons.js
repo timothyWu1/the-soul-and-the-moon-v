@@ -1,7 +1,9 @@
-import React from "react"
+ import React, {useState, useEffect } from "react"
 import Link from "next/link"
 
 import { CartContext } from "../CartContext"
+import { commerce } from '../../lib/commerce';
+
 
 import SidebarCart from "../SidebarCart"
 import ModalLogin from "../ModalLogin"
@@ -20,12 +22,26 @@ const MainIcons = (props) => {
     func()
   }
 
-  const [cartContext] = React.useContext(CartContext)
+  const [cartContext, dispatch2] = useState([]);
   const [wishlistContext] = React.useContext(WishlistContext)
+  const [cartItems, dispatch1] = useState([]);
+  
+  const fetchCard = async () => {
+      const data2 = await commerce.cart.contents();
+      dispatch1(data2)
+      dispatch2(data2)
+      console.log("requete get here")
+  }
+  fetchCard();
+
+  useEffect(() => {
+
+    fetchCard();
+  }, [])
   return (
     <React.Fragment>
       <ul className={`list-inline mb-0 ${props.className}`}>
-        <li className="list-inline-item me-3">
+        {/* <li className="list-inline-item me-3">
           <a
             className={`text-${
               props.light ? "light" : "dark"
@@ -36,8 +52,8 @@ const MainIcons = (props) => {
           >
             <Icon icon="avatar-1" className="navbar-icon" />
           </a>
-        </li>
-        <li className="list-inline-item me-3">
+        </li> */}
+        {/* <li className="list-inline-item me-3">
           <Link href="/wishlist">
             <a
               className={`text-${
@@ -49,7 +65,7 @@ const MainIcons = (props) => {
               <div className="navbar-icon-badge">{wishlistContext.length}</div>
             </a>
           </Link>
-        </li>
+        </li> */}
         <li className="list-inline-item position-relative me-3">
           <a
             className={`text-${

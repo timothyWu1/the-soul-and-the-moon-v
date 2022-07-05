@@ -11,12 +11,12 @@ const reducer = (state, action) => {
     ? Object.assign(action.payload, { quantity: parseInt(action.quantity, 10) })
     : action.payload
 
-  // Assign quantity to product if exists in cart
-  state.forEach((item) => {
-    if (item.slug === action.payload.slug) {
-      item.quantity = parseInt(action.quantity, 10)
-    }
-  })
+  // // Assign quantity to product if exists in cart
+  // state.forEach((item) => {
+  //   if (item.slug === action.payload.slug) {
+  //     item.quantity = parseInt(action.quantity, 10)
+  //   }
+  // })
 
   switch (action.type) {
     case "reset":

@@ -5,13 +5,9 @@ import Link from "next/link"
 import { Container, Row, Col, Card } from "react-bootstrap"
 
 import NewArrivals from "../components/NewArrivals"
-import Swiper from "../components/Swiper"
 
 import info from "../data/index.json"
 
-import Sale from "../components/Sale"
-import OurHistory from "../components/OurHistory"
-import Brands from "../components/Brands"
 import Image from "../components/Image"
 import { commerce } from '../lib/commerce';
 
@@ -38,7 +34,7 @@ const Index = () => {
     
     setProductsFull(data);
 
-    console.log(productsFull)
+    // console.log(productsFull)
   };
 
   
@@ -65,8 +61,8 @@ const Index = () => {
           containerclass="px-lg-7"
         /> */}
         {info.maincategories && (
-          <div className="bg-gray-100 position-relative">
-            <Container className="py-6">
+          <div className="bg-gray-100 position-sticky ">
+            <Container className="py-6 categories">
               <Row>
                 {info.maincategories.map((category) => (
                   <Col key={category.name} sm="6" className="mb-5 mb-sm-0">

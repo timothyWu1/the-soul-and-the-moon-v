@@ -21,6 +21,10 @@ body {
   }
 }
 
+.categories{
+  position: sticky;
+}
+
 .container-boxed {
   .container-fluid-px {
     @include media-breakpoint-up(lg) {

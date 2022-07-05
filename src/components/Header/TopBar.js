@@ -92,6 +92,9 @@
 // export default TopBar
 import { faFacebookF, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faInstagram
+} from "@fortawesome/free-brands-svg-icons"
 import React from "react"
 import { Col, Container, Dropdown, Row } from "react-bootstrap"
 import Icon from "../Icon"
@@ -112,7 +115,7 @@ const TopBar = ({ header }) => {
           
           <Col md="12" sm="8" className="text-start text-md-center">
            
-            <p className="mb-0"><h1>The Soul & The Moon</h1></p>
+            <p className="mb-0 py-5"><h1>The Soul & The Moon</h1></p>
             
             
           </Col>
@@ -123,9 +126,9 @@ const TopBar = ({ header }) => {
                 <a
                   className="text-reset text-hover-primary"
                   href="https://www.instagram.com/the.soul.and.the.moon"
-                  aria-label="Go to Facebook"
+                  aria-label="Go to instagram"
                 >
-                  <FontAwesomeIcon icon={faTwitter} />
+                  <FontAwesomeIcon icon={faInstagram} />
                   {/* <FontAwesomeIcon icon={faFacebookF} /> */}
                   {/* <FontAwesomeIcon icon="fa-Instagram" /> */}
                   {/* <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}

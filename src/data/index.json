@@ -37,13 +37,13 @@
             "name": "Bougie",
             "link": "/category-full",
             "button": "See",
-            "img": "/img/product/C.png"
+            "img": "/img/product/bougies.jpg"
         },
         {
             "name": "Autres",
             "link": "/category-full",
             "button": "See",
-            "img": "/img/product/lamps.jpg"
+            "img": "/img/product/pot.png"
         }
     ]
 }

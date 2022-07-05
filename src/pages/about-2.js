@@ -20,40 +20,46 @@ const About2 = () => {
               <div>
                 <h6 className="text-uppercase text-primary letter-spacing-5 mb-3">
                   {" "}
-                  About me
+                  à propos de nous
                 </h6>
-                <h1 className="display-3 fw-bold mb-5">Frankie Kafka</h1>
+                <h1 className="display-3 fw-bold mb-5">Qui sommes-nous</h1>
                 <Row>
-                  <Col xl="6">
+                  <Col xl="10">
                     <p className="text-lg text-muted mb-lg-0">
-                      One morning, when Gregor Samsa woke from troubled dreams,
-                      he found himself transformed in his bed into a horrible
-                      vermin. He lay on his armour-like ba
+                    The Soul & The Moon a vu le jour en 2000
+                    avec un objectif : proposer un magasin
+                    d'accessoires de qualité dans la région de
+                    Paris. Notre passion pour l'excellence a
+                    toujours été et restera notre moteur. Nous
+                    avons eu d'excellents retours de nos clients
+                    sur nos services, et c'est ce qui les pousse à
+                    revenir chez nous. Voyez par vous-même et
+                    passez nous voir
                     </p>
                   </Col>
-                  <Col xl="6">
+                  {/* <Col xl="6">
                     <p className="text-lg text-muted mb-0">
                       The bedding was hardly able to cover it and seemed ready
                       to slide off any moment. His many legs, pitifully thin
                       compared with the size of the rest of{" "}
                     </p>
-                  </Col>
+                  </Col> */}
                 </Row>
                 <hr className="my-5" />
                 <Row>
                   <Col xl="6">
                     <h6 className="text-uppercase text-primary letter-spacing-3 mb-4">
-                      Get in touch
+                      Le magasin
                     </h6>
                     <p className="text-muted mb-5 mb-xl-0">
-                      123 Firebrigade St
+                      52 rue rené boulanger 
                       <br />
-                      San Antonio, CA
+                      75010 Paris, 10 ème arrondissement
                       <br />
-                      U.S.A.
+                      FRANCE
                     </p>
                   </Col>
-                  <Col xl="6">
+                  {/* <Col xl="6">
                     <h6 className="text-uppercase text-primary letter-spacing-3 mb-4">
                       Company details
                     </h6>
@@ -62,7 +68,7 @@ const About2 = () => {
                       <br />
                       VAT Id: 646643463546
                     </p>
-                  </Col>
+                  </Col> */}
                 </Row>
               </div>
             </div>
@@ -71,7 +77,7 @@ const About2 = () => {
             <div className="dark-overlay mh-full-screen-with-header h-100">
               <Image
                 className="bg-image"
-                src="/img/photo/raoul-ortega-2JtF6pYAOOI-unsplash.jpg"
+                src="/img/product/C.png"
                 alt=""
                 layout="fill"
                 sizes="(max-width: 992px) 100vw, 50vw"

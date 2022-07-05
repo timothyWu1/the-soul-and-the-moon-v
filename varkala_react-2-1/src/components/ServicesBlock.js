@@ -10,7 +10,7 @@ const ServicesBlock = () => {
           {services.map((service) => (
             <Col
               key={service.name}
-              lg="3"
+              lg="4"
               sm="6"
               className="py-4 service-column"
             >
@@ -33,23 +33,19 @@ export default ServicesBlock
 
 const services = [
   {
-    name: "Free shipping & return",
-    text: "Free Shipping over $300",
+    name: "Livraison",
+    text: "Livraison sous 48 heures",
     icon: "delivery-time-1",
   },
+
   {
-    name: "Money back guarantee",
-    text: "30 Days Money Back Guarantee",
-    icon: "money-1",
-  },
-  {
-    name: "Best prices",
-    text: "Always the best prices",
+    name: "Boutique",
+    text: "Prix agréable et interessant",
     icon: "special-price-1",
   },
   {
-    name: "020-800-456-747",
-    text: "24/7 Available Support",
+    name: "Nous contacter",
+    text: "A remplir",
     icon: "customer-support-1",
   },
 ]

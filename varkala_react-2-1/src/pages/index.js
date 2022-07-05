@@ -50,7 +50,7 @@ const Index = () => {
   if (productsFull[0] != null){
     return (
       <React.Fragment>
-        <Swiper
+        {/* <Swiper
           info={info.swiper}
           autoplay={{
             delay: 5000,
@@ -63,7 +63,7 @@ const Index = () => {
           pagination
           style={{ height: "95vh", minHeight: "600px" }}
           containerclass="px-lg-7"
-        />
+        /> */}
         {info.maincategories && (
           <div className="bg-gray-100 position-relative">
             <Container className="py-6">
@@ -87,7 +87,7 @@ const Index = () => {
                             {category.name}
                           </h2>
                           <Link href={category.link}>
-                            <a className="stretched-link">deal
+                            <a className="stretched-link">
                               <span className="sr-only">{category.button}</span>
                             </a>
                           </Link>

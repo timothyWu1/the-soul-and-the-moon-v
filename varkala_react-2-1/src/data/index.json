@@ -34,16 +34,16 @@
     ],
     "maincategories": [
         {
-            "name": "Women",
+            "name": "Bougie",
             "link": "/category-full",
             "button": "See",
-            "img": "/img/product/category-women.jpg"
+            "img": "/img/product/C.png"
         },
         {
-            "name": "Men",
+            "name": "Autres",
             "link": "/category-full",
             "button": "See",
-            "img": "/img/product/category-men.jpg"
+            "img": "/img/product/lamps.jpg"
         }
     ]
 }

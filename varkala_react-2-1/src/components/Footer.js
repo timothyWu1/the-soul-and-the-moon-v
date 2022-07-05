@@ -124,7 +124,7 @@ const Footer = () => {
                 </li> */}
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="#">
+                  <a className="text-reset" href="contact.js">
                     Nous contacter{" "}
                   </a>
                 </li>

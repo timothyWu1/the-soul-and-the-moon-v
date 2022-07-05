@@ -103,12 +103,23 @@ const TopBar = ({ header }) => {
         header && header.transparentBar ? "bg-transparent" : ""
       }`}
     >
-      <Container className="px-lg-5 py-2" fluid>
+      <Container className="px-lg-5" fluid>
         <Row className="align-items-center">
-          {/* SOCIAL & PHONE BLOCK */}
-          <Col md="4" className="d-none d-md-block">
-          <ul className="list-inline mb-0">
-              <li className="list-inline-item me-2">
+
+          
+
+          {/* ANNOUNCEMENT */}
+          
+          <Col md="12" sm="8" className="text-start text-md-center">
+           
+            <p className="mb-0"><h1>The Soul & The Moon</h1></p>
+            
+            
+          </Col>
+           {/* SOCIAL & PHONE BLOCK */}
+
+           <ul className="list-inline mb-0">
+              <li className="list-inline-item">
                 <a
                   className="text-reset text-hover-primary"
                   href="https://www.instagram.com/the.soul.and.the.moon"
@@ -134,15 +145,7 @@ const TopBar = ({ header }) => {
                 020-800-456-747
               </li> */}
             </ul>
-          </Col>
           {/* END SOCIAL & PHONE BLOCK */}
-
-          {/* ANNOUNCEMENT */}
-          
-          <Col md="12" sm="6" className="text-start text-md-center">
-            <p className="mb-0"><h1>The Soul & The Moon</h1></p>
-            
-          </Col>
           {/* END ANNOUNCEMENT */}
 
           {/* <Col md="4" sm="6" className="d-none d-sm-flex justify-content-end"> */}

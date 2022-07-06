@@ -95,7 +95,7 @@ Réference de commande : {order.customer_reference}</Typography>
       <CssBaseline />
       <div className={classes.toolbar} />
       <main className={classes.layout}>
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper}>    
           <Typography variant="h4" align="center">Vérifier</Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map((label) => (

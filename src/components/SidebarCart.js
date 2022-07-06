@@ -123,11 +123,7 @@ fetchCard();
           <h5 className="mb-4">
             Subtotal: <span className="float-end">{total}</span>
           </h5>
-          <Link passHref href="/cart">
-            <Button variant="outline-dark" className="mb-3 w-100" href="/cart">
-              View cart
-            </Button>
-          </Link>
+          
           <Link passHref href="/checkout">
             <Button variant="dark" className="w-100">
               Checkout

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, Paper, Stepper, Step, StepLabel, Typography, CircularProgress, Divider, Button } from '@material-ui/core';
-import { Link, useHistory } from 'react-router-dom';
 
 import { commerce } from '../lib/commerce';
 import AddressForm from '../components/CheckoutForm/AddressForm';
@@ -31,24 +30,29 @@ const Checkout = () => {
   }
 
   useEffect(() => {
+
     getCard();
+    console.log(cart.id)
     if (cart.id) {
       const generateToken = async () => {
-        try {
+        try { 
           const token = await commerce.checkout.generateToken(cart.id, { type: 'cart' });
 
           setCheckoutToken(token);
+
         } catch {
           if (activeStep !== steps.length) history.push('/');
         }
       };
 
       generateToken();
+      
     } else {
       error = true;
     }
   }, []);
 
+  
   const test = (data) => {
     setShippingData(data);
 

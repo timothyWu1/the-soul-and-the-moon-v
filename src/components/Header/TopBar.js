@@ -90,6 +90,7 @@
 // }
 
 // export default TopBar
+import { Nav, Navbar, NavLink } from "react-bootstrap"
 import { faFacebookF, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -98,6 +99,9 @@ import {
 import React from "react"
 import { Col, Container, Dropdown, Row } from "react-bootstrap"
 import Icon from "../Icon"
+import Link from "next/link"
+
+import Image from "../../components/Image"
 
 const TopBar = ({ header }) => {
   return (
@@ -112,13 +116,8 @@ const TopBar = ({ header }) => {
           
 
           {/* ANNOUNCEMENT */}
-          
-          <Col md="12" sm="8" className="text-start text-md-center">
-           
-            <p className="mb-0 py-5"><h1>The Soul & The Moon</h1></p>
-            
-            
-          </Col>
+       
+    
            
 
           {/* <Col md="4" sm="6" className="d-none d-sm-flex justify-content-end"> */}

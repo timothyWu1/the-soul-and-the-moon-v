@@ -5,6 +5,7 @@ import { Button, CloseButton, Modal } from "react-bootstrap"
 import Icon from "./Icon"
 import Image from "./Image"
 import { commerce } from '../lib/commerce';
+import Link from "next/link"
 
 
 
@@ -23,19 +24,18 @@ const SidebarCart =  (props) => {
     var pTab = [];
 
     cartItems.map( async (item) => {
-      console.log(item.price.raw)
+     
 
       stripe.products.create({
         name: item.name,
-      }).then((response) => {console.log(response)});
+      }).then((response) => {});
       
       var price = await stripe.prices.create({
         currency: 'eur',
         unit_amount: "{item.price.raw}",
         product: item.id,
       });
-      console.log("item")
-      console.log(price)
+
       if (price != undefined) {
         pTab.push({price: price, quantity: 1})
       }
@@ -46,7 +46,7 @@ const SidebarCart =  (props) => {
 
 
     const paymentLink = await stripe.paymentLinks.create({line_items: pTab});
-    console.log(paymentLink);
+  
     window.location.href = paymentLink;
   }
 
@@ -54,7 +54,7 @@ const SidebarCart =  (props) => {
     commerce.cart.remove(product.id).then((response) => window.location.reload());
 
     var removeId = cartItems.indexOf(product);
-    console.log(removeId)
+ 
     cartItems.splice(removeId, 1)
     
     dispatch(cartItems);
@@ -79,7 +79,7 @@ const SidebarCart =  (props) => {
       ))
       addTotal(price)
       dispatch(data2)
-      console.log("requete get here")
+
   }
   
 // fetchCard();
@@ -131,13 +131,14 @@ const SidebarCart =  (props) => {
                         </a>
                       </Link> */}
                       <small className="d-block text-muted">
-                        Quantity: {item.quantity ? item.quantity : 1}
+                        Quantité: {item.quantity ? item.quantity : 1}
                       </small>
                       <strong className="d-block text-sm">
-                        $
+                        
                         {item.quantity
                           ? item.price.raw * item.quantity
                           : item.price.raw}
+                          €
                       </strong>
                     </div>
                   </div>
@@ -149,22 +150,24 @@ const SidebarCart =  (props) => {
           <div className="text-center mb-5">
             <Icon
               className="w-3rem h-3rem svg-icon-light mb-4 text-muted"
-              icon="retail-bag-1"
+              icon="heart-1"
             />
-            <p>Your cart is empty </p>
+            <p>Votre panier est vide </p>
           </div>
         )}
       </Modal.Body>
       <Modal.Footer className="sidebar-cart-footer">
         <div className="w-100">
           <h5 className="mb-4">
-            Subtotal: <span className="float-end">{total}</span>
+            Total: <span className="float-end">{total}€</span>
           </h5>
           
           
-          <Button variant="dark" className="w-100" onClick={() => getPrice()}>
-            Checkout
-          </Button>
+          <Link passHref href="/checkout">
+            <Button variant="dark" className="w-100">
+              Payer
+            </Button>
+          </Link>
           
         </div>
       </Modal.Footer>

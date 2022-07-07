@@ -4,55 +4,38 @@
     "name": "Shop",
     "groups": [
       {
-        "name": "Shop pages",
+        "name": "La boutique",
         "links": [
+      
           {
-            "name": "Full width",
-            "link": "/category-full"
+            "name": "Les bougies",
+            "link": "/category-boxed?category=bougies"
           },
           {
-            "name": "Full width with category menu",
-            "link": "/category-full-sidebar"
-          },
-          {
-            "name": "Full width with big products",
-            "link": "/category-big-products"
-          },
-          {
-            "name": "Fixed width",
-            "link": "/category-boxed"
-          },
-          {
-            "name": "Fixed width & sidebar",
-            "link": "/category-sidebar"
-          },
-          {
-            "name": "Fixed width & masonry layout",
-            "link": "/category-masonry",
-            "new": true
-          },
-          {
-            "name": "Subcategories",
-            "link": "/category-categories"
+            "name": "Les cendriers",
+            "link": "/category-boxed?category=cendrier"
           }
+         
         ]
       },
+      
+      
       {
+        "name": "",
         "links": [
           {
-            "name": "Product with sticky info",
-            "link": "/detail-1"
+            "name": "Les pots",
+            "link": "/category-boxed?category=pots"
           },
           {
-            "name": "Product with background",
-            "link": "/detail-2"
-          },
-          {
-            "name": "Product standard",
-            "link": "/detail-3"
+            "name": "Les autres produits",
+            "link": "/category-boxed?category=pots"
           }
+       
+      
         ]
       },
+     
       {
         "img": "/img/photo/a.jpg"
       }

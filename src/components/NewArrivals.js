@@ -10,7 +10,7 @@ const NewArrivals = (props) => {
   const products = props.products
   
   if (products != []){
-    console.log(products)
+    
     return (
       <div
         className={`py-6 ${
@@ -40,7 +40,7 @@ const NewArrivals = (props) => {
               <Col lg="10" xl="8" className="text-center mx-auto">
                 <h2 className="display-3 mb-5">Boutique</h2>
                 <p className="lead text-muted mb-6">
-                  a changer dans src/components/NewArrivals.js
+                Des bougies, des cendriers et plein d'autres produits en jesmonite à decouvrir dans notre boutique!
                 </p>
               </Col>
             </Row>
@@ -76,26 +76,36 @@ const NewArrivals = (props) => {
                     Les produits{" "}
                   </a>
                 </li>
-                {/* <li className="list-inline-item">
+                {/* {/* <li className="list-inline-item">
                   <a className="text-muted text-hover-dark" href="#">
                     Clothing{" "}
                   </a>
-                </li>
-                <li className="list-inline-item">
+                </li> */}
+                {/* <li className="list-inline-item">
                   <a className="text-muted text-hover-dark" href="#">
                     Bags
                   </a>
-                </li>
-                <li className="list-inline-item">
-                  <a className="text-muted text-hover-dark" href="#">
-                    Shoes
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a className="text-muted text-hover-dark" href="#">
-                    Accessories
-                  </a>
                 </li> */}
+                <li className="list-inline-item">
+                  <a className="text-muted text-hover-dark" href="/category-boxed?category=bougies">
+                    Les bougies
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a className="text-muted text-hover-dark" href="/category-boxed?category=cendrier">
+                    Les cendriers
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a className="text-muted text-hover-dark" href="/category-boxed?category=pots">
+                    Les pots
+                  </a>
+                </li>
+                <li className="list-inline-item">
+                  <a className="text-muted text-hover-dark" href="/category-boxed?category=autres">
+                    Les autres produits
+                  </a>
+                </li>
               </ul>
             </Col>
             <Col

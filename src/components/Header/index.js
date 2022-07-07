@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import Router from "next/router"
 import Link from "next/link"
-import { Nav, Navbar, NavLink } from "react-bootstrap"
+import { Col, Nav, Navbar, NavLink } from "react-bootstrap"
 
 import menu from "../../data/menu.json"
 
@@ -29,6 +29,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faInstagram
 } from "@fortawesome/free-brands-svg-icons"
+
+import Image from "../../components/Image"
 
 const Header = ({ header }) => {
   const [collapse, setCollapse] = React.useState(false)
@@ -120,9 +122,15 @@ const Header = ({ header }) => {
         } px-lg-5 ${collapse ? "was-transparent was-navbar-light" : ""}`}
       >
         {/* LOGO */}
-        <Link href="/" passHref>
-          <Navbar.Brand>The Soul And The Moon</Navbar.Brand>
-        </Link>
+        {/* <Link href="/" passHref>
+          <Navbar.Brand>
+          <Image
+        src="/img/photo/rouge.gif"
+        width={100}
+        height={100}
+      />
+          </Navbar.Brand>
+        </Link> */}
         {/* END LOGO */}
 
         {/* SOCIAL & PHONE BLOCK */}
@@ -171,6 +179,7 @@ const Header = ({ header }) => {
         >
           <Icon icon="menu-hamburger-1" className="navbar-icon" />
         </Navbar.Toggle>
+        
         {/* END NAV MOBILE TOGGLER */}
 
         {/* MENU */}
@@ -189,6 +198,7 @@ const Header = ({ header }) => {
                     <NavLink>{item.name}</NavLink>
                   </ActiveLink>
                 </Nav.Item>
+                
               ) : (
                 // If item doesn't have link property than dropdown
                 <DropdownMenuItem
@@ -200,8 +210,26 @@ const Header = ({ header }) => {
                 />
               )
             })}
+          
           </Nav>
-
+          {/* <Col md="10" className="text-start text-md-center">
+              <p className="mb-0 md-0 py-0"><h1>The Soul & The Moon</h1></p>
+              </Col> */}
+                    <Col md="10" sm="8" className="text-start text-md-center">
+      
+          <Link href="/" passHref>
+          <Navbar.Brand>
+          <Image
+        src="/img/photo/rouge.gif"
+        width={300}
+        height={300}
+      />
+          </Navbar.Brand>
+        </Link>
+           
+            
+            
+          </Col>
           {/* SEARCH BLOCK */}
           <SearchBlock />
           {/* END SEARCH BLOCK */}

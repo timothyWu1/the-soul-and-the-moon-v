@@ -135,81 +135,69 @@ const Privacy = () => {
                 <li>Détecter, prévenir et résoudre les problèmes techniques</li>
               </ul>
               <hr />
-              <h2>Transfer Of Data</h2>
+              <h2>Transfert de données</h2>
               <p>
-                Your information, including Personal Data, may be transferred to
-                — and maintained on — computers located outside of your state,
-                province, country or other governmental jurisdiction where the
-                data protection laws may differ than those from your
-                jurisdiction.
+              Vos informations, y compris vos données personnelles, peuvent être transférées à
+                — et maintenus sur — des ordinateurs situés en dehors de votre État,
+                province, pays ou autre juridiction gouvernementale lorsque l'
+                les lois sur la protection des données peuvent différer de celles de votre
+                juridiction.
               </p>
               <p>
-                If you are located outside Czech Republic and choose to provide
-                information to us, please note that we transfer the data,
-                including Personal Data, to Czech Republic and process it there.
+              Si vous êtes situé en dehors de la République tchèque et choisissez de fournir
+                informations à nous, veuillez noter que nous transférons les données,
+                y compris les données personnelles, à la République tchèque et les traiter là-bas.
               </p>
               <p>
-                Your consent to this Privacy Policy followed by your submission
-                of such information represents your agreement to that transfer.
+              Votre consentement à cette politique de confidentialité suivi de votre soumission
+                de ces informations représente votre accord à ce transfert.
               </p>
               <p>
-                Varkala will take all steps reasonably necessary to ensure that
-                your data is treated securely and in accordance with this
-                Privacy Policy and no transfer of your Personal Data will take
-                place to an organization or a country unless there are adequate
-                controls in place including the security of your data and other
-                personal information.
+              The soul and the moon prendra toutes les mesures raisonnablement nécessaires pour s’assurer que
+                vos données sont traitées en toute sécurité et conformément à la présente
+                Politique de confidentialité et aucun transfert de vos données personnelles prendra
+                placer à une organisation ou à un pays à moins qu’il n’y ait suffisamment de
+                les contrôles en place, y compris la sécurité de vos données et autres
+                renseignements personnels.
               </p>
               <hr />
-              <h2>Disclosure Of Data</h2>
-              <h3>Legal Requirements</h3>
+              <h2>Divulgation des données</h2>
+              <h3>exigences légales</h3>
               <p>
-                Varkala may disclose your Personal Data in the good faith belief
-                that such action is necessary to:
+              Varkala peut divulguer vos données personnelles de bonne foi
+                qu’une telle action est nécessaire pour:
               </p>
               <ul className="list-icon">
-                <li>To comply with a legal obligation</li>
-                <li>To protect and defend the rights or property of Varkala</li>
+                <li>Pour se conformer à une obligation légale</li>
+                <li>Pour protéger et défendre les droits ou la propriété de Varkala</li>
                 <li>
-                  To prevent or investigate possible wrongdoing in connection
-                  with the Service
+                Pour prévenir ou enquêter sur d’éventuels actes répréhensibles en lien avec
+                  avec le Service
                 </li>
                 <li>
-                  To protect the personal safety of users of the Service or the
+                Pour protéger la sécurité personnelle des utilisateurs du Service ou du
                   public
                 </li>
-                <li>To protect against legal liability</li>
+                <li>Pour se protéger contre la responsabilité légale</li>
               </ul>
               <hr />
-              <h2>Security Of Data</h2>
+              <h2>Sécurité des données</h2>
               <p>
-                The security of your data is important to us, but remember that
-                no method of transmission over the Internet, or method of
-                electronic storage is 100% secure. While we strive to use
-                commercially acceptable means to protect your Personal Data, we
-                cannot guarantee its absolute security.
+              La sécurité de vos données est importante pour nous, mais rappelez-vous que
+                aucune méthode de transmission sur Internet, ou méthode de
+                le stockage électronique est 100% sécurisé. Alors que nous nous efforçons d’utiliser
+                moyens commercialement acceptables pour protéger vos données personnelles, nous
+                ne peut garantir sa sécurité absolue.
               </p>
               <hr />
-              <h2>Service Providers</h2>
+           
+              <h2>Nous contacter</h2>
               <p>
-                We may employ third party companies and individuals to
-                facilitate our Service ("Service Providers"), to provide the
-                Service on our behalf, to perform Service-related services or to
-                assist us in analyzing how our Service is used.
-              </p>
-              <p>
-                These third parties have access to your Personal Data only to
-                perform these tasks on our behalf and are obligated not to
-                disclose or use it for any other purpose.
-              </p>
-              <hr />
-              <h2>Contact Us</h2>
-              <p>
-                If you have any questions about this Privacy Policy, please
-                contact us:
+              Si vous avez des questions concernant cette politique de confidentialité, veuillez
+                Contactez-nous:
               </p>
               <ul className="list-icon">
-                <li>By email: hello@example.com</li>
+                <li>By email: maillard.lolita@gmail.com</li>
               </ul>
             </Col>
           </Row>

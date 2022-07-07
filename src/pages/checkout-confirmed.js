@@ -17,7 +17,7 @@ export async function getStaticProps() {
 
 const CheckoutConfirmed = () => {
   const [formInputs, setFormInputs] = React.useContext(FormContext) // Checkout inputs context
-  console.log(formInputs) // Log of filled inputs and cart items
+  
   const today = new Date() // Demo date
   const day = today.getDate() // Demo day
   const months = [

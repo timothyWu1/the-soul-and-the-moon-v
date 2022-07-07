@@ -45,7 +45,7 @@ const services = [
   },
   {
     name: "Nous contacter",
-    text: "A remplir",
+    text: "maillard.lolita@gmail.com",
     icon: "customer-support-1",
   },
 ]

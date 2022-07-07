@@ -27,7 +27,7 @@ const CardProductDefault = ({
 
   useEffect(() => {
 
-    console.log("test")
+    
   }, [])
 
   return (
@@ -87,7 +87,7 @@ const CardProductDefault = ({
               className="text-hover-primary svg-icon-heavy d-sm-none"
               icon="retail-bag-1"
             />
-            <span className="d-none d-sm-inline">Add to cart</span>
+            <span className="d-none d-sm-inline"> <Icon className="svg-icon-heavy" icon="add-1" />Ajouter</span>
           </button>
           <div>
             <a
@@ -96,7 +96,7 @@ const CardProductDefault = ({
               onClick={(e) => addToWishlist(e, product)}
               aria-label="add to wishlist"
             >
-              <Icon className="svg-icon-heavy" icon="heart-1" />
+             
             </a>
             <a
               className="text-dark text-hover-primary text-decoration-none"
@@ -107,7 +107,7 @@ const CardProductDefault = ({
               }}
               aria-label="open quickview"
             >
-              <Icon className="svg-icon-heavy" icon="expand-1" />
+              {/* <Icon className="svg-icon-heavy" icon="expand-1" /> */}
             </a>
           </div>
         </div>
@@ -125,8 +125,8 @@ const CardProductDefault = ({
             <a className="text-dark">{product.name}</a>
           </Link> */}
         </h3>
-        <span className="text-gray-500 text-sm">${product.price.formatted_with_symbol}</span>
-        <Stars stars={product.stars} className="product-stars text-xs" />
+        <span className="text-gray-500 text-sm">{product.price.formatted_with_symbol}</span>
+        {/* <Stars stars={product.stars} className="product-stars text-xs" /> */}
       </div>
     </div>
   )

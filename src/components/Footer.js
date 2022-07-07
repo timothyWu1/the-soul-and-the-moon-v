@@ -98,8 +98,7 @@ const Footer = () => {
           <Row className="align-items-center text-sm text-gray-500">
             <Col lg="4" className="text-center text-lg-start">
               <p className="mb-lg-0">
-                &copy; {new Date().getFullYear()} The Soul And The Moon. All rights
-                reserved.
+                &copy; {new Date().getFullYear()} The Soul And The Moon. Tout droits réservés.
               </p>
             </Col>
             <Col lg="8">
@@ -122,12 +121,12 @@ const Footer = () => {
                     Accessibility{" "}
                   </a>
                 </li> */}
-                <li className="list-inline-item">
+                {/* <li className="list-inline-item">
                   {" "}
                   <a className="text-reset" href="/contact">
                     Nous contacter{" "}
                   </a>
-                </li>
+                </li> */}
                 <li className="list-inline-item">
                   {" "}
                   <a className="text-reset" href="/privacy">

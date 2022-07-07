@@ -37,7 +37,7 @@ const Index = () => {
 
   };
 
-  // commerce.cart.contents().then((items) => console.log(items));
+
 
 
   
@@ -73,17 +73,17 @@ const Index = () => {
                     <Card className="card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">
                       <div>
                         <Image
-                          className="img-scale card-img"
+                          className="img-scale card-img mb-2"
                           src={category.img}
                           alt={category.name}
-                          width={630}
-                          height={807}
+                          width={80}
+                          height={80}
                           sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
                         />
                       </div>
                       <Card.ImgOverlay className="d-flex align-items-center">
                         <div className="w-100 py-3">
-                          <h2 className="display-3 fw-bold mb-0">
+                          <h2 className="display-3 fw-bold mb-2">
                             {category.name}
                           </h2>
                           <Link href={category.link}>

@@ -40,8 +40,21 @@
             "img": "/img/product/bougies.jpg"
         },
         {
-            "name": "pot",
-            "link": "/category-boxed?category=pot",
+            "name": "cendrier",
+            "link": "/category-boxed?category=cendrier",
+            "button": "See",
+            "img": "/img/product/cendrier.jpg"
+        },
+        {
+            "name": "pots",
+            "link": "/category-boxed?category=cendrier",
+            "button": "See",
+            "img": "/img/product/3.jpg"
+        },
+        
+        {
+            "name": "autres",
+            "link": "/category-boxed?category=autres",
             "button": "See",
             "img": "/img/product/pot.png"
         }

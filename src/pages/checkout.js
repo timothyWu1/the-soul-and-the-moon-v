@@ -26,13 +26,13 @@ const Checkout = () => {
       
       dispatch(data2)
 
-      console.log("requete get here")
+      
   }
 
   useEffect(() => {
 
     getCard();
-    console.log(cart.id)
+  
     if (cart.id) {
       const generateToken = async () => {
         try { 

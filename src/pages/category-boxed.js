@@ -58,31 +58,30 @@ const CategoryBoxed = () => {
     <Container className="py-6">
       <div className="products-grid">
         <div className="hero-content pb-5">
-          <h1>Jackets and tops</h1>
+          <h1>Nos produits</h1>
           <Row>
             <Col xl="8">
               <p className="lead text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt.
+                
               </p>
             </Col>
           </Row>
         </div>
         <Breadcrumb>
           <Link href="/" passHref>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>Accueil</Breadcrumb.Item>
           </Link>
-          <Breadcrumb.Item active>Shop</Breadcrumb.Item>
+          <Breadcrumb.Item active>Nos produits</Breadcrumb.Item>
         </Breadcrumb>
-        <CategoryTopBar filter />
+        {/* <CategoryTopBar filter /> */}
         <Row>
           {productsFull.slice(0, -2).map((product, index) => (
             <Col key={index} sm="4" xl="3" xs="6">
-              <CardProduct product={product} cardType={4} />
+              <CardProduct product={product} />
             </Col>
           ))}
         </Row>
-        <Pagination />
+        {/* <Pagination /> */}
       </div>
     </Container>
   )

@@ -78,8 +78,9 @@ const CardProductDefault = ({
             className="text-dark text-sm"
             aria-label="add to cart"
             onClick={() => {
-              commerce.cart.add(product.id, 1).then((response) => console.log(response))
+              commerce.cart.add(product.id, 1).then((response) => window.location.reload())
               fetchCard();
+              
             }}
           >
             <Icon

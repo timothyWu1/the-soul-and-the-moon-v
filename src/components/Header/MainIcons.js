@@ -32,7 +32,7 @@ const MainIcons = (props) => {
       dispatch2(data2)
       console.log("requete get here")
   }
-  fetchCard();
+  // fetchCard();
 
   useEffect(() => {
 

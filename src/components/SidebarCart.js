@@ -2,28 +2,65 @@
 
 import { Button, CloseButton, Modal } from "react-bootstrap"
 
-import { CartContext } from "../components/CartContext"
-import { removeCartItem } from "../hooks/UseCart"
 import Icon from "./Icon"
-import Link from "next/link"
 import Image from "./Image"
 import { commerce } from '../lib/commerce';
 
 
-const SidebarCart = (props) => {
+
+const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
+
+
+
+
+const SidebarCart =  (props) => {
+
   const [cartItems, dispatch] = useState([]);
   const [total, addTotal] = useState(0);
   // console.log((cartItems))
 
+  const getPrice = async () => {
+    var pTab = [];
+
+    cartItems.map( async (item) => {
+      console.log(item.price.raw)
+
+      stripe.products.create({
+        name: item.name,
+      }).then((response) => {console.log(response)});
+      
+      var price = await stripe.prices.create({
+        currency: 'eur',
+        unit_amount: "{item.price.raw}",
+        product: item.id,
+      });
+      console.log("item")
+      console.log(price)
+      if (price != undefined) {
+        pTab.push({price: price, quantity: 1})
+      }
+      
+      
+    })
+    
+
+
+    const paymentLink = await stripe.paymentLinks.create({line_items: pTab});
+    console.log(paymentLink);
+    window.location.href = paymentLink;
+  }
+
   const removeFromCart = (product) => {
-    commerce.cart.remove(product.id).then((response) => console.log(response));
+    commerce.cart.remove(product.id).then((response) => window.location.reload());
 
     var removeId = cartItems.indexOf(product);
     console.log(removeId)
     cartItems.splice(removeId, 1)
     
     dispatch(cartItems);
+    fetchCard();
     
+
   }
   const headerClose = (
     <CloseButton
@@ -38,14 +75,14 @@ const SidebarCart = (props) => {
       const data2 = await commerce.cart.contents();
       var price = 0;
       data2.map((item) => (
-        price += item.price.raw
+        price += (item.price.raw * item.quantity) 
       ))
       addTotal(price)
       dispatch(data2)
       console.log("requete get here")
   }
   
-fetchCard();
+// fetchCard();
 
   useEffect(() => {
     fetchCard();
@@ -124,11 +161,11 @@ fetchCard();
             Subtotal: <span className="float-end">{total}</span>
           </h5>
           
-          <Link passHref href="/checkout">
-            <Button variant="dark" className="w-100">
-              Checkout
-            </Button>
-          </Link>
+          
+          <Button variant="dark" className="w-100" onClick={() => getPrice()}>
+            Checkout
+          </Button>
+          
         </div>
       </Modal.Footer>
     </Modal>

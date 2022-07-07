@@ -100,6 +100,7 @@ const Header = ({ header }) => {
     <header
       className={`header ${header && header.absolute ? "header-absolute" : ""}`}
     >
+      
       {/* TOP BAR */}
       <TopBar header={header} />
       
@@ -215,7 +216,7 @@ const Header = ({ header }) => {
           {/* <Col md="10" className="text-start text-md-center">
               <p className="mb-0 md-0 py-0"><h1>The Soul & The Moon</h1></p>
               </Col> */}
-                    <Col md="10" sm="8" className="text-start text-md-center">
+                    <Col md="11" sm="8" className="text-start text-md-center">
       
           <Link href="/" passHref>
           <Navbar.Brand>
@@ -231,10 +232,11 @@ const Header = ({ header }) => {
             
           </Col>
           {/* SEARCH BLOCK */}
-          <SearchBlock />
+          {/* <SearchBlock /> */}
           {/* END SEARCH BLOCK */}
 
           {/* TOP USER ICONS */}
+          
           <MainIcons className="d-none d-lg-block" sidebarRight />
           {/* END TOP USER ICONS */}
         </Navbar.Collapse>

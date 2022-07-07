@@ -50,6 +50,16 @@ const Index = () => {
   if (productsFull[0] != null){
     return (
       <React.Fragment>
+            <div>
+                        <Image
+                          className="img-scale card-img mb-2"
+                          src="/img/product/bg.jpg"
+                          layout="fill"
+                          // // width={0}
+                          // height={40}
+                          sizes="(max-width: 100px) calc(100vw - 30px), 50vw"
+                        />
+                      </div>
         {/* <Swiper
           info={info.swiper}
           autoplay={{
@@ -66,8 +76,28 @@ const Index = () => {
         /> */}
         {info.maincategories && (
           <div className="bg-gray-100 position-sticky ">
+<Container className="py-6 categories">
+<Row>
+              <div>
+              <Col lg="10" xl="8" className="text-center mx-auto text-muted">
+                <h1 className="display-3 mb-5">The soul and the moon</h1>
+              </Col>
+                        <Image
+                          className="img-scale card-img mb-2"
+                          src="/img/product/C.png"
+                        
+                          width={40}
+                          height={40}
+                          sizes="(max-width: 100px) calc(100vw - 30px), 50vw"
+                        />
+                      </div>
+
+              </Row>
+              </Container>
             <Container className="py-6 categories">
+            
               <Row>
+                
                 {info.maincategories.map((category) => (
                   <Col key={category.name} sm="6" className="mb-5 mb-sm-0">
                     <Card className="card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">

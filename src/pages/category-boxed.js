@@ -24,9 +24,27 @@ const CategoryBoxed = () => {
   const fetchProducts = async () => {
 
     const { data } = await commerce.products.list();
+    var products = [];
     
-    setProductsFull(data);
+
+    var vars = {};
+    window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+
+    data.map((item) => {
+      if (vars.category == item.categories[0].slug){
+        products.push(item)
+      }
+
+    })
+
+    setProductsFull(products);
+
   };
+
+  
+    
 
   
 

@@ -34,14 +34,14 @@
     ],
     "maincategories": [
         {
-            "name": "",
-            "link": "/category-full",
+            "name": "bougies",
+            "link": "/category-boxed?category=bougies",
             "button": "See",
             "img": "/img/product/bougies.jpg"
         },
         {
-            "name": "",
-            "link": "/category-full",
+            "name": "pot",
+            "link": "/category-boxed?category=pot",
             "button": "See",
             "img": "/img/product/pot.png"
         }

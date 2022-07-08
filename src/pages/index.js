@@ -79,9 +79,7 @@ const Index = () => {
 <Container className="py-6 categories">
 <Row>
               <div>
-              <Col lg="10" xl="8" className="text-center mx-auto text-muted">
-                <h1 className="display-3 mb-5">The soul and the moon</h1>
-              </Col>
+            
                         <Image
                           className="img-scale card-img mb-2"
                           src="/img/product/C.png"

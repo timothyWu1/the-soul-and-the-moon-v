@@ -97,10 +97,14 @@ const Header = ({ header }) => {
     setParentName(parent) // Set parent name for item parent higlight
   }
   return (
-    <header
-      className={`header ${header && header.absolute ? "header-absolute" : ""}`}
-    >
+    
+    <header className={`header ${header && header.absolute ? "header-absolute" : ""}`}>
       
+
+  
+
+
+
       {/* TOP BAR */}
       <TopBar header={header} />
       
@@ -122,6 +126,16 @@ const Header = ({ header }) => {
           header && header.transparentNavbar ? "shadow-0" : ""
         } px-lg-5 ${collapse ? "was-transparent was-navbar-light" : ""}`}
       >
+           <div>
+                        <Image
+                          className="img-scale card-img mb-2"
+                          src="/img/product/bg.jpg"
+                          layout="fill"
+                          // // width={0}
+                          // height={40}
+                          sizes="(max-width: 100px) calc(100vw - 30px), 50vw"
+                        />
+                      </div>
         {/* LOGO */}
         {/* <Link href="/" passHref>
           <Navbar.Brand>

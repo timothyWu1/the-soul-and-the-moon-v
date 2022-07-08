@@ -95,11 +95,13 @@ const Index = () => {
             <Container className="py-6 categories">
             
               <Row>
-                
+              <h2 className="display-3 mb-5">Nos catégories</h2>
                 {info.maincategories.map((category) => (
                   <Col key={category.name} sm="6" className="mb-5 mb-sm-0">
                     <Card className="card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">
+                      
                       <div>
+                        
                         <Image
                           className="img-scale card-img mb-2"
                           src={category.img}
@@ -108,8 +110,7 @@ const Index = () => {
                           height={80}
                           sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
                         />
-                      </div>
-                      <Card.ImgOverlay className="d-flex align-items-center">
+                         <Card.ImgOverlay className="d-flex align-items-center">
                         <div className="w-100 py-3">
                           <h2 className="display-3 fw-bold mb-2">
                             {category.name}
@@ -121,6 +122,8 @@ const Index = () => {
                           </Link>
                         </div>
                       </Card.ImgOverlay>
+                      </div>
+                     
                     </Card>
                   </Col>
                 ))}

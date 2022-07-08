@@ -56,6 +56,7 @@ const CategoryBoxed = () => {
   if (productsFull != []){
   return (
     <Container className="py-6">
+      
       <div className="products-grid">
         <div className="hero-content pb-5">
           <h1>Nos produits</h1>

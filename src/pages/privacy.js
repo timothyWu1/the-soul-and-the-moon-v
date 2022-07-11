@@ -197,7 +197,7 @@ const Privacy = () => {
                 Contactez-nous:
               </p>
               <ul className="list-icon">
-                <li>By email: maillard.lolita@gmail.com</li>
+                <li>Par email: maillard.lolita@gmail.com</li>
               </ul>
             </Col>
           </Row>

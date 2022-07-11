@@ -150,7 +150,7 @@ const SidebarCart =  (props) => {
           <div className="text-center mb-5">
             <Icon
               className="w-3rem h-3rem svg-icon-light mb-4 text-muted"
-              icon="heart-1"
+              icon="cart-1"
             />
             <p>Votre panier est vide </p>
           </div>

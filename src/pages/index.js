@@ -6,7 +6,7 @@ import { Container, Row, Col, Card } from "react-bootstrap"
 
 import NewArrivals from "../components/NewArrivals"
 
-import info from "../data/index.json"
+
 
 import Image from "../components/Image"
 import { commerce } from '../lib/commerce';
@@ -27,6 +27,7 @@ export async function getStaticProps() {
 
 const Index = () => {
   const [productsFull, setProductsFull] = useState([]);
+  const [categoryList, setCategory] = useState([]);
 
   const fetchProducts = async () => {
 
@@ -36,6 +37,24 @@ const Index = () => {
     setProductsFull(data);
 
   };
+  const getCategories = async () => {
+    commerce.categories.list().then((categorylist) => {
+      console.log( categorylist.data[0].assets[0].url)
+      var list = []
+      categorylist.data.map((category) => {
+        list.push({
+          name: category.name,
+          image: category.assets[0].url,
+          url: "//category-boxed?category="+category.slug
+        })
+
+      })
+      setCategory(list);
+    });
+
+
+
+  }
 
 
 
@@ -43,11 +62,12 @@ const Index = () => {
   
  useEffect(() => {
 
-  fetchProducts(); 
+  fetchProducts();
+  getCategories();
  }, [])
   
 
-  if (productsFull[0] != null){
+ if (categoryList[0] != undefined){
     return (
       <React.Fragment>
             <div>
@@ -74,7 +94,7 @@ const Index = () => {
           style={{ height: "95vh", minHeight: "600px" }}
           containerclass="px-lg-7"
         /> */}
-        {info.maincategories && (
+       {categoryList && (
           <div className="bg-gray-100 position-sticky ">
 <Container className="py-6 categories">
 <Row>
@@ -96,7 +116,7 @@ const Index = () => {
             
               <Row>
               <h2 className="display-3 mb-5">Nos catégories</h2>
-                {info.maincategories.map((category) => (
+              {categoryList.map((category) => (
                   <Col key={category.name} sm="6" className="mb-5 mb-sm-0">
                     <Card className="card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">
                       
@@ -104,7 +124,7 @@ const Index = () => {
                         
                         <Image
                           className="img-scale card-img mb-2"
-                          src={category.img}
+                          src={category.image}
                           alt={category.name}
                           width={80}
                           height={80}
@@ -115,7 +135,7 @@ const Index = () => {
                           <h2 className="display-3 fw-bold mb-2">
                             {category.name}
                           </h2>
-                          <Link href={category.link}>
+                          <Link href={category.url}>
                             <a className="stretched-link">
                               <span className="sr-only">{category.button}</span>
                             </a>

@@ -113,74 +113,61 @@
 
 // export default Checkout;
 
-import { useState } from "react";
-import { loadStripe } from "@stripe/stripe-js";
+import React from 'react';
+import { loadStripe } from '@stripe/stripe-js';
 
+// Make sure to call `loadStripe` outside of a component’s render to avoid
+// recreating the `Stripe` object on every render.
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+);
+export default function PreviewPage() {
+  React.useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+    if (query.get('success')) {
+      console.log('Order placed! You will receive an email confirmation.');
+    }
 
-let stripePromise;
-
-const getStripe = () => {
-  if (!stripePromise) {
-    stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
-  }
-
-  return stripePromise;
-};
-
-const Checkout = () => {
-  const [stripeError, setStripeError] = useState(null);
-  const [isLoading, setLoading] = useState(false);
-  const item = {
-    price: "price_1K3TfMA4B8Maa00LFZ4EFwdX",
-    quantity: 1
-  };
-
-  const checkoutOptions = {
-    lineItems: [item],
-    mode: "payment",
-    successUrl: `${window.location.origin}/success`,
-    cancelUrl: `${window.location.origin}/cancel`
-  };
-
-  const redirectToCheckout = async () => {
-    setLoading(true);
-    console.log("redirectToCheckout");
-
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions);
-    console.log("Stripe checkout error", error);
-
-    if (error) setStripeError(error.message);
-    setLoading(false);
-  };
-
-  if (stripeError) alert(stripeError);
+    if (query.get('canceled')) {
+      console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
+    }
+  }, []);
 
   return (
-    <div className="checkout">
-      <h1>Stripe Checkout</h1>
-      <p className="checkout-title">Design+Code React Hooks Course</p>
-      <p className="checkout-description">
-        Learn how to build a website with React Hooks
-      </p>
-      <h1 className="checkout-price">$19</h1>
-   
-      <button
-        className="checkout-button"
-        onClick={redirectToCheckout}
-        disabled={isLoading}
-      >
-        <div className="grey-circle">
-          <div className="purple-circle">
-      
-          </div>
-        </div>
-        <div className="text-container">
-          <p className="text">{isLoading ? "Loading..." : "Buy"}</p>
-        </div>
-      </button>
-    </div>
+    <form action="/api/checkout_sessions" method="POST">
+      <section>
+        <button type="submit" role="link">
+          Checkout
+        </button>
+      </section>
+      <style jsx>
+        {`
+          section {
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            height: 112px;
+            border-radius: 6px;
+            justify-content: space-between;
+          }
+          button {
+            height: 36px;
+            background: #556cd6;
+            border-radius: 4px;
+            color: white;
+            border: 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+          }
+          button:hover {
+            opacity: 0.8;
+          }
+        `}
+      </style>
+    </form>
   );
-};
-
-export default Checkout;
+}

@@ -80,20 +80,7 @@ const Index = () => {
                           sizes="(max-width: 100px) calc(100vw - 30px), 50vw"
                         />
                       </div>
-        {/* <Swiper
-          info={info.swiper}
-          autoplay={{
-            delay: 5000,
-          }}
-          loop
-          centeredSlides
-          speed={1500}
-          parallax
-          navigation
-          pagination
-          style={{ height: "95vh", minHeight: "600px" }}
-          containerclass="px-lg-7"
-        /> */}
+ 
        {categoryList && (
           <div className="bg-gray-100 position-sticky ">
 <Container className="py-6 categories">
@@ -152,9 +139,6 @@ const Index = () => {
           </div>
         )}
         <NewArrivals fluid headCenter products={productsFull} />
-        {/* <Sale className="py-6" backgroundImage="/img/photo/deal-plain.jpg" /> */}
-        {/* <OurHistory /> */}
-        {/* <Brands className="pb-6" /> */}
       </React.Fragment>
     )
   } else {return null}

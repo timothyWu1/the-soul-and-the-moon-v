@@ -163,7 +163,7 @@ const SidebarCart =  (props) => {
           </h5>
           
           
-          <Link passHref href="/checkout">
+          <Link passHref href="/">
             <Button variant="dark" className="w-100">
               Payer
             </Button>

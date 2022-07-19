@@ -79,7 +79,7 @@ const Index = () => {
               />
 
               <Card.ImgOverlay className="d-flex align-items-center">
-                {/* <div className="w-100 py-3">
+                <div className="w-100 py-3">
                         <h1 className="display-3 fw-bold mb-2">
                             LA BOUTIQUE
                           </h1>
@@ -88,8 +88,8 @@ const Index = () => {
                            
                             </a>
                           </Link>
-                        </div> */}
-                <div className="w-100 py-3">
+                        </div>
+                {/* <div className="w-100 py-3">
                 <button
                   type="button"
                   className="text-muted text-sm bg-transparent btn-outline-secondary"
@@ -99,7 +99,7 @@ const Index = () => {
                 >
                   <span className="d-none d-sm-inline text-muted "><h1 > La boutique </h1></span>
                 </button>
-                </div>
+                </div> */}
               </Card.ImgOverlay>
             </div>
           </Card>

@@ -194,10 +194,10 @@ const Privacy = () => {
               <h2>Nous contacter</h2>
               <p>
               Si vous avez des questions concernant cette politique de confidentialité, veuillez
-                Contactez-nous:
+              nous contactez:
               </p>
               <ul className="list-icon">
-                <li>Par email: maillard.lolita@gmail.com</li>
+                <li>Par email: contact@thesoulandthemoon.com </li>
               </ul>
             </Col>
           </Row>

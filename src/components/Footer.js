@@ -9,11 +9,16 @@ import {
   Collapse,
 } from "react-bootstrap"
 
-import data from "../data/footer.json"
+
+
+import {
+  faInstagram
+} from "@fortawesome/free-brands-svg-icons"
 
 import Icon from "./Icon"
 import Link from "next/link"
 import ServicesBlock from "./ServicesBlock"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Footer = () => {
   const [columnOpen, setColumnOpen] = useState({})
@@ -133,6 +138,15 @@ const Footer = () => {
                   Politique de confidentialité{" "}
                   </a>
                 </li>
+                   <li className="list-inline-item">
+                <a
+                  className="text-reset text-hover-primary"
+                  href="https://www.instagram.com/the.soul.and.the.moon"
+                  aria-label="Go to instagram"
+                >
+                  <FontAwesomeIcon icon={faInstagram} />
+                  </a>
+              </li>
                 
               </ul>
             </Col>

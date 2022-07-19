@@ -106,12 +106,13 @@ const Header = ({ header }) => {
 
 
       {/* TOP BAR */}
-      <TopBar header={header} />
+      {/* <TopBar header={header} /> */}
       
       {/* END TOP BAR */}
 
       {/* NAV BAR */}
       <Navbar
+        fixed="top"
         expand="lg"
         style={{ zIndex: "11" }}
         bg={
@@ -151,18 +152,20 @@ const Header = ({ header }) => {
         {/* SOCIAL & PHONE BLOCK */}
 
         <ul className="list-inline mb-0">
-              <li className="list-inline-item">
-                <a
-                  className="text-reset text-hover-primary"
-                  href="https://www.instagram.com/the.soul.and.the.moon"
-                  aria-label="Go to instagram"
-                >
-                  <FontAwesomeIcon icon={faInstagram} />
+           
+                  <Link href="/" passHref>
+          <Navbar.Brand>
+          <Image
+        src="/img/photo/rouge.gif"
+        width={150}
+        height={150}
+      />
+          </Navbar.Brand>
+        </Link>
                   {/* <FontAwesomeIcon icon={faFacebookF} /> */}
                   {/* <FontAwesomeIcon icon="fa-Instagram" /> */}
                   {/* <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}
-                </a>
-              </li>
+               
               {/* <li className="list-inline-item me-4">
                 <a
                   className="text-reset text-hover-primary"
@@ -199,7 +202,32 @@ const Header = ({ header }) => {
 
         {/* MENU */}
         <Navbar.Collapse>
+      
+          {/* <Col md="10" className="text-start text-md-center">
+              <p className="mb-0 md-0 py-0"><h1>The Soul & The Moon</h1></p>
+              </Col> */}
+                    <Col md="11" sm="8" className="text-start text-md-center">
+      
+          <Link href="/" passHref>
+          <Navbar.Brand>
+          <Image
+        src="/img/photo/icone.jpg"
+        width={700}
+        height={160}
+      />
+          </Navbar.Brand>
+        </Link>
+           
+            
+            
+          </Col>
+          {/* SEARCH BLOCK */}
+          {/* <SearchBlock /> */}
+          {/* END SEARCH BLOCK */}
+
+          {/* TOP USER ICONS */}
           <Nav className="mt-3 mt-lg-0" navbar>
+            
             {menu.map((item, index) => {
               // Mapping through menu items
 
@@ -227,31 +255,9 @@ const Header = ({ header }) => {
             })}
           
           </Nav>
-          {/* <Col md="10" className="text-start text-md-center">
-              <p className="mb-0 md-0 py-0"><h1>The Soul & The Moon</h1></p>
-              </Col> */}
-                    <Col md="11" sm="8" className="text-start text-md-center">
-      
-          <Link href="/" passHref>
-          <Navbar.Brand>
-          <Image
-        src="/img/photo/rouge.gif"
-        width={300}
-        height={300}
-      />
-          </Navbar.Brand>
-        </Link>
-           
-            
-            
-          </Col>
-          {/* SEARCH BLOCK */}
-          {/* <SearchBlock /> */}
-          {/* END SEARCH BLOCK */}
-
-          {/* TOP USER ICONS */}
           
           <MainIcons className="d-none d-lg-block" sidebarRight />
+     
           {/* END TOP USER ICONS */}
         </Navbar.Collapse>
         {/* END MENU */}

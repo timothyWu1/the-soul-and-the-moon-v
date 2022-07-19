@@ -14,30 +14,17 @@
           {
             "name": "Les cendriers",
             "link": "/category-boxed?category=cendrier"
-          }
-         
-        ]
-      },
-      
-      
-      {
-        "name": "",
-        "links": [
+          },
           {
             "name": "Les pots",
             "link": "/category-boxed?category=pots"
           },
           {
-            "name": "Les autres produits",
+            "name": "Autres produits",
             "link": "/category-boxed?category=pots"
           }
-       
-      
+         
         ]
-      },
-     
-      {
-        "img": "/img/photo/a.jpg"
       }
     ]
   }

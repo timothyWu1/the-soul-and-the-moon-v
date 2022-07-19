@@ -102,7 +102,7 @@ const Index = () => {
             <Container className="py-6 categories">
             
               <Row>
-              <h2 className="display-3 mb-5">Nos catégories</h2>
+              
               {categoryList.map((category) => (
                   <Col key={category.name} sm="6" className="mb-5 mb-sm-0">
                     <Card className="card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">
@@ -113,8 +113,8 @@ const Index = () => {
                           className="img-scale card-img mb-2"
                           src={category.image}
                           alt={category.name}
-                          width={80}
-                          height={80}
+                          width={20}
+                          height={20}
                           sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
                         />
                          <Card.ImgOverlay className="d-flex align-items-center">

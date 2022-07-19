@@ -45,7 +45,7 @@ const services = [
   },
   {
     name: "Nous contacter",
-    text: "maillard.lolita@gmail.com",
+    text: "contact@thesoulandthemoon.com ",
     icon: "customer-support-1",
   },
 ]

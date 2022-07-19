@@ -12,16 +12,19 @@ export async function getStaticProps() {
 
 const About2 = () => {
   return (
+    
     <section>
+      <Container className="py-6 categories">
+                        </Container>
       <Container fluid>
         <Row className="my-lg-3">
           <Col lg="7" xl="6" className="order-lg-2 mb-3 mb-lg-0">
             <div className="d-flex align-items-center p-5 p-xl-6 bg-gray-100 h-100">
               <div>
-                <h6 className="text-uppercase text-primary letter-spacing-5 mb-3">
+                <h4 className="text-uppercase text-primary letter-spacing-5 mb-3">
                   {" "}
                   à propos de nous
-                </h6>
+                </h4>
                 <h1 className="display-3 fw-bold mb-5">Qui sommes-nous</h1>
                 <Row>
                   <Col xl="10">

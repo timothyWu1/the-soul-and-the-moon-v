@@ -4,8 +4,7 @@ import Link from "next/link"
 
 import CardProduct from "../components/CardProduct"
 
-import Pagination from "../components/Pagination"
-import CategoryTopBar from "../components/CategoryTopBar"
+
 import { commerce } from '../lib/commerce';
 
 

@@ -13,6 +13,8 @@ export async function getStaticProps() {
 const Privacy = () => {
   return (
     <React.Fragment>
+      <Container className="py-6 categories">
+                        </Container>
       <section className="hero py-6">
         <Container>
           <Breadcrumb>

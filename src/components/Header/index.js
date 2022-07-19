@@ -9,26 +9,20 @@ import Icon from "../Icon"
 import ActiveLink from "../ActiveLink"
 import MainIcons from "./MainIcons"
 
-import initialProducts from "../../data/products-clothes.json" // Remove on production
 
-import { commerce } from '../../lib/commerce';
 
+import { commerce } from "../../lib/commerce"
 
 import { CartContext } from "../CartContext"
 
-import { addCartItem } from "../../hooks/UseCart"
+
 import { WishlistContext } from "../WishlistContext"
-import { addWishlistItem } from "../../hooks/UseWishlist"
-import TopBar from "./TopBar"
-import SearchBlock from "./SearchBlock"
+
+
 import DropdownMenuItem from "./DropdownMenuItem"
 import UseWindowSize from "../../hooks/UseWindowSize"
 
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faInstagram
-} from "@fortawesome/free-brands-svg-icons"
 
 import Image from "../../components/Image"
 
@@ -75,14 +69,14 @@ const Header = ({ header }) => {
   }
 
   const fetchCard = async () => {
-      const data2 = await commerce.cart.contents();
-      dispatch(data2)
+    const data2 = await commerce.cart.contents()
+    dispatch(data2)
   }
 
   useEffect(() => {
     highlightDropdownParent()
 
-    fetchCard();
+    fetchCard()
 
     if (localStorage.getItem("wishlist")) {
       // If localStorage exists set wishlist items to wishlist context
@@ -97,17 +91,12 @@ const Header = ({ header }) => {
     setParentName(parent) // Set parent name for item parent higlight
   }
   return (
-    
-    <header className={`header ${header && header.absolute ? "header-absolute" : ""}`}>
-      
-
-  
-
-
-
+    <header
+      className={`header ${header && header.absolute ? "header-absolute" : ""}`}
+    >
       {/* TOP BAR */}
       {/* <TopBar header={header} /> */}
-      
+
       {/* END TOP BAR */}
 
       {/* NAV BAR */}
@@ -127,46 +116,33 @@ const Header = ({ header }) => {
           header && header.transparentNavbar ? "shadow-0" : ""
         } px-lg-5 ${collapse ? "was-transparent was-navbar-light" : ""}`}
       >
-           <div>
-                        <Image
-                          className="img-scale card-img mb-2"
-                          src="/img/product/bg.jpg"
-                          layout="fill"
-                          // // width={0}
-                          // height={40}
-                          sizes="(max-width: 100px) calc(100vw - 30px), 50vw"
-                        />
-                      </div>
-        {/* LOGO */}
-        {/* <Link href="/" passHref>
-          <Navbar.Brand>
+        <div>
           <Image
-        src="/img/photo/rouge.gif"
-        width={100}
-        height={100}
-      />
-          </Navbar.Brand>
-        </Link> */}
+            className="img-scale card-img mb-2"
+            src="/img/product/bg.jpg"
+            layout="fill"
+            // // width={0}
+            // height={40}
+            sizes="(max-width: 100px) calc(100vw - 30px), 50vw"
+          />
+        </div>
+        {/* LOGO */}
+      
         {/* END LOGO */}
 
         {/* SOCIAL & PHONE BLOCK */}
 
         <ul className="list-inline mb-0">
-           
-                  <Link href="/" passHref>
-          <Navbar.Brand>
-          <Image
-        src="/img/photo/rouge.gif"
-        width={150}
-        height={150}
-      />
-          </Navbar.Brand>
-        </Link>
-                  {/* <FontAwesomeIcon icon={faFacebookF} /> */}
-                  {/* <FontAwesomeIcon icon="fa-Instagram" /> */}
-                  {/* <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}
-               
-              {/* <li className="list-inline-item me-4">
+          <Link href="/" passHref>
+            <Navbar.Brand>
+              <Image src="/img/photo/rouge.gif" width={120} height={120} />
+            </Navbar.Brand>
+          </Link>
+          {/* <FontAwesomeIcon icon={faFacebookF} /> */}
+          {/* <FontAwesomeIcon icon="fa-Instagram" /> */}
+          {/* <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}
+
+          {/* <li className="list-inline-item me-4">
                 <a
                   className="text-reset text-hover-primary"
                   href="#"
@@ -175,18 +151,16 @@ const Header = ({ header }) => {
                   <FontAwesomeIcon icon={faTwitter} />
                 </a>
               </li> */}
-              {/* <li className="list-inline-item me-2">
+          {/* <li className="list-inline-item me-2">
                 <Icon icon="calls-1" className="me-2" />
                 020-800-456-747
               </li> */}
-            </ul>
-          {/* END SOCIAL & PHONE BLOCK */}
-          {/* END ANNOUNCEMENT */}
-
-
+        </ul>
+        {/* END SOCIAL & PHONE BLOCK */}
+        {/* END ANNOUNCEMENT */}
 
         {/* TOP USER MOBILE ICONS */}
-        <MainIcons className="d-block d-lg-none" CartContext={cartItems}/>
+        <MainIcons className="d-block d-lg-none" CartContext={cartItems} />
         {/* TOP USER MOBILE ICONS */}
 
         {/* NAV MOBILE TOGGLER  */}
@@ -197,37 +171,27 @@ const Header = ({ header }) => {
         >
           <Icon icon="menu-hamburger-1" className="navbar-icon" />
         </Navbar.Toggle>
-        
+
         {/* END NAV MOBILE TOGGLER */}
 
         {/* MENU */}
         <Navbar.Collapse>
-      
           {/* <Col md="10" className="text-start text-md-center">
               <p className="mb-0 md-0 py-0"><h1>The Soul & The Moon</h1></p>
               </Col> */}
-                    <Col md="11" sm="8" className="text-start text-md-center">
-      
-          <Link href="/" passHref>
-          <Navbar.Brand>
-          <Image
-        src="/img/photo/icone.jpg"
-        width={700}
-        height={160}
-      />
-          </Navbar.Brand>
-        </Link>
-           
-            
-            
+          <Col md="11" sm="8" className="text-start text-md-center">
+            <Link href="/" passHref>
+              <Navbar.Brand>
+                <Image src="/img/photo/icone.png" width={600} height={120} />
+              </Navbar.Brand>
+            </Link>
           </Col>
           {/* SEARCH BLOCK */}
           {/* <SearchBlock /> */}
           {/* END SEARCH BLOCK */}
 
           {/* TOP USER ICONS */}
-          <Nav className="mt-3 mt-lg-0" navbar>
-            
+          <Nav className="mt-3 mt-lg-0 " navbar>
             {menu.map((item, index) => {
               // Mapping through menu items
 
@@ -241,7 +205,6 @@ const Header = ({ header }) => {
                     <NavLink>{item.name}</NavLink>
                   </ActiveLink>
                 </Nav.Item>
-                
               ) : (
                 // If item doesn't have link property than dropdown
                 <DropdownMenuItem
@@ -253,15 +216,14 @@ const Header = ({ header }) => {
                 />
               )
             })}
-          
           </Nav>
-          
-          <MainIcons className="d-none d-lg-block" sidebarRight />
-     
+
+          <MainIcons className="d-none d-lg-block " sidebarRight />
           {/* END TOP USER ICONS */}
         </Navbar.Collapse>
         {/* END MENU */}
       </Navbar>
+
       {/* END NAV BAR */}
     </header>
   )

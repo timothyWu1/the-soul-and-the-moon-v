@@ -83,14 +83,16 @@ const Index = () => {
 
               <Card.ImgOverlay className="d-flex align-items-center">
                 <div className="w-100 py-3">
+                <a href="#ok">
                         <h1 className="display-3 fw-bold mb-2">
                             LA BOUTIQUE
                           </h1>
-                          <Link href='/'>
-                            <a className="stretched-link">
+                          </a>
+                          {/* <Link >
+                            <a className="stretched-link" href="#ok">
                            
                             </a>
-                          </Link>
+                          </Link> */}
                         </div>
            
               </Card.ImgOverlay>
@@ -138,7 +140,9 @@ const Index = () => {
             </Container>
           </div>
         )}
+        <div id="ok">
         <NewArrivals fluid headCenter products={productsFull} />
+        </div>
       </React.Fragment>
     )
   } else {

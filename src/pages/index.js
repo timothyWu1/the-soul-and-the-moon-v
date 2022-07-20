@@ -55,8 +55,6 @@ const Index = () => {
     return (
       <React.Fragment>
         <div>
-          <Container className="py-6 categories">
-                        </Container>
           <Image
             className="img-scale card-img mb-2"
             src="/img/product/bg.jpg"
@@ -67,14 +65,19 @@ const Index = () => {
           />
         </div>
 
-        <Row>
+
+
+
+
+        <Container className="py-6 categories">
+        <Row >
           <Card className=" shadow-0 border-0 text-muted text-hover-gray-900  text-center">
             <div>
               <Image
                 className="img-scale card-img mb-2"
                 src="/img/product/E.png"
-                width={100}
-                height={100}
+                width={40}
+                height={25}
                 sizes="(max-width: 150px) calc(150vw - 30px), 50vw"
               />
 
@@ -89,27 +92,18 @@ const Index = () => {
                             </a>
                           </Link>
                         </div>
-                {/* <div className="w-100 py-3">
-                <button
-                  type="button"
-                  className="text-muted text-sm bg-transparent btn-outline-secondary"
-                  onClick={() => {
-                    
-                  }}
-                >
-                  <span className="d-none d-sm-inline text-muted "><h1 > La boutique </h1></span>
-                </button>
-                </div> */}
+           
               </Card.ImgOverlay>
             </div>
           </Card>
         </Row>
+        </Container>
 
         {categoryList && (
           <div className="bg-gray-100 position-sticky ">
             <Container className="py-6 categories"></Container>
             <Container className="py-6 categories">
-              <Row>
+              <Row fluid>
                 {categoryList.map((category) => (
                   <Col key={category.name} sm="6" className="mb-5 mb-sm-0">
                     <Card className="card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">

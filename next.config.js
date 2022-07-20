@@ -14,7 +14,8 @@ module.exports = withPlugins(
   ],
   {
     images: {
-      unoptimized: true,
+      loader: 'akamai',
+      path: '',
       deviceSizes: [320, 480, 640, 750, 828, 1080, 1200, 1920, 2048, 3840],
       domains: ['cdn.chec.io'],
       // loader: "imgix", // Uncomment this line for STATIC EXPORT

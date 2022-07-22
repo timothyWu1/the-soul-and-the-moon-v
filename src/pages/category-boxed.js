@@ -32,6 +32,7 @@ const CategoryBoxed = () => {
     });
 
     data.map((item) => {
+      console.log(item.categories)
       if (vars.category == item.categories[0].slug){
         products.push(item)
       }
@@ -54,7 +55,7 @@ const CategoryBoxed = () => {
 
   if (productsFull != []){
   return (
-    <Container className="py-6">
+    <Container className="py-8">
       
       <div className="products-grid">
         <div className="hero-content pb-5">

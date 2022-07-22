@@ -52,14 +52,7 @@ const CardProductDefault = ({
             Sold out
           </Badge>
         )}
-        {/* <Link
-          href={
-            product.category
-              ? `/${product.category[1]}/${product.slug}`
-              : product.link
-          }
-        >
-          <a> */}
+    
             
             <Image
               className="img-fluid"
@@ -78,8 +71,7 @@ const CardProductDefault = ({
             className="text-dark text-sm"
             aria-label="add to cart"
             onClick={() => {
-              commerce.cart.add(product.id, 1).then((response) => window.location.reload())
-              fetchCard();
+              commerce.cart.add(product.id, 1).then((response) => document.dispatchEvent(new Event('newCardItem')))
               
             }}
           >
@@ -115,18 +107,10 @@ const CardProductDefault = ({
       <div className="position-relative">
         <h3 className="text-base mb-1">
           {product.name}
-          {/* <Link
-            href={
-              product.category
-                ? `/${product.category[1]}/${product.slug}`
-                : product.link
-            }
-          >
-            <a className="text-dark">{product.name}</a>
-          </Link> */}
+      
         </h3>
         <span className="text-gray-500 text-sm">{product.price.formatted_with_symbol}</span>
-        {/* <Stars stars={product.stars} className="product-stars text-xs" /> */}
+     
       </div>
     </div>
   )

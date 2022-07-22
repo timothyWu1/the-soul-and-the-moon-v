@@ -6,7 +6,8 @@ import Icon from "./Icon"
 import Image from "./Image"
 import { commerce } from '../lib/commerce';
 import Link from "next/link"
-
+import { loadStripe } from '@stripe/stripe-js';
+// import {axios} from 'axios';
 
 
 const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
@@ -15,6 +16,31 @@ const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1u
 
 
 const SidebarCart =  (props) => {
+  // data2.map((item) => (
+  //   price += (item.price.raw * item.quantity) 
+  // ))
+    // const r = price
+    const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+    const stripePromise = loadStripe(publishableKey);
+    const createCheckOutSession = async () => {
+    
+    const stripe = await stripePromise;
+    // const checkoutSession = await axios.post('/api/stripe', {
+    //   r: r,
+    // });
+    const result = await stripe.redirectToCheckout({
+      sessionId: checkoutSession.data.id,
+    });
+    if (result.error) {
+      alert(result.error.message);
+    }
+   
+  };
+
+
+
+
+
 
   const [cartItems, dispatch] = useState([]);
   const [total, addTotal] = useState(0);
@@ -51,7 +77,7 @@ const SidebarCart =  (props) => {
   }
 
   const removeFromCart = (product) => {
-    commerce.cart.remove(product.id).then((response) => window.location.reload());
+    commerce.cart.remove(product.id).then((response) => fetchCard());
 
     var removeId = cartItems.indexOf(product);
  
@@ -59,6 +85,8 @@ const SidebarCart =  (props) => {
     
     dispatch(cartItems);
     fetchCard();
+
+    
     
 
   }
@@ -86,8 +114,10 @@ const SidebarCart =  (props) => {
 
   useEffect(() => {
     fetchCard();
-    
-  }, [])
+    document.addEventListener('newCardItem', (e) => fetchCard());
+  }, []);
+
+  
 
   if (cartItems != undefined ){
   return (
@@ -125,11 +155,7 @@ const SidebarCart =  (props) => {
                     </a>
                     <div className="ps-3">
                       {item.name}
-                      {/* <Link href={`/${item.category[1]}/${item.slug}`}>
-                        <a className="navbar-cart-product-link text-dark link-animated">
-                          {item.name}
-                        </a>
-                      </Link> */}
+                     
                       <small className="d-block text-muted">
                         Quantité: {item.quantity ? item.quantity : 1}
                       </small>
@@ -164,7 +190,10 @@ const SidebarCart =  (props) => {
           
           
           <Link passHref href="/">
-            <Button variant="dark" className="w-100">
+            <Button 
+            onClick={createCheckOutSession}
+            variant="dark"
+            className="w-100">
               Payer
             </Button>
           </Link>

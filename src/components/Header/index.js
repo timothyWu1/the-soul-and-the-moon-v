@@ -100,98 +100,53 @@ const Header = ({ header }) => {
       {/* END TOP BAR */}
 
       {/* NAV BAR */}
-      <Navbar
+      <Navbar  
+        bg="secondary"
         fixed="top"
         expand="lg"
         style={{ zIndex: "11" }}
-        bg={
-          header && header.transparentNavbar
-            ? collapse
-              ? "white"
-              : "transparent"
-            : "white"
-        }
+       
+        
+
         expanded={collapse}
         className={`border-0 ${
           header && header.transparentNavbar ? "shadow-0" : ""
         } px-lg-5 ${collapse ? "was-transparent was-navbar-light" : ""}`}
       >
-        <div>
-          <Image
-            className="img-scale card-img mb-2"
-            src="/img/product/bg.jpg"
-            layout="fill"
-            // // width={0}
-            // height={40}
-            sizes="(max-width: 100px) calc(100vw - 30px), 50vw"
-          />
-        </div>
-        {/* LOGO */}
       
-        {/* END LOGO */}
-
-        {/* SOCIAL & PHONE BLOCK */}
-
-        <ul className="list-inline mb-0">
-          <Link href="/" passHref>
+    
+        
+       
+        <Col md="1" sm="3" className="text-start text-md-center d-none d-sm-block">
+          <Link className="" href="/" passHref>
             <Navbar.Brand>
-              <Image src="/img/photo/rouge.gif" width={120} height={120} />
+              <Image src="/img/photo/rouge.gif" width={1000} height={1000}  className="mw-0"/>
             </Navbar.Brand>
           </Link>
-          {/* <FontAwesomeIcon icon={faFacebookF} /> */}
-          {/* <FontAwesomeIcon icon="fa-Instagram" /> */}
-          {/* <FontAwesomeIcon icon="fa-brands fa-instagram" /> */}
-
-          {/* <li className="list-inline-item me-4">
-                <a
-                  className="text-reset text-hover-primary"
-                  href="#"
-                  aria-label="Go to Twitter"
-                >
-                  <FontAwesomeIcon icon={faTwitter} />
-                </a>
-              </li> */}
-          {/* <li className="list-inline-item me-2">
-                <Icon icon="calls-1" className="me-2" />
-                020-800-456-747
-              </li> */}
-        </ul>
-        {/* END SOCIAL & PHONE BLOCK */}
-        {/* END ANNOUNCEMENT */}
-
-        {/* TOP USER MOBILE ICONS */}
-        <MainIcons className="d-block d-lg-none" CartContext={cartItems} />
-        {/* TOP USER MOBILE ICONS */}
-
-        {/* NAV MOBILE TOGGLER  */}
-        <Navbar.Toggle
-          className="navbar-toggler-right text-hover-primary"
-          onClick={() => setCollapse(!collapse)}
-          aria-label="Toggle navigation"
-        >
-          <Icon icon="menu-hamburger-1" className="navbar-icon" />
-        </Navbar.Toggle>
-
-        {/* END NAV MOBILE TOGGLER */}
-
-        {/* MENU */}
-        <Navbar.Collapse>
-          {/* <Col md="10" className="text-start text-md-center">
-              <p className="mb-0 md-0 py-0"><h1>The Soul & The Moon</h1></p>
-              </Col> */}
-          <Col md="11" sm="8" className="text-start text-md-center">
+        </Col>
+    
+        
+        
+          <Col md="10" sm="6" xs="6" className="text-start text-md-center">
             <Link href="/" passHref>
               <Navbar.Brand>
-                <Image src="/img/photo/icone.png" width={600} height={120} />
+                <Image src="/img/photo/icone.png" width={500} height={100} />
               </Navbar.Brand>
             </Link>
+            
           </Col>
-          {/* SEARCH BLOCK */}
-          {/* <SearchBlock /> */}
-          {/* END SEARCH BLOCK */}
+        
+          {/* <Col md="3" sm="8" xs="4" className="">
+            <MainIcons className="d-block d-lg-none" CartContext={cartItems} />
+          </Col> */}
+        
 
-          {/* TOP USER ICONS */}
-          <Nav className="mt-3 mt-lg-0 " navbar>
+       
+
+        {/* MENU */}
+      
+        <Col md="1" sm="3" xs="4" className=" text-start text-md-center d-block d-sm-none">
+        <Nav className="mt-lg-0 " navbar>
             {menu.map((item, index) => {
               // Mapping through menu items
 
@@ -216,11 +171,60 @@ const Header = ({ header }) => {
                 />
               )
             })}
+            <div className="mt-1 text-start text-md-center">
+              <MainIcons className="d-none d-lg-block" sidebarRight />
+            </div>
+          
+            
           </Nav>
 
-          <MainIcons className="d-none d-lg-block " sidebarRight />
+          
+        </Col>
+
+
+
+
+
+        <Col md="1" sm="3" xs="4" className=" text-start text-md-center mt-6 d-none d-sm-block">
+        <Nav className="mt-3 mt-lg-0 " navbar>
+            {menu.map((item, index) => {
+              // Mapping through menu items
+
+              return item.link ? ( // If item has property link than simple link
+                <Nav.Item key={index}>
+                  <ActiveLink
+                    activeClassName="active"
+                    href={item.link}
+                    passHref
+                  >
+                    <NavLink>{item.name}</NavLink>
+                  </ActiveLink>
+                </Nav.Item>
+              ) : (
+                // If item doesn't have link property than dropdown
+                <DropdownMenuItem
+                  onLinkClick={onLinkClick}
+                  item={item}
+                  key={item.name}
+                  parentName={parentName}
+                  viewportWidth={size.width}
+                />
+              )
+            })}
+            <div className="mt-1 text-start text-md-center">
+              <MainIcons className="d-none d-lg-block" sidebarRight />
+              
+            </div>
+            
+          </Nav>
+
+          
+        </Col>
+      
+      
+          
           {/* END TOP USER ICONS */}
-        </Navbar.Collapse>
+      
         {/* END MENU */}
       </Navbar>
 

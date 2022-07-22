@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 
 import Link from "next/link"
 
-import { Container, Row, Col, Card } from "react-bootstrap"
+import { Container, Row, Col, Card, Button } from "react-bootstrap"
 
 import NewArrivals from "../components/NewArrivals"
 
@@ -14,10 +14,10 @@ export async function getStaticProps() {
     props: {
       header: {
         absolute: true,
-        transparentBar: true,
-        transparentNavbar: true,
+        transparentBar: false,
+        transparentNavbar: false,
       },
-      title: "Homepage",
+      title: "The soul and the moon",
     },
   }
 }
@@ -54,40 +54,36 @@ const Index = () => {
   if (categoryList[0] != undefined) {
     return (
       <React.Fragment>
-        <div>
-          <Image
-            className="img-scale card-img mb-2"
-            src="/img/product/bg.jpg"
-            layout="fill"
-            // // width={0}
-            // height={40}
-            sizes="(max-width: 100px) calc(100vw - 30px), 50vw"
-          />
-        </div>
+       
+
+{/* <Container className="py-6 categories">
+
+</Container> */}
 
 
-
-
-
-        <Container className="py-6 categories">
+        <Container className="py-8 categories">
+          
         <Row >
-          <Card className=" shadow-0 border-0 text-muted text-hover-gray-900  text-center">
+          
+          <Card className=" shadow-0 border-0 text-muted text-hover-gray-800  text-center">
             <div>
               <Image
                 className="img-scale card-img mb-2"
                 src="/img/product/E.png"
                 width={40}
-                height={25}
+                height={30}
                 sizes="(max-width: 150px) calc(150vw - 30px), 50vw"
               />
 
               <Card.ImgOverlay className="d-flex align-items-center">
                 <div className="w-100 py-3">
-                <a href="#ok">
-                        <h1 className="display-3 fw-bold mb-2">
+                  <Button variant="outline-dark">
+                      <a href="#ok">
+                        <h1 className="display-3 fw-bold mb-2 text-hover-gray-900">
                             LA BOUTIQUE
                           </h1>
                           </a>
+                          </Button>
                           {/* <Link >
                             <a className="stretched-link" href="#ok">
                            
@@ -102,25 +98,25 @@ const Index = () => {
         </Container>
 
         {categoryList && (
-          <div className="bg-gray-100 position-sticky ">
-            <Container className="py-6 categories"></Container>
-            <Container className="py-6 categories">
-              <Row fluid>
+          <div className="bg-gray-200 position-sticky ">
+          
+            <Container fluid className="py-6 categories">
+              <Row  className="justify-content-center">
                 {categoryList.map((category) => (
-                  <Col key={category.name} sm="6" className="mb-5 mb-sm-0">
-                    <Card className="card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">
+                  <Col key={category.name} sm="2" xs="6" md="2" className="mb-5 mb-sm-0">
+                    <Card className="card-scale shadow-0 border-0  text-hover-gray-900 overlay-hover-light text-center">
                       <div>
                         <Image
                           className="img-scale card-img mb-2"
                           src={category.image}
                           alt={category.name}
-                          width={20}
-                          height={20}
+                          width={10}
+                          height={10}
                           sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
                         />
                         <Card.ImgOverlay className="d-flex align-items-center">
                           <div className="w-100 py-3">
-                            <h2 className="display-3 fw-bold mb-2">
+                            <h2 className="display-0 fw-bold mb-1">
                               {category.name}
                             </h2>
                             <Link href={category.url}>
@@ -135,14 +131,17 @@ const Index = () => {
                       </div>
                     </Card>
                   </Col>
-                ))}
+                  
+                ))} <div id="ok">
+                </div>
               </Row>
             </Container>
+           
           </div>
         )}
-        <div id="ok">
+       
         <NewArrivals fluid headCenter products={productsFull} />
-        </div>
+        
       </React.Fragment>
     )
   } else {

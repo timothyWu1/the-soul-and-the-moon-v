@@ -24,6 +24,8 @@ module.exports = withPlugins(
     env: {
       production_type: "server", // Change variable to "static" for STATIC EXPORT
     },
-   
-  }
+    experiments: {
+      topLevelAwait: true
+    },
+    }
 )

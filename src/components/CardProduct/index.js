@@ -6,13 +6,7 @@ import { addWishlistItem } from "../../hooks/UseWishlist"
 import { WishlistContext } from "../WishlistContext"
 import ModalQuickView from "../ModalQuickView"
 import CardProductDefault from "./Default"
-import CardProduct1 from "./1"
-import CardProduct2 from "./2"
-import CardProduct3 from "./3"
-import CardProduct4 from "./4"
-import CardProduct5 from "./5"
-import CardProduct6 from "./6"
-import CardProduct7 from "./7"
+
 
 const CardProduct = ({ product, masonry, cardType }) => {
   const [cartItems, dispatch] = React.useContext(CartContext)

@@ -77,26 +77,13 @@ const NewArrivals = (props) => {
                   </a>
                 </li>
              
-                <li className="list-inline-item">
-                  <a className="text-muted text-hover-dark" href="/category-boxed?category=bougies">
-                    Les bougies
-                  </a>
-                </li>
+             
                 <li className="list-inline-item">
                   <a className="text-muted text-hover-dark" href="/category-boxed?category=cendrier">
                     Les cendriers
                   </a>
                 </li>
-                <li className="list-inline-item">
-                  <a className="text-muted text-hover-dark" href="/category-boxed?category=pots">
-                    Les pots
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a className="text-muted text-hover-dark" href="/category-boxed?category=autres">
-                    Les autres produits
-                  </a>
-                </li>
+           
               </ul>
             </Col>
             <Col

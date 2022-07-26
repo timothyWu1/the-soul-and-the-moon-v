@@ -8,20 +8,8 @@
         "links": [
       
           {
-            "name": "Les bougies",
-            "link": "/category-boxed?category=bougies"
-          },
-          {
-            "name": "Les cendriers",
+            "name": "cendriers",
             "link": "/category-boxed?category=cendrier"
-          },
-          {
-            "name": "Les pots",
-            "link": "/category-boxed?category=pots"
-          },
-          {
-            "name": "Autres produits",
-            "link": "/category-boxed?category=pots"
           }
          
         ]

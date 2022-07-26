@@ -4,44 +4,30 @@ import { Button, CloseButton, Modal } from "react-bootstrap"
 
 import Icon from "./Icon"
 import Image from "./Image"
-import { commerce } from '../lib/commerce';
+import getStripe, { commerce } from '../lib/commerce';
 import Link from "next/link"
 import { loadStripe } from '@stripe/stripe-js';
-// import {axios} from 'axios';
+import axios from "axios";
 
 
 const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
 
 
 
+const redirectToCheckout = async () => {
+  const {
+    data: { id },
+  } = await axios.post('/api/checkout_sessions', {
+    items: Object.entries(cartDetails).map(([_, { id,quantity}]) => ({
+      price: id,
+      quantity,
+    }))
+  });
 
+  const stripe = await getStripe();
+  await stripe.redirectToCheckout({session: id});
+};
 const SidebarCart =  (props) => {
-  // data2.map((item) => (
-  //   price += (item.price.raw * item.quantity) 
-  // ))
-    // const r = price
-    const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
-    const stripePromise = loadStripe(publishableKey);
-    const createCheckOutSession = async () => {
-    
-    const stripe = await stripePromise;
-    // const checkoutSession = await axios.post('/api/stripe', {
-    //   r: r,
-    // });
-    const result = await stripe.redirectToCheckout({
-      sessionId: checkoutSession.data.id,
-    });
-    if (result.error) {
-      alert(result.error.message);
-    }
-   
-  };
-
-
-
-
-
-
   const [cartItems, dispatch] = useState([]);
   const [total, addTotal] = useState(0);
   // console.log((cartItems))
@@ -97,6 +83,8 @@ const SidebarCart =  (props) => {
       onClick={props.toggle}
     />
   )
+
+  
 
   const fetchCard = async () => {
     
@@ -191,7 +179,7 @@ const SidebarCart =  (props) => {
           
           <Link passHref href="/">
             <Button 
-            onClick={createCheckOutSession}
+            onClick={redirectToCheckout}
             variant="dark"
             className="w-100">
               Payer

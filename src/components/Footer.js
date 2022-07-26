@@ -44,12 +44,16 @@ const Footer = () => {
             </Col>
             <Col lg="4">
             <li className="list-inline-item ">
+              
                 <a
                   className="text-reset text-hover-primary"
                   href="https://www.instagram.com/the.soul.and.the.moon"
                   aria-label="Go to instagram"
                 >
+                  
                   <FontAwesomeIcon icon={faInstagram} />
+
+                  <h7> | Visiter mon instagram </h7>
                   </a>
               </li>
 
@@ -59,14 +63,14 @@ const Footer = () => {
                 <li className="list-inline-item">
                   {" "}
                   <a className="text-reset" href="/about-2">
-                    A propos de nous{" "}
+                  Nous contacter{" "}
                   </a>
                 </li>
            
                 <li className="list-inline-item">
                   {" "}
                   <a className="text-reset" href="/privacy">
-                  Politique de confidentialité{" "}
+                  |  Condition générale de vente{" "}
                   </a>
                 </li>
                    

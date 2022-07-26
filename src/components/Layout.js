@@ -16,7 +16,7 @@ const Layout = (pageProps) => {
     <SSRProvider>
       <Head>
         <link rel="icon" href="/favicon.png" />
-        <title>{pageProps.title} - Directory React Theme</title>
+        
       </Head>
       <NextNProgress color="#bcac76" options={{ showSpinner: false }} />
 

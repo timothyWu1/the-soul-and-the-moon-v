@@ -39,7 +39,7 @@ const Index = () => {
         list.push({
           name: category.name,
           image: category.assets[0].url,
-          url: "//category-boxed?category=" + category.slug,
+          url: "/category-boxed?category=" + category.slug,
         })
       })
       setCategory(list)
@@ -51,9 +51,15 @@ const Index = () => {
     getCategories()
   }, [])
 
+
+
+
   if (categoryList[0] != undefined) {
     return (
       <React.Fragment>
+
+
+        
        
 
 {/* <Container className="py-6 categories">
@@ -79,7 +85,7 @@ const Index = () => {
                 <div className="w-100 py-3">
                   <Button variant="outline-dark">
                       <a href="#ok">
-                        <h1 className="display-3 fw-bold mb-2 text-hover-gray-900">
+                        <h1 className="display-3 fw-bold mb-2">
                             LA BOUTIQUE
                           </h1>
                           </a>
@@ -132,7 +138,8 @@ const Index = () => {
                     </Card>
                   </Col>
                   
-                ))} <div id="ok">
+                ))} 
+                <div id="ok">
                 </div>
               </Row>
             </Container>

@@ -12,6 +12,9 @@ module.exports = withPlugins(
       },
     ],
   ],
+  // {
+  //   trailingSlash: true,
+  // },
   {
     images: {
       loader: 'akamai',
@@ -27,5 +30,6 @@ module.exports = withPlugins(
     experiments: {
       topLevelAwait: true
     },
+    
     }
 )

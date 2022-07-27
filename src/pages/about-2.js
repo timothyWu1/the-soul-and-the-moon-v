@@ -1,6 +1,12 @@
 import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import Image from "../components/Image"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+} from "@fortawesome/free-brands-svg-icons"
 
 export async function getStaticProps() {
   return {
@@ -29,15 +35,12 @@ const About2 = () => {
                 <Row>
                   <Col xl="10">
                     <p className="text-lg text-muted mb-lg-0">
-                    The Soul & The Moon a vu le jour en 2020
-                    avec un objectif : proposer un magasin
-                    d'accessoires de qualité dans la région de
+                    The Soul & The Moon a vu le jour en 2022
+                    avec un objectif : proposer des
+                    accessoires et objets decoratifs durable et de qualité dans la région de
                     Paris. Notre passion pour l'excellence a
-                    toujours été et restera notre moteur. Nous
-                    avons eu d'excellents retours de nos clients
-                    sur nos services, et c'est ce qui les pousse à
-                    revenir chez nous. Voyez par vous-même et
-                    passez nous voir
+                    toujours été et restera notre moteur. Les créations thesoulandthemoon sont réalisées en jesmonite, une éco-résine qui n'émet aucune particule toxique et qui participe au parapluie écologique en permettant la création d'objets design et durable. Voyez par vous-même et
+                    passez nous voir lors de nos exposition et sur notre instagram.
                     </p>
                   </Col>
                   {/* <Col xl="6">
@@ -52,14 +55,19 @@ const About2 = () => {
                 <Row>
                   <Col xl="6">
                     <h6 className="text-uppercase text-primary letter-spacing-3 mb-4">
-                      Le magasin
+                      Notre instagram
                     </h6>
+                    <ul className="list-inline h3 mb-6 mb-lg-0">
+               
+            
+               <li className="list-inline-item me-4">
+                 <a href="https://www.instagram.com/the.soul.and.the.moon">
+                   <FontAwesomeIcon icon={faInstagram} size="6x"/>
+                 </a>
+               </li>
+             </ul>
                     <p className="text-muted mb-5 mb-xl-0">
-                      52 rue rené boulanger 
-                      <br />
-                      75010 Paris, 10 ème arrondissement
-                      <br />
-                      FRANCE
+                      
                     </p>
                   </Col>
                   {/* <Col xl="6">

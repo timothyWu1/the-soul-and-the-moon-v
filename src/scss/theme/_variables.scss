@@ -84,7 +84,7 @@ $headerHeight: 140px;
 $navbarHeight: 82px;
 
 @if $templateColour == red and not $primary {
-  $primary: #e63946;
+  $primary: #B0523A;
   @if not $secondary {
     $secondary: #877f64;
   }

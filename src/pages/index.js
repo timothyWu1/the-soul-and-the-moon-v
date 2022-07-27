@@ -39,7 +39,7 @@ const Index = () => {
         list.push({
           name: category.name,
           image: category.assets[0].url,
-          url: "/category-boxed?category=" + category.slug,
+          url: "//category-boxed?category=" + category.slug,
         })
       })
       setCategory(list)

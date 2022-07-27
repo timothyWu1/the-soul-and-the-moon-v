@@ -7,8 +7,6 @@ import Image from "../components/Image"
 import UseWindowSize from "../hooks/UseWindowSize"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-  faFacebookF,
-  faTwitter,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons"
 export async function getStaticProps() {
@@ -93,7 +91,7 @@ const Contact = () => {
             
                 <li className="list-inline-item me-4">
                   <a href="https://www.instagram.com/the.soul.and.the.moon">
-                    <FontAwesomeIcon icon={faInstagram} />
+                    <FontAwesomeIcon icon={faInstagram} size="6x"/>
                   </a>
                 </li>
               </ul>
@@ -144,25 +142,24 @@ const Contact = () => {
                   <Form.Label htmlFor="messageContact">
                     Votre message
                   </Form.Label>
-                  <Form.Control
-                    className="form-control-underlined"
-                    rows="4"
-                    name="messageContact"
-                    type="textarea"
-                    id="message"
-                    required="required"
-                  />
+             
                 </div>
+                <div className="mb-4">
+                  <textarea class="form-control" name="messageContact" type="textarea" required="required" id="exampleFormControlTextarea1" rows="4"></textarea>
+         
+         
+        </div>
                 <Button
                   variant="outline-primary"
                   className="mt-3"
                   type="submit"
                 >
-                  Send message
+                  Envoyer
                 </Button>
               </Form>
             </Col>
           </Row>
+          
         </Container>
       </section>
     </React.Fragment>

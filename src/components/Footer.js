@@ -50,7 +50,7 @@ const Footer = () => {
                   
                   <FontAwesomeIcon icon={faInstagram} />
 
-                  <h7> | Visiter mon instagram </h7>
+                  <h7> | Visiter notre instagram </h7>
                   </a>
               </li>
 
@@ -60,26 +60,26 @@ const Footer = () => {
               <ul className="list-inline mb-0 mt-2 mt-md-0 text-center text-lg-end">
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="/about-2.html">
+                  <a className="text-reset" href="/about-2">
                   |  A propos de nous{" "}
                   </a>
                 </li>
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="/cvg.html">
+                  <a className="text-reset" href="/cvg">
                   |  Condition générale de vente{" "}
                   </a>
                 </li>
            
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="/privacy.html">
+                  <a className="text-reset" href="/privacy">
                   |  Politique de confidentialité{" "}
                   </a>
                 </li>
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="/nous.html">
+                  <a className="text-reset" href="/nous">
                   |  Nous contacter{" "}
                   </a>
                 </li>

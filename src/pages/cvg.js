@@ -64,14 +64,12 @@ Les coordonnées du Vendeur sont les suivantes:
 75 rue de la plaine
 </li>
 <li>
-Numéro d'immatriculation :
+Numéro d'immatriculation : 912 039 419 00011
 </li>
 <li>
-Email:contact@thesoulandthemoon.com
+Email : contact@thesoulandthemoon.com
 </li>
-<li>
-Téléphone : 0630372820
-</li>
+
 </ul>
 </p>
               <hr />
@@ -139,7 +137,7 @@ lui en paye pas le prix en totalité dans les conditions ci-dessus indiquées.
 <hr />
               <h3>ARTICLE 5 - LIVRAISONS</h3>
 <p>Les Produits commandés par le Client seront livrés en France métropolitaine.</p>
-<p>Les livraisons interviennent dans un délai de sous 48 heures à l'adresse indiquée par le Client lors de sa
+<p>Les livraisons interviennent dans un délai compris entre 48 et 72 heures à l'adresse indiquée par le Client lors de sa
 commande sur le site.
 </p>
 <p>La livraison est constituée par le transfert au Client de la possession physique ou du contrôle du Produit.
@@ -162,8 +160,8 @@ commandés, dûment acceptées par écrit par le Vendeur, les coûts y liés fer
 spécifique complémentaire, sur devis préalablement accepté par écrit par le Client.
 </p>
 <p>
-Le Client est tenu de vérifier l'état des produits livrés. Il dispose d'un délai de #254 Délai maximal pour...
-compter de la livraison pour formuler des réclamations par email
+Le Client est tenu de vérifier l'état des produits livrés. Il dispose d'un délai de 24 heures maximal, à
+compter de la livraison, pour formuler des réclamations par email
 accompagnées de tous les
 justificatifs y afférents (photos notamment). Passé ce délai et à défaut d'avoir respecté ces formalités, les
 Produits seront réputés conformes et exempts de tout vice apparent et aucune réclamation ne pourra être
@@ -269,9 +267,8 @@ conformes ou défectueux.
 présentation des justificatifs.
 </p>
 <p>Les remboursements, remplacements ou réparations des Produits jugés non conformes ou défectueux
-seront effectués dans les meilleurs délais et au plus tard dans les 24 heures jours suivant la constatation par
-le Vendeur du défaut de conformité ou du vice caché. Ce remboursement pourra être fait par virement ou
-chèque bancaire.
+seront effectués dans les meilleurs délais et au plus tard dans les 3 jours suivant la constatation par
+le Vendeur du défaut de conformité ou du vice caché. Ce remboursement pourra être fait par virement.
 </p>
 <p>La responsabilité du Vendeur ne saurait être engagée dans les cas suivants :</p>
 <ul className="list-icon">

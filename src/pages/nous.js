@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons"
+import { useForm } from 'react-hook-form';
 export async function getStaticProps() {
   return {
     props: {
@@ -24,6 +25,12 @@ export async function getStaticProps() {
 let MapComponent
 
 const Contact = () => {
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const onSubmitHandler = data => {
+    console.log(data);
+}
+
   const [mapLoaded, setMapLoaded] = React.useState(false)
   const [dragging, setDragging] = React.useState(false)
   const [tap, setTap] = React.useState(false)
@@ -115,7 +122,7 @@ const Contact = () => {
                   </Col>
                   <Col sm="6">
                     <div className="mb-4">
-                      <Form.Label htmlFor="surnameContact">
+                      <Form.Label htmlFor="surnameContact" placeholder="Adresse Email">
                         Votre nom
                       </Form.Label>
                       <Form.Control
@@ -156,6 +163,7 @@ const Contact = () => {
                 >
                   Envoyer
                 </Button>
+                <form onSubmit={handleSubmit(onSubmitHandler)}>submit</form>
               </Form>
             </Col>
           </Row>

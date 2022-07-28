@@ -7,7 +7,7 @@ import Image from "./Image"
 import getStripe, { commerce } from '../lib/commerce';
 import Link from "next/link"
 import { loadStripe } from '@stripe/stripe-js';
-import axios from "axios";
+
 
 
 const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
@@ -24,9 +24,11 @@ const  handleCheckout = async () => {
   });
 
   if(response.statusCode === 500) return;
+  // console.log ('OK');
 
   const data = await response.json();
 
+  console.log ('OK');
   toast.loading('Redirecting...');
 
   stripe.redirectToCheckout({ sessionId: data.id });
@@ -77,7 +79,7 @@ const SidebarCart =  (props) => {
     fetchCard();
 
     
-    
+    // console.log ('OK');
 
   }
   const headerClose = (
@@ -85,7 +87,9 @@ const SidebarCart =  (props) => {
       className="modal-close  btn-close-lg btn-close-rotate opacity-8"
       type="button"
       onClick={props.toggle}
+      
     />
+    
   )
 
   
@@ -183,7 +187,7 @@ const SidebarCart =  (props) => {
           
           <Link passHref href="/">
             <Button 
-            onClick={handleCheckout}
+            // onClick={handleCheckout}
             variant="dark"
             className="w-100">
               Payer

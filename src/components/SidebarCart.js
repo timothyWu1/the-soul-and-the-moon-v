@@ -1,6 +1,6 @@
  import React, {useState, useEffect } from "react"
 
-import { Button, CloseButton, Modal } from "react-bootstrap"
+import { Button, CloseButton, Modal, Toast } from "react-bootstrap"
 
 import Icon from "./Icon"
 import Image from "./Image"
@@ -12,25 +12,29 @@ import axios from "axios";
 
 const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
 
+const  handleCheckout = async () => {
+  const stripe = await getStripe();
 
-
-const redirectToCheckout = async () => {
-  const {
-    data: { id },
-  } = await axios.post('/api/checkout_sessions', {
-    items: Object.entries(cartDetails).map(([_, { id,quantity}]) => ({
-      price: id,
-      quantity,
-    }))
+  const response = await fetch('/api/stripe', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(cartItems),
   });
 
-  const stripe = await getStripe();
-  await stripe.redirectToCheckout({session: id});
-};
+  if(response.statusCode === 500) return;
+
+  const data = await response.json();
+
+  toast.loading('Redirecting...');
+
+  stripe.redirectToCheckout({ sessionId: data.id });
+}
 const SidebarCart =  (props) => {
   const [cartItems, dispatch] = useState([]);
   const [total, addTotal] = useState(0);
-  // console.log((cartItems))
+  console.log((cartItems))
 
   const getPrice = async () => {
     var pTab = [];
@@ -179,7 +183,7 @@ const SidebarCart =  (props) => {
           
           <Link passHref href="/">
             <Button 
-            onClick={redirectToCheckout}
+            onClick={handleCheckout}
             variant="dark"
             className="w-100">
               Payer

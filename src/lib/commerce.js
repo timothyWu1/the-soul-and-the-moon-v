@@ -15,9 +15,8 @@ const getStripe = () => {
 
 
 
-
+export default getStripe;
 
 // liason ecommerce
 export const commerce = new Commerce("pk_435478f33b2ad656c1add83105b412ff1b25851d700c4", true);
 
-export default getStripe;

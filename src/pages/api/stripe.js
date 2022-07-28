@@ -1,33 +1,38 @@
+import { Card } from 'react-bootstrap';
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-async function CreateStripeSession(req, res) {
-  const { price } = req;
-
-  // const redirectURL =
-  //   process.env.NODE_ENV === 'development'
-  //     ? 'http://localhost:3000'
-  //     : 'https://stripe-checkout-next-js-demo.vercel.app';
-
-  const transformedItem = {
-    price_data: {
-      currency: 'eur',
-      unit_amount: 100,
-      product_data: {
-        name: "Votre panier",
-      },
-    },
-    quantity: 1,
-  };
-
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ['card'],
-    line_items: [transformedItem],
-    mode: 'payment',
-    success_url: redirectURL + '?status=success',
-    cancel_url: redirectURL + '?status=cancel',
-  });
-
-  res.json({ id: session.id });
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    console.log(req.body.cartItems)
+    try {
+        const params = {
+            submit_type: 'pay',
+            mode: 'payement',
+            payment_method_types: ['card'],
+            billing_address_collection: 'auto',
+            shipping_options: [
+                {shipping_rate: 'shr_1LQWJhAubXoYV6cscwV0JXCm'},
+            ],
+            line_items: [
+              {
+                // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+                price: '{{PRICE_ID}}',
+                quantity: 1,
+              },
+            ],
+            mode: 'payment',
+            success_url: `${req.headers.origin}/?success=true`,
+            cancel_url: `${req.headers.origin}/?canceled=true`,
+          }
+      // Create Checkout Sessions from body params.
+      const session = await stripe.checkout.sessions.create(params);
+      res.redirect(303, session.url);
+    } catch (err) {
+      res.status(err.statusCode || 500).json(err.message);
+    }
+  } else {
+    res.setHeader('Allow', 'POST');
+    res.status(405).end('Method Not Allowed');
+  }
 }
-
-export default CreateStripeSession;

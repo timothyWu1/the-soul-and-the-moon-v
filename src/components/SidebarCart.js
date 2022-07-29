@@ -11,9 +11,10 @@ import { loadStripe } from '@stripe/stripe-js';
 
 
 const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
-
+// function Cart() {
 const  handleCheckout = async () => {
   const stripe = await getStripe();
+  console.log(cartItems)
 
   const response = await fetch('/api/stripe', {
     method: 'POST',
@@ -60,6 +61,7 @@ const SidebarCart =  (props) => {
       
       
     })
+  
     
 
 
@@ -67,6 +69,7 @@ const SidebarCart =  (props) => {
   
     window.location.href = paymentLink;
   }
+// }
 
   const removeFromCart = (product) => {
     commerce.cart.remove(product.id).then((response) => fetchCard());
@@ -187,7 +190,7 @@ const SidebarCart =  (props) => {
           
           <Link passHref href="/">
             <Button 
-            // onClick={handleCheckout}
+            onClick={handleCheckout}
             variant="dark"
             className="w-100">
               Payer

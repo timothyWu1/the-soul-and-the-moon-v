@@ -14,6 +14,8 @@ export async function getStaticProps() {
   }
 }
 
+
+
 const CategoryBoxed = () => {
   const [productsFull, setProductsFull] = useState([])
 
@@ -30,14 +32,18 @@ const CategoryBoxed = () => {
     )
 
     data.map((item) => {
-      console.log(item.categories)
+      // console.log('item categories')
+      // console.log(item.categories)
+      // console.log('produit')
+      // console.log(item)
       if (item.categories[0] !== undefined) {
         if (vars.category == item.categories[0].slug) {
           products.push(item)
+          console.log(products)
         }
       }
     })
-
+    
     setProductsFull(products)
   }
 
@@ -69,7 +75,10 @@ const CategoryBoxed = () => {
           <Row>
             {productsFull.slice(0, -2).map((product, index) => (
               <Col key={index} sm="4" xl="3" xs="6">
-                <CardProduct product={product} />
+                <CardProduct 
+                product={product} 
+                showQuickView={props.showQuickView}/>
+                
               </Col>
             ))}
           </Row>

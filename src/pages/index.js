@@ -33,13 +33,13 @@ const Index = () => {
   }
   const getCategories = async () => {
     commerce.categories.list().then((categorylist) => {
-      console.log(categorylist.data[0].assets[0].url)
+      // console.log(categorylist.data[0].assets[0].url)
       var list = []
       categorylist.data.map((category) => {
         list.push({
           name: category.name,
           image: category.assets[0].url,
-          url: "//category-boxed?category=" + category.slug,
+          url: "/category-boxed?category=" + category.slug,
         })
       })
       setCategory(list)

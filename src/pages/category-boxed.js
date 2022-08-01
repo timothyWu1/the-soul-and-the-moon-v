@@ -73,11 +73,13 @@ const CategoryBoxed = () => {
           </Breadcrumb>
           {/* <CategoryTopBar filter /> */}
           <Row>
-            {productsFull.slice(0, -2).map((product, index) => (
+           
+            {productsFull.slice(0, 100).map((product, index) => (
               <Col key={index} sm="4" xl="3" xs="6">
                 <CardProduct 
                 product={product} 
-                showQuickView={props.showQuickView}/>
+               />
+               
                 
               </Col>
             ))}

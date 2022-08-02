@@ -7,37 +7,24 @@ import Image from "./Image"
 import getStripe, { commerce } from '../lib/commerce';
 import Link from "next/link"
 import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "../components/CheckoutForm";
+import toast from 'react-hot-toast';
 
 
 
-const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
+// const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
+
+
 // function Cart() {
-const  handleCheckout = async () => {
-  const stripe = await getStripe();
-  console.log(cartItems)
 
-  const response = await fetch('/api/stripe', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(cartItems),
-  });
-
-  if(response.statusCode === 500) return;
-  // console.log ('OK');
-
-  const data = await response.json();
-
-  console.log ('OK');
-  toast.loading('Redirecting...');
-
-  stripe.redirectToCheckout({ sessionId: data.id });
-}
 const SidebarCart =  (props) => {
   const [cartItems, dispatch] = useState([]);
   const [total, addTotal] = useState(0);
-  console.log((cartItems))
+ 
 
   const getPrice = async () => {
     var pTab = [];
@@ -68,6 +55,29 @@ const SidebarCart =  (props) => {
     const paymentLink = await stripe.paymentLinks.create({line_items: pTab});
   
     window.location.href = paymentLink;
+  }
+
+  const  handleCheckout = async () => {
+    const stripe = await getStripe();
+    // console.log(cartItems)
+    console.log ('test 1');
+    const response = await fetch('/api/stripe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cartItems),
+    });
+    console.log ('test 2');
+    if(response.statusCode === 500) return; 
+    // console.log ('OK');
+  
+    const data = await response.json();
+  
+    console.log ('OK');
+    toast.loading('Redirecting...');
+  
+    stripe.redirectToCheckout({ sessionId: data.id });
   }
 // }
 
@@ -188,7 +198,7 @@ const SidebarCart =  (props) => {
           </h5>
           
           
-          <Link passHref href="/">
+          <Link passHref href="/payement">
             <Button 
             onClick={handleCheckout}
             variant="dark"

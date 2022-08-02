@@ -8,6 +8,7 @@ import Icon from "../Icon"
 
 import Image from "../Image"
 import { commerce } from '../../lib/commerce';
+import Popup from '../Popup'
  
 
 const CardProductDefault = ({
@@ -17,6 +18,11 @@ const CardProductDefault = ({
   addToWishlist,
   setQuickView,
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
   const [cartItems, dispatch] = useState([]);
 
   const fetchCard = async () => {
@@ -79,8 +85,19 @@ const CardProductDefault = ({
               className="text-hover-primary svg-icon-heavy d-sm-none"
               icon="retail-bag-1"
             />
-            <span className="d-none d-sm-inline"> <Icon className="svg-icon-heavy" icon="add-1" />Ajouter</span>
+            <span className="d-none d-sm-inline"       onClick={togglePopup}
+> <Icon className="svg-icon-heavy" icon="add-1" />Ajouter</span>
           </button>
+
+          {isOpen && <Popup
+      content={<>
+        <b>Design your Popup</b>
+        
+      </>}
+      handleClose={togglePopup}
+    />}
+
+      
           <div>
             <a
               className="text-dark text-hover-primary me-2"

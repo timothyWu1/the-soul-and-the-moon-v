@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 
 import { Container, Row, Col, Button } from "react-bootstrap"
 
@@ -7,7 +7,33 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import CardProduct from "./CardProduct"
 
 const NewArrivals = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+ 
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
   const products = props.products
+  const [categoryList, setCategory] = useState([])
+
+  const fetchProducts = async () => {
+    const { data } = await commerce.products.list()
+
+    setProductsFull(data)
+  }
+  const getCategories = async () => {
+    commerce.categories.list().then((categorylist) => {
+      // console.log(categorylist.data[0].assets[0].url)
+      var list = []
+      categorylist.data.map((category) => {
+        list.push({
+          name: category.name,
+          image: category.assets[0].url,
+          url: "/category-boxed?category=" + category.slug,
+        })
+      })
+      setCategory(list)
+    })
+  }
   
   if (products != []){
     
@@ -66,7 +92,7 @@ const NewArrivals = (props) => {
 
           <Row className="justify-content-between align-items-center mb-4">
             <Col xs="12" sm={props.fluid} md={!props.fluid}>
-              <ul
+              {/* <ul
                 className={`list-inline text-center text-sm-start mb-3 ${
                   props.fluid ? "mb-sm-0" : "mb-md-0"
                 }`}
@@ -84,7 +110,35 @@ const NewArrivals = (props) => {
                   </a>
                 </li>
            
-              </ul>
+              </ul> */}
+
+{categoryList && (
+          <div className="bg-gray-200 position-sticky ">
+          
+           
+              <Row  className="justify-content-center">
+                {categoryList.map((category) => (
+                  <Col key={category.name} sm="2" xs="6" md="2" className="mb-5 mb-sm-0">                  
+                      <div>
+                            <h2 className="display-0 fw-bold mb-1">
+                              {category.name}
+                            </h2>
+                            <Link href={category.url}>
+                              <a className="stretched-link">
+                                <span className="sr-only">
+                                  {category.button}
+                                </span>
+                              </a>
+                            </Link>
+                      </div>           
+                  </Col>
+                ))} 
+                <div id="ok">
+                </div>
+              </Row>
+          </div>
+        )} 
+
             </Col>
             <Col
               xs="12"

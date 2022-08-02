@@ -23,6 +23,7 @@ export async function getStaticProps() {
 }
 
 const Index = () => {
+
   const [productsFull, setProductsFull] = useState([])
   const [categoryList, setCategory] = useState([])
 
@@ -122,7 +123,7 @@ const Index = () => {
                         />
                         <Card.ImgOverlay className="d-flex align-items-center">
                           <div className="w-100 py-3">
-                            <h2 className="display-0 fw-bold mb-1">
+                            <h2 className="display-0 fw-bold mb-1 ">
                               {category.name}
                             </h2>
                             <Link href={category.url}>

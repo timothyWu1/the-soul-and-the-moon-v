@@ -8,8 +8,20 @@
         "links": [
       
           {
-            "name": "cendriers",
-            "link": "/category-boxed?category=cendrier"
+            "name": "Pots",
+            "link": "/category-boxed?category=pots"
+          },
+          {
+            "name": "Bougeoirss",
+            "link": "/category-boxed?category=bougeoirs"
+          },
+          {
+            "name": "Coupelles/dessous",
+            "link": "/category-boxed?category=coupelles-et-dessous-de-plats"
+          },
+          {
+            "name": "Vases",
+            "link": "/category-boxed?category=vases"
           }
          
         ]

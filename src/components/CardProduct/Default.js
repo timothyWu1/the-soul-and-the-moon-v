@@ -59,19 +59,18 @@ const CardProductDefault = ({
           </Badge>
         )}
     
-            
+    <Link href="/detail-1" passHref>
             <Image
               className="img-fluid"
               src={product.image.url}
               href=""
               // alt={product.img.category[0].alt}
               layout="responsive"
-              width={408}
-              height={523}
+              width={420}
+              height={500}
             />
-            
-          {/* </a>
-        </Link> */}
+            </Link>
+       
         <div className="product-hover-overlay">
           <button
             className="text-dark text-sm"

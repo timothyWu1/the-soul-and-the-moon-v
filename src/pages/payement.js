@@ -11,9 +11,9 @@ import { Container } from "react-bootstrap";
 // This is your test publishable API key.
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-export default function App() {
+export default function payement() {
   const [clientSecret, setClientSecret] = React.useState("");
-  const [cartItems] = useState([]);
+  const [cartItems, dispatch] = useState([]);
  
  
     cartItems.map( async (item) => {
@@ -38,7 +38,9 @@ export default function App() {
 
   React.useEffect(() => {
     // Create PaymentIntent as soon as the page loads
+   
     fetch("/api/create-payment-intent", {
+    
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(cartItems),
@@ -60,12 +62,19 @@ export default function App() {
 
   return (
     <div className="App">
-      <Container className="py-6 categories"></Container>
+      <Container className="py-6 categories">
+        
+      </Container>
+      <Container className="py-6 categories">
+      <h2>Page de payement : Veuillez renseignez vos informations</h2>
+      </Container>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
+        
       )}
+      <Container className="py-6 categories"></Container>
     </div>
   );
 }

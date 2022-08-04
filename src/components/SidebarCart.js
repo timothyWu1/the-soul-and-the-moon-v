@@ -59,27 +59,28 @@ const SidebarCart =  (props) => {
 
   const  handleCheckout = async () => {
     const stripe = await getStripe();
-    // console.log(cartItems)
+    console.log(cartItems)
     console.log ('test 1');
-    const response = await fetch('/api/stripe', {
+    console.log ('OK');
+    const response = await fetch('/api/create-payment-intent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(cartItems),
     });
-    console.log ('test 2');
+    // console.log ('test 2');
     if(response.statusCode === 500) return; 
-    // console.log ('OK');
+   
   
     const data = await response.json();
   
-    console.log ('OK');
+    // console.log ('OK');
     toast.loading('Redirecting...');
   
     stripe.redirectToCheckout({ sessionId: data.id });
   }
-// }
+
 
   const removeFromCart = (product) => {
     commerce.cart.remove(product.id).then((response) => fetchCard());
@@ -92,7 +93,7 @@ const SidebarCart =  (props) => {
     fetchCard();
 
     
-    // console.log ('OK');
+    console.log ('OK sidebarCart');
 
   }
   const headerClose = (
@@ -198,14 +199,15 @@ const SidebarCart =  (props) => {
           </h5>
           
           
-          <Link passHref href="/payement">
+          {/* <Link passHref href="/payement"> */}
             <Button 
+            href="/payement"
             onClick={handleCheckout}
             variant="dark"
             className="w-100">
               Payer
             </Button>
-          </Link>
+          {/* </Link> */}
           
         </div>
       </Modal.Footer>

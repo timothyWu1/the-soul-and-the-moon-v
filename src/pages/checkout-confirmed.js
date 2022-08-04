@@ -76,39 +76,40 @@ const CheckoutConfirmed = () => {
   ]
   return (
     <React.Fragment>
+      
       <section className="hero py-6">
+           <div className="p-5 "></div>
         <Container>
           <Breadcrumb>
             <Link href="/" passHref>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>Accueil</Breadcrumb.Item>
             </Link>
-            <Breadcrumb.Item active>Order confirmed</Breadcrumb.Item>
+            <Breadcrumb.Item active>Achat réussi</Breadcrumb.Item>
           </Breadcrumb>
           <div className="hero-content">
-            <h1 className="hero-heading">Order confirmed</h1>
+            <h1 className="hero-heading">Merci de votre achat</h1>
             <Alert variant="success" className="d-flex align-items-center">
               <Icon
                 icon="checked-circle-1"
                 className="w-3rem h-3rem svg-icon-light flex-shrink-0 me-3"
               />
-              Your order is confirmed
+              Votre achat est réussi
             </Alert>
           </div>
         </Container>
       </section>
       <section className="pb-6">
         <Container>
-          <p className="lead">Thank you, Julie. Your order is confirmed.</p>
+          <p className="lead">The soul and the moon vous remercie de votre achat.</p>
           <p className="lead mb-5">
-            Your order hasn't shipped yet but we will send you ane email when it
-            does.
+            Vous allez recevoir un email concernant les formalités de l'achat.
           </p>
           <p className="mb-6">
-            <Link href="/customer-order" passHref>
-              <Button variant="outline-dark">View or manage your order</Button>
+            <Link href="/" passHref>
+              <Button variant="outline-dark">Revenir dans la boutique</Button>
             </Link>
           </p>
-          <div className="p-5 bg-gray-100">
+          {/* <div className="p-5 bg-gray-100">
             <Row>
               {order.map((item) => (
                 // Order details
@@ -120,7 +121,7 @@ const CheckoutConfirmed = () => {
                 </Col>
               ))}
             </Row>
-          </div>
+          </div> */}
         </Container>
       </section>
     </React.Fragment>

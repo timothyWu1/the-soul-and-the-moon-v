@@ -20,7 +20,7 @@ export async function getStaticProps() {
       header: {
         transparentNavbar: true,
         absolute: true,
-      },
+      },s
     },
   }
 }

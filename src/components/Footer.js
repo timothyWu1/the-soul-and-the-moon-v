@@ -60,26 +60,26 @@ const Footer = () => {
               <ul className="list-inline mb-0 mt-2 mt-md-0 text-center text-lg-end">
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="/about-2">
+                  <a className="text-reset" href="/about-2.html">
                   |  A propos de nous{" "}
                   </a>
                 </li>
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="/cvg">
+                  <a className="text-reset" href="/cvg.html">
                   |  Condition générale de vente{" "}
                   </a>
                 </li>
            
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="/privacy">
+                  <a className="text-reset" href="/privacy.html">
                   |  Politique de confidentialité{" "}
                   </a>
                 </li>
                 <li className="list-inline-item">
                   {" "}
-                  <a className="text-reset" href="/nous">
+                  <a className="text-reset" href="/nous.html">
                   |  Nous contacter{" "}
                   </a>
                 </li>

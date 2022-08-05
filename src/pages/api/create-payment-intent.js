@@ -5,14 +5,14 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 export default async function handler(req, res) {
   
   var qtt = 0;
-  var rep = 1000;
+  var rep = 15800;
     for (let i = 0; i < req.body.length; i++) {
       qtt = req.body[i].line_total.raw ;
       rep = rep + qtt;
     }
-  console.log(typeof rep)
-  console.log('rep is equal to :', rep)
-  console.log("test")
+  // console.log(typeof rep)
+  // console.log('rep is equal to :', rep)
+  // console.log("test")
 
 
   // Create a PaymentIntent with the order amount and currency

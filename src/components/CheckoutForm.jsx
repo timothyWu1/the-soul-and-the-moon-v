@@ -60,7 +60,8 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/checkout-confirmed",
+        return_url: "http://20.199.80.153/checkout-confirmed",
+        // return_url: "http://20.199.80.153/checkout-confirmed.html",
       },
     });
 

@@ -26,6 +26,11 @@ import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"
 
 import Image from "../components/Image"
 
+import { commerce } from '../lib/commerce';
+
+
+
+  
 export async function getStaticProps() {
   return {
     props: {
@@ -39,11 +44,41 @@ const Detail1 = () => {
   const [activeImage, setActiveImage] = useState(0)
   const [activeType, setActiveType] = useState("material_0")
   const [alert, setAlert] = useState(true)
+  const [productsFull, setProductsFull] = useState([])
   const onClick = (e, index) => {
     e.preventDefault()
     setActiveImage(index)
     setLightBoxOpen(!lightBoxOpen)
   }
+  const fetchProducts = async () => {
+  const { data } = await commerce.products.list()
+  var products = []
+
+  var vars = {}
+  window.location.href.replace(
+    /[?&]+([^=&]+)=([^&]*)/gi,
+    function (m, key, value) {
+      vars[key] = value
+    }
+  )
+  
+      data.map((item) => {
+      // console.log('item categories')
+      // console.log(item.categories)
+      console.log('produit')
+      console.log(item)
+      if (item.categories[0] !== undefined) {
+        if (vars.category == item.categories[0].slug) {
+          products.push(item)
+          console.log(products)
+        }
+      }
+    })
+
+    setProductsFull(products)
+  }
+
+  fetchProducts()
 
   const customStyles = {
     overlay: {
@@ -53,6 +88,9 @@ const Detail1 = () => {
       position: "fixed",
     },
   }
+  
+
+
 
   // const images = dummyProduct.img.detail
 
@@ -120,21 +158,24 @@ const Detail1 = () => {
                     </Col>
                   </Row>
                   <InputGroup className="w-100 mb-4">
-                    <Form.Control
+                    {/* <Form.Control
                       size="lg"
                       className="detail-quantity"
                       defaultValue="1"
                       name="items"
                       type="number"
-                    />
+                    /> */}
                     <div className="flex-grow-1">
                       <div className="d-grid h-100">
-                        <Button variant="dark" type="submit">
+                        <Button variant="dark" type="submit" size="lg"    onClick={() => {
+              commerce.cart.add(product.id, 1).then((response) => document.dispatchEvent(new Event('newCardItem')))
+              
+            }}>
                           <FontAwesomeIcon
                             icon={faShoppingCart}
                             className="me-2 flex-grow-1 w-1rem"
                           />
-                          Add to Cart
+                          Ajouter au panier
                         </Button>
                       </div>
                     </div>

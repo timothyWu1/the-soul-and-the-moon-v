@@ -8,7 +8,7 @@ import Icon from "../Icon"
 
 import Image from "../Image"
 import { commerce } from '../../lib/commerce';
-import Popup from '../Popup'
+
  
 
 const CardProductDefault = ({
@@ -20,9 +20,7 @@ const CardProductDefault = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
  
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  }
+ 
   const [cartItems, dispatch] = useState([]);
 
   const fetchCard = async () => {
@@ -66,7 +64,7 @@ const CardProductDefault = ({
               href=""
               // alt={product.img.category[0].alt}
               layout="responsive"
-              width={420}
+              width={500}
               height={500}
             />
             </Link>
@@ -84,8 +82,7 @@ const CardProductDefault = ({
               className="text-hover-primary svg-icon-heavy d-sm-none"
               icon="retail-bag-1"
             />
-            <span className="d-none d-sm-inline"       onClick={togglePopup}
-> <Icon className="svg-icon-heavy" icon="add-1" />Ajouter</span>
+            <span className="d-none d-sm-inline"> <Icon className="svg-icon-heavy" icon="add-1" />Ajouter</span>
           </button>
 
           {isOpen && <Popup
@@ -126,7 +123,6 @@ const CardProductDefault = ({
       
         </h3>
         <span className="text-gray-500 text-sm">{product.price.formatted_with_symbol}</span>
-     
       </div>
     </div>
   )

@@ -199,15 +199,16 @@ const SidebarCart =  (props) => {
           </h5>
           
           
-          {/* <Link passHref href="/payement"> */}
+          <Link passHref href="/payement">
+          {/* <Link passHref href="/payement.html"> */}
             <Button 
-            href="/payement"
-            onClick={handleCheckout}
+            // href="/payement.html"
+            // onClick={handleCheckout}
             variant="dark"
             className="w-100">
               Payer
             </Button>
-          {/* </Link> */}
+          </Link>
           
         </div>
       </Modal.Footer>

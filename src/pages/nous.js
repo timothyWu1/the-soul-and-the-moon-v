@@ -163,7 +163,7 @@ const Contact = () => {
                 >
                   Envoyer
                 </Button>
-                <form onSubmit={handleSubmit(onSubmitHandler)}>submit</form>
+                {/* <form onSubmit={handleSubmit(onSubmitHandler)}>submit</form> */}
               </Form>
             </Col>
           </Row>

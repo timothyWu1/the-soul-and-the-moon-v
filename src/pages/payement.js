@@ -39,7 +39,7 @@ export default function payement() {
   React.useEffect(() => {
     // Create PaymentIntent as soon as the page loads
    
-    fetch("/api/create-payment-intent", {
+    fetch("/api/create-payment-intent.html", {
     
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -66,7 +66,7 @@ export default function payement() {
         
       </Container>
       <Container className="py-6 categories">
-      <h2>Page de payement : Veuillez renseignez vos informations</h2>
+      <h2>Veuillez renseigner vos inforamtion pour procéder au payement par Carte Bancaire</h2>
       </Container>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>

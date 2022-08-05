@@ -1,80 +1,75 @@
+import { loadStripe } from "@stripe/stripe-js"
+import { Elements } from "@stripe/react-stripe-js"
+import React, { useState, useEffect } from "react"
 
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import React, {useState, useEffect } from "react"
-
-import CheckoutForm from "../components/CheckoutForm";
-import { Container } from "react-bootstrap";
+import CheckoutForm from "../components/CheckoutForm"
+import { Container } from "react-bootstrap"
 
 // Make sure to call loadStripe outside of a component’s render to avoid
 // recreating the Stripe object on every render.
 // This is your test publishable API key.
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 export default function payement() {
-  const [clientSecret, setClientSecret] = React.useState("");
-  const [cartItems, dispatch] = useState([]);
- 
- 
-    cartItems.map( async (item) => {
-     
+  const [clientSecret, setClientSecret] = React.useState("")
+  const [cartItems, dispatch] = useState([])
 
-      stripe.products.create({
+  cartItems.map(async (item) => {
+    stripe.products
+      .create({
         name: item.name,
-      }).then((response) => {});
-      
-      var price = await stripe.prices.create({
-        currency: 'eur',
-        unit_amount: "{item.price.raw}",
-        product: item.id,
-      });
+      })
+      .then((response) => {})
 
-      if (price != undefined) {
-        pTab.push({price: price, quantity: 1})
-      }
-      
-      
+    var price = await stripe.prices.create({
+      currency: "eur",
+      unit_amount: "{item.price.raw}",
+      product: item.id,
     })
+
+    if (price != undefined) {
+      pTab.push({ price: price, quantity: 1 })
+    }
+  })
 
   React.useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-   
-    fetch("/api/create-payment-intent.html", {
-    
+
+    fetch("/api/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(cartItems),
     })
       .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, []);
+      .then((data) => setClientSecret(data.clientSecret))
+  }, [])
 
   const appearance = {
-    theme: 'stripe',
+    theme: "stripe",
     variables: {
-      colorPrimary: '#f6e2df',
+      colorPrimary: "#f6e2df",
     },
-  };
+  }
   const options = {
     clientSecret,
     appearance,
-  };
+  }
 
   return (
     <div className="App">
+      <Container className="py-6 categories"></Container>
       <Container className="py-6 categories">
-        
-      </Container>
-      <Container className="py-6 categories">
-      <h2>Veuillez renseigner vos inforamtion pour procéder au payement par Carte Bancaire</h2>
+        <h2>
+          Veuillez renseigner vos informations pour procéder au payement par
+          carte bancaire
+        </h2>
       </Container>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
-        
       )}
       <Container className="py-6 categories"></Container>
     </div>
-  );
+  )
 }

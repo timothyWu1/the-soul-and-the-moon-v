@@ -86,7 +86,7 @@ const Index = () => {
                 <div className="w-100 py-3">
                   <Button variant="outline-dark">
                       <a href="#ok">
-                        <h1 className="display-3 fw-bold mb-2">
+                        <h1 className="display-3 fw-light mb-2">
                             LA BOUTIQUE
                           </h1>
                           </a>
@@ -123,7 +123,7 @@ const Index = () => {
                         />
                         <Card.ImgOverlay className="d-flex align-items-center">
                           <div className="w-100 py-3">
-                            <h2 className="display-0 fw-bold mb-1 ">
+                            <h2 className="display-0 fw-lighter mb-1 ">
                               {category.name}
                             </h2>
                             <Link href={category.url}>

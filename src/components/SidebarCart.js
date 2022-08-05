@@ -59,7 +59,7 @@ const SidebarCart =  (props) => {
 
   const  handleCheckout = async () => {
     const stripe = await getStripe();
-    console.log(cartItems)
+    console.log(cartItems);
     console.log ('test 1');
     console.log ('OK');
     const response = await fetch('/api/create-payment-intent', {
@@ -213,8 +213,8 @@ const SidebarCart =  (props) => {
         </div>
       </Modal.Footer>
     </Modal>
-  )
-        }
+    )
+  }
 }
 
 export default SidebarCart

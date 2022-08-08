@@ -28,23 +28,23 @@ export default function Product(props) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
-//   const addToCartHandler = async () => {
-//     const commerce = getCommerce(props.commercePublicKey);
-//     const lineItem = cart.data.line_items.find(
-//       (x) => x.product_id === product.id
-//     );
-//     if (lineItem) {
-//       const cartData = await commerce.cart.update(lineItem.id, {
-//         quantity: quantity,
-//       });
-//       dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
-//       Router.push('/checkout');
-//     } else {
-//       const cartData = await commerce.cart.add(product.id, quantity);
-//       dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
-//       Router.push('/checkout');
-//     }
-//   };
+  const addToCartHandler = async () => {
+    const commerce = getCommerce(props.commercePublicKey);
+    const lineItem = cart.data.line_items.find(
+      (x) => x.product_id === product.id
+    );
+    if (lineItem) {
+      const cartData = await commerce.cart.update(lineItem.id, {
+        quantity: quantity,
+      });
+      dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
+      Router.push('/checkout');
+    } else {
+      const cartData = await commerce.cart.add(product.id, quantity);
+      dispatch({ type: CART_RETRIEVE_SUCCESS, payload: cartData.cart });
+      Router.push('/checkout');
+    }
+  };
 
   return (
     <Layout title={product.name} commercePublicKey={props.commercePublicKey}>

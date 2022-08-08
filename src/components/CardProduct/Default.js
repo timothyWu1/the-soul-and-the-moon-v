@@ -74,7 +74,9 @@ const CardProductDefault = ({
             className="text-dark text-sm"
             aria-label="add to cart"
             onClick={() => {
-              commerce.cart.add(product.id, 1).then((response) => document.dispatchEvent(new Event('newCardItem')))
+              commerce.cart.add(product.id, 1).then((response) => document.dispatchEvent(new Event('newCardItem')));
+              // commerce.cart.add(product.id, 1).then((response) => document.dispatchEvent(new Event('newCardItem')))
+              (e) => addToCart(e, product);
               
             }}
           >
@@ -85,13 +87,6 @@ const CardProductDefault = ({
             <span className="d-none d-sm-inline"> <Icon className="svg-icon-heavy" icon="add-1" />Ajouter</span>
           </button>
 
-          {isOpen && <Popup
-      content={<>
-        <b>Design your Popup</b>
-        
-      </>}
-      handleClose={togglePopup}
-    />}
 
       
           <div>
@@ -120,7 +115,6 @@ const CardProductDefault = ({
       <div className="position-relative">
         <h3 className="text-base mb-1">
           {product.name}
-      
         </h3>
         <span className="text-gray-500 text-sm">{product.price.formatted_with_symbol}</span>
       </div>

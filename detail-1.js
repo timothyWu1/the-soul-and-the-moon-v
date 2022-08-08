@@ -22,9 +22,9 @@ import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"
 
-import Image from "../components/Image"
 
-import { commerce } from "../lib/commerce"
+
+
 
 export async function getStaticProps() {
   return {
@@ -35,7 +35,7 @@ export async function getStaticProps() {
 }
 
 const Detail1 = () => {
-  const { data } = commerce.products.list();
+  const [productsFull, setProductsFull] = useState([])
   const [lightBoxOpen, setLightBoxOpen] = useState(false);
 
   const onClick = (e, index) => {
@@ -89,7 +89,7 @@ const Detail1 = () => {
             </Link>
             <Breadcrumb.Item active>Produit</Breadcrumb.Item>
           </Breadcrumb>
-          {data.map((item) => (
+          {productsFull.map((item) => (
           <div key={item.slug}>
             <Row>
               <Col

@@ -29,6 +29,7 @@ const MainIcons = (props) => {
     const data2 = await commerce.cart.contents()
     dispatch1(data2)
     dispatch2(data2)
+   
   }
   // fetchCard();
 
@@ -48,7 +49,10 @@ const MainIcons = (props) => {
             onClick={(e) => preventAnchor(e, () => toggleModal("sidebarCart"))}
           >
             <Icon icon="cart-1" className="navbar-icon" />
-            <div className="navbar-icon-badge">{cartContext.length}</div>
+            {cartItems.map((item) => (
+            <div className="navbar-icon-badge">{item.quantity ? item.quantity : item.quantity}</div>
+        ))}
+      
           </a>
         </li>
       </ul>

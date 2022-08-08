@@ -16,6 +16,7 @@ const CardProduct = ({ product, masonry, cardType }) => {
     e.preventDefault()
     addCartItem(product, "1")
     dispatch({ type: "add", payload: product, quantity: "1" })
+    console.log("ok")
   }
   const addToWishlist = (e, product) => {
     e.preventDefault()

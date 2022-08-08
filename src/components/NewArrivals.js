@@ -24,7 +24,7 @@ const NewArrivals = (props) => {
     commerce.categories.list().then((categorylist) => {
       // console.log(categorylist.data[0].assets[0].url)
       var list = []
-      categorylist.data.map((category) => {
+      categorylist.data?.map((category) => {
         list.push({
           name: category.name,
           image: category.assets[0].url,
@@ -168,7 +168,7 @@ const NewArrivals = (props) => {
             </ResponsiveMasonry>
           ) : (
             <Row>
-              {products.map((product, index) =>
+              {products?.map((product, index) =>
                 props.fluid ? (
                   <Col key={index} xl={2} lg={3} md={4} xs={6}>
                     <CardProduct product={product} />

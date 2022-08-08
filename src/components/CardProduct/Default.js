@@ -60,7 +60,7 @@ const CardProductDefault = ({
     <Link href="/detail-1" passHref>
             <Image
               className="img-fluid"
-              src={product.image.url}
+              src={product.image?.url}
               href=""
               // alt={product.img.category[0].alt}
               layout="responsive"

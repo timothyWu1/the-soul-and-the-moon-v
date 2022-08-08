@@ -30,6 +30,7 @@ const CardProductDefault = ({
 
 
   useEffect(() => {
+    
 
     
   }, [])
@@ -57,11 +58,11 @@ const CardProductDefault = ({
           </Badge>
         )}
     
-    <Link href="/detail-1" passHref>
+    <Link href={"/detail-1?article=" + product.id}passHref>
             <Image
               className="img-fluid"
               src={product.image?.url}
-              href=""
+              href="" 
               // alt={product.img.category[0].alt}
               layout="responsive"
               width={500}

@@ -12,6 +12,7 @@ import Icon from "../Icon"
 import { WishlistContext } from "../WishlistContext"
 
 const MainIcons = (props) => {
+  const [vignette, addVignette] = useState(0)
   const [modal, setModal] = React.useState({})
   const toggleModal = (name) => {
     setModal({ ...modal, [name]: !modal[name] })
@@ -27,8 +28,15 @@ const MainIcons = (props) => {
 
   const fetchCard = async () => {
     const data2 = await commerce.cart.contents()
+    data2 = data2.filter((item) => item.product_id !== null);
+    var nb = 0
+    data2.map((item) => (nb += item.quantity))
+
+    addVignette(nb)
     dispatch1(data2)
     dispatch2(data2)
+
+
    
   }
   // fetchCard();
@@ -50,7 +58,7 @@ const MainIcons = (props) => {
           >
             <Icon icon="cart-1" className="navbar-icon" />
             {cartItems.map((item) => (
-            <div className="navbar-icon-badge">{item.quantity ? item.quantity : item.quantity}</div>
+            <div className="navbar-icon-badge">{vignette}</div>
         ))}
       
           </a>

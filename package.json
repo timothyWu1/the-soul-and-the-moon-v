@@ -45,6 +45,7 @@
     "react-router-dom": "^6.3.0",
     "react-scroll": "^1.8.4",
     "react-select": "^5.2.1",
+    "react-stripe-elements": "^6.1.2",
     "react-stripe-js": "^1.1.2",
     "react-syntax-highlighter": "^15.4.5",
     "sass": "^1.28.0",

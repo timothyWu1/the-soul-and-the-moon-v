@@ -47,7 +47,7 @@ const CategoryBoxed = () => {
     setProductsFull(products)
   }
 
-  fetchProducts()
+  useEffect( () => { fetchProducts() });
 
   if (productsFull != []) {
     return (
@@ -84,7 +84,7 @@ const CategoryBoxed = () => {
               </Col>
             ))}
           </Row>
-          {/* <Pagination /> */}
+      
         </div>
       </Container>
     )

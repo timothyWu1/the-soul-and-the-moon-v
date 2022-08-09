@@ -17,17 +17,30 @@ import { removeCartItem, addCartItem } from "../hooks/UseCart"
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-// function Cart() {
 
-const commercePayment = (props) => {
-  window.location.replace (
-    'https://checkout.chec.io/cart/'+'cart_aZWNoyPe89w80J'+'?return_url=http://20.199.50.183'
-  )
+// function Cart() {
+const fetchCart = () => {
+  commerce.cart.retrieve().then((cart)=>{setCart(cart);
+  }).catch((error)=>{
+    console.log('erreur de fetching :', error);
+  });
 }
+const commercePayment = (props) => {
+ 
+  console.log(props.id)
+  // window.location.replace (
+    
+  //   'https://checkout.chec.io/cart/'+{props}+'?return_url=http://20.199.50.183'
+  //   // 'https://checkout.chec.io/cart/'+{props}+'?return_url=http://20.199.50.183'
+  // )
+}
+
+const panier = fetchCart();
 
 const SidebarCart = (props) => {
   const [cartItems, dispatch] = useState([])
   const [total, addTotal] = useState(0)
+  const [cart, setCart]= useState([])
 
   const getPrice = async () => {
     var pTab = []
@@ -236,7 +249,7 @@ const SidebarCart = (props) => {
               {/* <Link passHref href="/payement.html"> */}
               <Button
                 // href="/payement.html"
-                onClick={commercePayment}                
+                onClick={panier}                
                 // variant="dark"
                 className="w-100"
                 disabled

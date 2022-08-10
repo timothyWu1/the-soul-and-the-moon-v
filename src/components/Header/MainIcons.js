@@ -42,8 +42,10 @@ const MainIcons = (props) => {
   // fetchCard();
 
   useEffect(() => {
-    fetchCard()
+    fetchCard();
+    document.addEventListener("newCardItem", (e) => fetchCard());
   }, [])
+
   return (
     <React.Fragment>
       <ul className={`list-inline mb-0 ${props.className}`}>

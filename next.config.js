@@ -12,6 +12,7 @@ module.exports = withPlugins(
       },
     ],
   ],
+  
   // {
   //   trailingSlash: true,
   // },
@@ -32,4 +33,17 @@ module.exports = withPlugins(
     },
     
     }
-)
+   
+),
+{
+  reactStrictMode: false,
+  webpack5: true,
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false};
+
+    return config;
+  }
+}
+
+
+

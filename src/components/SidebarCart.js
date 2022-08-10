@@ -20,22 +20,19 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 // function Cart() {
 const fetchCart = () => {
-  commerce.cart.retrieve().then((cart)=>{setCart(cart);
+  commerce.cart.retrieve().then((cart)=>{
+  console.log(cart)
+  window.location.replace (
+    
+    'https://checkout.chec.io/cart/'+ cart.id +'?return_url=http://20.199.80.153'
+    
+    )
   }).catch((error)=>{
     console.log('erreur de fetching :', error);
   });
-}
-const commercePayment = (props) => {
- 
-  console.log(props.id)
-  // window.location.replace (
-    
-  //   'https://checkout.chec.io/cart/'+{props}+'?return_url=http://20.199.50.183'
-  //   // 'https://checkout.chec.io/cart/'+{props}+'?return_url=http://20.199.50.183'
-  // )
-}
+  }
 
-const panier = fetchCart();
+
 
 const SidebarCart = (props) => {
   const [cartItems, dispatch] = useState([])
@@ -93,17 +90,35 @@ const SidebarCart = (props) => {
     stripe.redirectToCheckout({ sessionId: data.id })
   }
 
-  const decreaseQuantity = (product) => {
+  const decreaseQuantity = (product) => {    
     if (product.quantity > 1) {
-      addCartItem(product, product.quantity - 1)
-      dispatch({ type: "add", payload: product, quantity: product.quantity })
+      commerce.cart.add(product.product_id, -1).then((response) => {
+        document.dispatchEvent(new Event('newCardItem'));        
+    });
+      
     }
+    else{
+      deleteFromCart(product);
+    }    
   }
 
   // Increase product quantity
   const increaseQuantity = (product) => {
-    addCartItem(product, product.quantity + 1)
-    dispatch({ type: "add", payload: product, quantity: product.quantity })
+    commerce.cart.add(product.product_id, 1).then((response) => {
+      document.dispatchEvent(new Event('newCardItem'));
+    })
+  }
+
+  const deleteFromCart = (product) => {
+    commerce.cart.remove(product).then((response) => fetchCard())
+
+    var length = cartItems.length -1
+    console.log(length)
+    console.log(product)
+    cartItems.splice(0, length)
+
+    dispatch(cartItems)
+    
   }
 
   const removeFromCart = (product) => {
@@ -114,9 +129,9 @@ const SidebarCart = (props) => {
     cartItems.splice(removeId, 1)
 
     dispatch(cartItems)
-    fetchCard()
+    document.dispatchEvent(new Event('newCardItem'));
 
-    console.log("OK sidebarCart")
+    // console.log("OK sidebarCart")
   }
   const headerClose = (
     <CloseButton
@@ -154,6 +169,15 @@ const SidebarCart = (props) => {
       >
         <Modal.Header className="border-0 mb-3">{headerClose}</Modal.Header>
         <Modal.Body className="px-5 sidebar-cart-body">
+        <Button
+             
+             onClick={deleteFromCart}                
+            //  variant="dark"
+           
+           >
+             
+             Vider le panier
+           </Button>
           {cartItems.length > 0 ? (
             <div className="sidebar-cart-product-wrapper custom-scrollbar">
               {cartItems.map((item) => (
@@ -192,7 +216,7 @@ const SidebarCart = (props) => {
                       </div>
                       <Button
              
-                onClick={decreaseQuantity}                
+                onClick={() => decreaseQuantity(item)}             
                 // variant="dark"
                 className="w-20 m-3"
               >
@@ -201,7 +225,7 @@ const SidebarCart = (props) => {
               </Button>
               <Button
              
-             onClick={increaseQuantity}                
+             onClick={() => increaseQuantity(item)}                
             //  variant="dark"
              className="w-20 m-3"
            >
@@ -237,7 +261,7 @@ const SidebarCart = (props) => {
               {/* <Link passHref href="/payement.html"> */}
               <Button
                 // href="/payement.html"
-                onClick={commercePayment}                    
+                onClick={fetchCart}                    
                 // variant="dark"
                 className="w-100"
               >
@@ -249,7 +273,7 @@ const SidebarCart = (props) => {
               {/* <Link passHref href="/payement.html"> */}
               <Button
                 // href="/payement.html"
-                onClick={panier}                
+                onClick={fetchCart}                
                 // variant="dark"
                 className="w-100"
                 disabled

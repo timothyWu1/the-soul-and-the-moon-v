@@ -15,7 +15,7 @@ import "react-image-lightbox/style.css"
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons"
-import Image from "../components/Image"
+
 import { commerce } from "../lib/commerce"
 import Carousel from "react-bootstrap/Carousel"
 
@@ -44,6 +44,7 @@ const Detail1 = () => {
       }
     })
   }
+
 
   useEffect(() => {
     fetchProducts()
@@ -91,7 +92,7 @@ const Detail1 = () => {
                       </Carousel>
                     ) : (
                        
-                      <div class="carousel-item active">
+                      <div>
                         <img
                           class="d-block w-100"
                           src={product.assets[0].url}
@@ -126,24 +127,21 @@ const Detail1 = () => {
                           </li>
                         </ul>
                       </div>
-                      <Form>
-                        <InputGroup className="w-100 mb-4">
+                      
+                        
                           <div className="flex-grow-1">
                             <div className="d-grid h-100">
                               <Button
-                                variant="dark"
-                                type="submit"
+                                variant="dark"                                
                                 size="lg"
                                 onClick={() => {
                                   commerce.cart
                                     .add(product.id, 1)
                                     .then((response) =>
-                                      document.dispatchEvent(
-                                        new Event("newCardItem")
-                                      )
+                                      document.dispatchEvent(new Event("newCardItem"))
                                     )
                                 }}
-                                disabled
+                                
                               >
                                 <FontAwesomeIcon
                                   icon={faShoppingCart}
@@ -153,18 +151,18 @@ const Detail1 = () => {
                               </Button>
                             </div>
                           </div>
-                        </InputGroup>
+                        
                         <Row className="mb-4">
                           <Col xs="12">
                             <p className="mb-4 ">
                               <h4>Le produit :</h4>
                             </p>
-                            <p className="mb-2 text-muted">
-                              <h5 className="mb-4"> {product.description}</h5>
+                            <p className="mb-2">
+                              <h5 className="mb-4"> <div className="content" dangerouslySetInnerHTML={{__html: product.description}}></div></h5>
                             </p>
                           </Col>
                         </Row>
-                      </Form>
+                      
                     </div>
                   </Col>
                 </Row>

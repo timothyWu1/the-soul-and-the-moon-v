@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { Container, Row, Col, Breadcrumb } from "react-bootstrap"
+import { Container, Row, Col, Breadcrumb, Card } from "react-bootstrap"
 import Link from "next/link"
 
 import CardProduct from "../components/CardProduct"
 
 import { commerce } from "../lib/commerce"
+import Image from "../components/Image"
 
 export async function getStaticProps() {
   return {
@@ -18,12 +19,12 @@ export async function getStaticProps() {
 
 const CategoryBoxed = () => {
   const [productsFull, setProductsFull] = useState([])
-  
+  const [categoryList, setCategory] = useState([])
   
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list()
-    // const [categoryList, setCategory] = useState([])
+   
     var products = []
 
     var vars = {}
@@ -35,10 +36,6 @@ const CategoryBoxed = () => {
     )
 
     data.map((item) => {
-      // console.log('item categories')
-      // console.log(item.categories)
-      // console.log('produit')
-      // console.log(item)
       if (item.categories[0] !== undefined) {
         if (vars.category == item.categories[0].slug) {
           products.push(item)
@@ -49,29 +46,32 @@ const CategoryBoxed = () => {
     
     setProductsFull(products)
   }
-  // const getCategories = async () => {
-  //   commerce.categories.list().then((categorylist) => {
-  //     // console.log(categorylist.data[0].assets[0].url)
-  //     var list = []
-  //     categorylist.data.map((category) => {
-  //       list.push({
-  //         name: category.name,
-  //         image: category.assets[0].url,
-  //         url: "/category-boxed?category=" + category.slug,
-  //       })
-  //     })
-  //     setCategory(list)
-  //   })
-  // }
+  const getCategories = async () => {
+    commerce.categories.list().then((categorylist) => {
+      // console.log(categorylist.data[0].assets[0].url)
+      var list = []
+      categorylist.data.map((category) => {
+        list.push({
+          name: category.name,
+          image: category.assets[0].url,
+          url: "/category-boxed?category=" + category.slug,
+          
+        })
+        
+      })
+      setCategory(list)
+      
+    })
+  }
 
 
   
   useEffect(() => {
     fetchProducts()
-    // getCategories()
+    getCategories()
   }, [])
   
-  // if (categoryList[0] != undefined) {
+  if (categoryList[0] != undefined) {
   if (productsFull != []) {
     return (
     
@@ -82,9 +82,9 @@ const CategoryBoxed = () => {
         
         </Container>
         
-        {/* {categoryList && (
+        {categoryList && (
           <div className="bg-gray-200 position-sticky ">
-            <Container fluid className="py-6 categories">
+            <Container fluid className="py-5 categories">
               <Row className="justify-content-center">
                 {categoryList.map((category) => (
                   <Col
@@ -96,6 +96,7 @@ const CategoryBoxed = () => {
                     xl="2"
                     className="mb-5 mb-sm-0"
                   >
+                    
                     <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
                       <div>
                         <Image
@@ -128,16 +129,21 @@ const CategoryBoxed = () => {
               </Row>
             </Container>
           </div>
-        )} */}
+        )}
         <div className="products-grid">
+        {/* {categoryList.map((category) => ( */}
           <div className="hero-content pb-5">
+          
+            {/* <h1>Nos {category.name}</h1> */}
             <h1>Nos produits</h1>
             <Row>
               <Col xl="8">
                 <p className="lead text-muted"></p>
               </Col>
             </Row>
+         
           </div>
+           {/* ))} */}
           <Breadcrumb>
             <Link href="/" passHref>
               <Breadcrumb.Item>Accueil</Breadcrumb.Item>
@@ -157,12 +163,14 @@ const CategoryBoxed = () => {
               </Col>
             ))}
           </Row>
-      
+           
         </div>
       </Container>
     )
   }
-// }
+} else {
+  return null
+}
 }
 
 export default CategoryBoxed

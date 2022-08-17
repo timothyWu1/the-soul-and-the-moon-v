@@ -15,21 +15,7 @@ import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 // function Cart() {
-const fetchCart = () => {
-  commerce.cart
-    .retrieve()
-    .then((cart) => {
-      console.log(cart)
-      window.location.replace(
-        "https://checkout.chec.io/cart/" +
-          cart.id +
-          "?return_url=http://20.199.80.153"
-      )
-    })
-    .catch((error) => {
-      console.log("erreur de fetching :", error)
-    })
-}
+
 
 const SidebarCart = (props) => {
   const [loading, setLoading] = useState(false)
@@ -61,6 +47,24 @@ const SidebarCart = (props) => {
     const paymentLink = await stripe.paymentLinks.create({ line_items: pTab })
 
     window.location.href = paymentLink
+  }
+
+  const fetchCart = () => {
+    setLoading(true)
+    commerce.cart
+      .retrieve()
+      .then((cart) => {
+        console.log(cart)
+        window.location.replace(
+          "https://checkout.chec.io/cart/" +
+            cart.id +
+            "?return_url=http://20.199.80.153"
+        )
+        setLoading(false)
+      })
+      .catch((error) => {
+        console.log("erreur de fetching :", error)
+      })
   }
 
   const handleCheckout = async () => {
@@ -193,6 +197,7 @@ const SidebarCart = (props) => {
           <CircleSpinnerOverlay
             loading={loading}
             overlayColor="rgba(0,153,255,0.2)"
+            zIndex={99999}
           />
           {cartItems.length > 0 ? (
             <div className="sidebar-cart-product-wrapper custom-scrollbar">

@@ -23,7 +23,6 @@ export async function getStaticProps() {
 }
 
 const Index = () => {
-  const [loading, setLoading] = useState(false)
   const [productsFull, setProductsFull] = useState([])
   const [categoryList, setCategory] = useState([])
 
@@ -52,66 +51,60 @@ const Index = () => {
     getCategories()
   }, [])
 
-
-
-
   if (categoryList[0] != undefined) {
     return (
       <React.Fragment>
-
-
-        
-       
-
-{/* <Container className="py-6 categories">
+        {/* <Container className="py-6 categories">
 
 </Container> */}
 
-
         <Container className="py-8 categories">
-          
-        <Row >
-          
-          <Card className=" shadow-1 border-0 text-muted text-hover-gray-800 text-center">
-            <div>
-              <Image
-                className="img-scale card-img mb-2"
-                src="/img/product/E.png"
-                width={40}
-                height={30}
-                sizes="(max-width: 150px) calc(150vw - 30px), 50vw"
-              />
+          <Row>
+            <Card className=" shadow-1 border-0 text-muted text-hover-gray-800 text-center">
+              <div>
+                <Image
+                  className="img-scale card-img mb-2"
+                  src="/img/product/E.png"
+                  width={40}
+                  height={30}
+                  sizes="(max-width: 150px) calc(150vw - 30px), 50vw"
+                />
 
-              <Card.ImgOverlay className="d-flex align-items-center ">
-                
-                <div className="w-100 py-3">
-                  <Button className="opacity-75 bg-gray-500" >
+                <Card.ImgOverlay className="d-flex align-items-center ">
+                  <div className="w-100 py-3">
+                    <Button className="opacity-75 bg-gray-500 border-0">
                       <a href="#ok">
-                      <h1 className="display-3 text-white fw-light mb-2 opacity-100">
-                            LA BOUTIQUE
-                          </h1>
-                          </a>
-                          </Button>
-                          {/* <Link >
+                        <h1 className="display-3 text-white fw-light mb-2  opacity-100">
+                          LA BOUTIQUE
+                        </h1>
+                      </a>
+                    </Button>
+                    {/* <Link >
                             <a className="stretched-link" href="#ok">
                            
                             </a>
                           </Link> */}
-                        </div>
-           
-              </Card.ImgOverlay>
-            </div>
-          </Card>
-        </Row>
+                  </div>
+                </Card.ImgOverlay>
+              </div>
+            </Card>
+          </Row>
         </Container>
 
         {categoryList && (
           <div className="bg-gray-200 position-sticky ">
-          
             <Container fluid className="py-6 categories">
-              <Row  className="justify-content-center">
+              <Row className="justify-content-center">
                 {categoryList.map((category) => (
-                  <Col key={category.name} xs="6" sm="5" md="3" lg="2" xl="2" className="mb-5 mb-sm-0">
+                  <Col
+                    key={category.name}
+                    xs="6"
+                    sm="5"
+                    md="3"
+                    lg="2"
+                    xl="2"
+                    className="mb-5 mb-sm-0"
+                  >
                     <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
                       <div>
                         <Image
@@ -139,18 +132,14 @@ const Index = () => {
                       </div>
                     </Card>
                   </Col>
-                  
-                ))} 
-                <div id="ok">
-                </div>
+                ))}
+                <div id="ok"></div>
               </Row>
             </Container>
-           
           </div>
         )}
-       
+
         <NewArrivals fluid headCenter products={productsFull} />
-        
       </React.Fragment>
     )
   } else {

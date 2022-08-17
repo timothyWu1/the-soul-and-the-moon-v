@@ -13,31 +13,34 @@ import toast from "react-hot-toast"
 
 import { removeCartItem, addCartItem } from "../hooks/UseCart"
 
+import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
+
 // const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-
 // function Cart() {
 const fetchCart = () => {
-  commerce.cart.retrieve().then((cart)=>{
-  console.log(cart)
-  window.location.replace (
-    
-    'https://checkout.chec.io/cart/'+ cart.id +'?return_url=http://20.199.80.153'
-    
-    )
-  }).catch((error)=>{
-    console.log('erreur de fetching :', error);
-  });
-  }
-
-
+  commerce.cart
+    .retrieve()
+    .then((cart) => {
+      console.log(cart)
+      window.location.replace(
+        "https://checkout.chec.io/cart/" +
+          cart.id +
+          "?return_url=http://20.199.80.153"
+      )
+    })
+    .catch((error) => {
+      console.log("erreur de fetching :", error)
+    })
+}
 
 const SidebarCart = (props) => {
+  const [loading, setLoading] = useState( false)
   const [cartItems, dispatch] = useState([])
   const [total, addTotal] = useState(0)
-  const [cart, setCart]= useState([])
+  const [cart, setCart] = useState([])
 
   const getPrice = async () => {
     var pTab = []
@@ -68,9 +71,7 @@ const SidebarCart = (props) => {
   const handleCheckout = async () => {
     const [cartItems, dispatch] = useContext(CartContext) // Cart context
     const stripe = await getStripe()
-    console.log(cartItems)
-    console.log("test 1")
-    console.log("OK")
+
     const response = await fetch("/api/create-payment-intent", {
       method: "POST",
       headers: {
@@ -78,8 +79,8 @@ const SidebarCart = (props) => {
       },
       body: JSON.stringify(cartItems),
     })
-    // console.log ('test 2');
-    
+  
+
     if (response.statusCode === 500) return
 
     const data = await response.json()
@@ -90,35 +91,43 @@ const SidebarCart = (props) => {
     stripe.redirectToCheckout({ sessionId: data.id })
   }
 
-  const decreaseQuantity = (product) => {    
+  const decreaseQuantity = (product) => {
+    
     if (product.quantity > 1) {
+      setLoading(true)
       commerce.cart.add(product.product_id, -1).then((response) => {
-        document.dispatchEvent(new Event('newCardItem'));        
-    });
-      
+
+        document.dispatchEvent(new Event("newCardItem"))
+        setLoading(false)
+      })
+    } else {
+      removeFromCart(product)
     }
-    else{
-      deleteFromCart(product);
-    }    
   }
 
+
   // Increase product quantity
-  const increaseQuantity = (product) => {
-    commerce.cart.add(product.product_id, 1).then((response) => {
-      document.dispatchEvent(new Event('newCardItem'));
-    })
+  const increaseQuantity = async (product) => {
+    setLoading(true)
+    const response = await commerce.cart.add(product.product_id, 1)
+    // commerce.cart.add(product.product_id, 1).then((response) => {
+    //   document.dispatchEvent(new Event("newCardItem"))
+    //   setLoading(false)
+    // })
+    document.dispatchEvent(new Event("newCardItem"))
+    setLoading(false)
   }
 
   const deleteFromCart = (product) => {
     commerce.cart.remove(product).then((response) => fetchCard())
 
-    var length = cartItems.length -1
+    var length = cartItems.length - 1
     console.log(length)
     console.log(product)
     cartItems.splice(0, length)
 
     dispatch(cartItems)
-    
+    document.dispatchEvent(new Event("newCardItem"))
   }
 
   const removeFromCart = (product) => {
@@ -129,7 +138,7 @@ const SidebarCart = (props) => {
     cartItems.splice(removeId, 1)
 
     dispatch(cartItems)
-    document.dispatchEvent(new Event('newCardItem'));
+    document.dispatchEvent(new Event("newCardItem"))
 
     // console.log("OK sidebarCart")
   }
@@ -142,8 +151,8 @@ const SidebarCart = (props) => {
   )
 
   const fetchCard = async () => {
-    const data2 = await commerce.cart.contents();
-    data2 = data2.filter((item) => item.product_id !== null);
+    const data2 = await commerce.cart.contents()
+    data2 = data2.filter((item) => item.product_id !== null)
 
     var price = 0
     data2.map((item) => (price += item.price.raw * item.quantity))
@@ -152,14 +161,14 @@ const SidebarCart = (props) => {
     dispatch(data2)
   }
 
-
-
   useEffect(() => {
     fetchCard()
     document.addEventListener("newCardItem", (e) => fetchCard())
   }, [])
 
   if (cartItems != []) {
+
+    
     return (
       <Modal
         className="modal-right"
@@ -168,16 +177,13 @@ const SidebarCart = (props) => {
         onHide={props.toggle}
       >
         <Modal.Header className="border-0 mb-3">{headerClose}</Modal.Header>
+
         <Modal.Body className="px-5 sidebar-cart-body">
-        <Button
-             
-             onClick={deleteFromCart}                
-            //  variant="dark"
-           
-           >
-             
-             Vider le panier
-           </Button>
+          <FerrisWheelSpinner loading={loading} size={28} />
+          <CircleSpinnerOverlay
+            loading={loading}
+            overlayColor="rgba(0,153,255,0.2)"
+          />
           {cartItems.length > 0 ? (
             <div className="sidebar-cart-product-wrapper custom-scrollbar">
               {cartItems.map((item) => (
@@ -185,12 +191,13 @@ const SidebarCart = (props) => {
                   <div className="d-flex align-items-center">
                     {/* <Link href={`/${item.category[1]}/${item.slug}`}>
                     <a> */}
+
                     <Image
                       className="img-fluid navbar-cart-product-image"
-                      src={item.image?.url ?? "test.jpg"}
+                      src={item.image?.url}
                       // alt={item.img.category[0].alt}
-                      width={80}
-                      height={103}
+                      width={100}
+                      height={100}
                     />
                     {/* </a>
                   </Link> */}
@@ -204,41 +211,34 @@ const SidebarCart = (props) => {
                       </a>
                       <div className="ps-3">
                         {item.name}
-                        <small className="d-block text-muted">
-                          Quantité: {item.quantity ? item.quantity : 1}
-                        </small>
+
                         <strong className="d-block text-sm">
-                          {item.quantity
-                            ? item.price.raw 
-                            : item.price.raw}
-                          €
+                          {item.quantity ? item.price.raw : item.price.raw}€
                         </strong>
                       </div>
                       <Button
-             
-                onClick={() => decreaseQuantity(item)}             
-                // variant="dark"
-                className="w-20 m-3"
-              >
-                
-                - 1
-              </Button>
-              <Button
-             
-             onClick={() => increaseQuantity(item)}                
-            //  variant="dark"
-             className="w-20 m-3"
-           >
-             + 1
-           </Button>
-
+                        onClick={() => decreaseQuantity(item)}
+                        // variant="dark"
+                        className="w-20 m-1 rounded-pill"
+                      >
+                        - 1
+                      </Button>
+                      
+                      <small className=" text-muted">
+                        Quantité: {item.quantity ? item.quantity : 1}
+                      </small>
+                      <Button
+                        onClick={() => increaseQuantity(item)}
+                        //  variant="dark"
+                        className="w-20 m-1 rounded-pill"
+                      >
+                        + 1
+                      </Button>
                     </div>
                   </div>
                 </div>
-                
               ))}
             </div>
-            
           ) : (
             <div className="text-center mb-5">
               <Icon
@@ -246,9 +246,7 @@ const SidebarCart = (props) => {
                 icon="cart-1"
               />
               <p>Votre panier est vide </p>
-              
             </div>
-            
           )}
         </Modal.Body>
         <Modal.Footer className="sidebar-cart-footer">
@@ -257,32 +255,31 @@ const SidebarCart = (props) => {
               Total: <span className="float-end">{total}€</span>
             </h5>
             {cartItems.length > 0 ? (
-            <Link passHref href="/">
-              {/* <Link passHref href="/payement.html"> */}
-              <Button
-                // href="/payement.html"
-                onClick={fetchCart}                    
-                // variant="dark"
-                className="w-100"
-              >
-                Payer
-              </Button>
-            </Link>
-            ) :(
               <Link passHref href="/">
-              {/* <Link passHref href="/payement.html"> */}
-              <Button
-                // href="/payement.html"
-                onClick={fetchCart}                
-                // variant="dark"
-                className="w-100"
-                disabled
-              >
-                Payer
-              </Button>
-            </Link>
+                {/* <Link passHref href="/payement.html"> */}
+                <Button
+                  // href="/payement.html"
+                  onClick={fetchCart}
+                  // variant="dark"
+                  className="w-100 rounded-pill"
+                >
+                  Payer
+                </Button>
+              </Link>
+            ) : (
+              <Link passHref href="/">
+                {/* <Link passHref href="/payement.html"> */}
+                <Button
+                  // href="/payement.html"
+                  onClick={fetchCart}
+                  // variant="dark"
+                  className="w-100"
+                  disabled
+                >
+                  Payer
+                </Button>
+              </Link>
             )}
-            
           </div>
         </Modal.Footer>
       </Modal>

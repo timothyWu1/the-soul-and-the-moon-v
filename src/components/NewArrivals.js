@@ -140,16 +140,7 @@ const NewArrivals = (props) => {
         )} 
 
             </Col>
-            <Col
-              xs="12"
-              sm={props.fluid && "auto"}
-              md={!props.fluid && "auto"}
-              className="text-center"
-            >
-              <Button variant="link" className="px-0" href="#">
-                Tout les produits
-              </Button>
-            </Col>
+   
           </Row>
           {props.masonry ? (
             <ResponsiveMasonry

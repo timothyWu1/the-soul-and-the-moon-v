@@ -37,7 +37,7 @@ const About2 = () => {
                     <p className="text-lg text-muted mb-lg-0">
                     The Soul & The Moon a vu le jour en 2022
                     avec un objectif : proposer des
-                    accessoires et objets decoratifs durable et de qualité dans la région de
+                    accessoires et objets decoratifs durables et de qualités dans la région de
                     Paris. Notre passion pour l'excellence a
                     toujours été et restera notre moteur. Les créations thesoulandthemoon sont réalisées en jesmonite, une éco-résine qui n'émet aucune particule toxique et qui participe au parapluie écologique en permettant la création d'objets design et durable. Voyez par vous-même et
                     passez nous voir lors de nos exposition et sur notre instagram.

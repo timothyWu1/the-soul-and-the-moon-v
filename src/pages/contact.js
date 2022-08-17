@@ -1,15 +1,17 @@
 import Link from "next/link"
 import dynamic from "next/dynamic"
-import React from "react"
+import React, { useRef } from "react"
 import { Container, Row, Col, Breadcrumb, Form, Button } from "react-bootstrap"
 import { Parallax, Background } from "react-parallax"
 import Image from "../components/Image"
 import UseWindowSize from "../hooks/UseWindowSize"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons"
-import { useForm } from 'react-hook-form';
+import { faInstagram } from "@fortawesome/free-brands-svg-icons"
+import { useForm } from "react-hook-form"
+
+import emailjs from "@emailjs/browser"
+
+
 export async function getStaticProps() {
   return {
     props: {
@@ -25,11 +27,15 @@ export async function getStaticProps() {
 let MapComponent
 
 const Contact = () => {
-
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const onSubmitHandler = data => {
-    console.log(data);
-}
+  const form = useRef()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+  const onSubmitHandler = (data) => {
+    console.log(data)
+  }
 
   const [mapLoaded, setMapLoaded] = React.useState(false)
   const [dragging, setDragging] = React.useState(false)
@@ -47,6 +53,28 @@ const Contact = () => {
       setDragging(size.width > 700)
     }
   }, [size, mapLoaded])
+
+  //function d'envoie de mail
+  function sendEmail(e) {
+    e.preventDefault()
+
+    emailjs
+      .sendForm(
+        "service_xnfqqu8",
+        "template_wby66iu",
+        form.current,
+        "7EHauoWLstDiDhC51"
+      )
+      .then(
+        (result) => {
+          console.log(result.text)
+        },
+        (error) => {
+          console.log(error.text)
+        }
+      )
+    form.current.reset()
+  }
 
   return (
     <React.Fragment>
@@ -82,93 +110,113 @@ const Contact = () => {
           </div>
         </Container>
       </Parallax>
-  
+
       <section className="py-6">
-        <Container>
-          <Row>
-            <Col lg="3">
-              <h5
-                className="display-2 fw-bold mb-4 mb-lg-5"
-                style={{ lineHeight: "1" }}
-              >
-                Nous contacter{" "}
-              </h5>
-              <ul className="list-inline h3 mb-6 mb-lg-0">
-               
-            
-                <li className="list-inline-item me-4">
-                  <a href="https://www.instagram.com/the.soul.and.the.moon">
-                    <FontAwesomeIcon icon={faInstagram} size="6x"/>
-                  </a>
-                </li>
-              </ul>
-            </Col>
-            <Col lg="8" xl="6" className="ms-auto">
-              <Form>
-                <Row>
-                  <Col sm="6">
-                    <div className="mb-4">
-                      <Form.Label htmlFor="nameContact">
-                        Votre prenom
-                      </Form.Label>
-                      <Form.Control
-                        className="form-control-underlined"
-                        type="text"
-                        name="nameContact"
-                        id="name"
-                        required="required"
-                      />
-                    </div>
-                  </Col>
-                  <Col sm="6">
-                    <div className="mb-4">
-                      <Form.Label htmlFor="surnameContact" placeholder="Adresse Email">
-                        Votre nom
-                      </Form.Label>
-                      <Form.Control
-                        className="form-control-underlined"
-                        type="text"
-                        name="surnameContact"
-                        id="surname"
-                        required="required"
-                      />
-                    </div>
-                  </Col>
-                </Row>
-                <div className="mb-4">
-                  <Form.Label htmlFor="emailContact">Votre mail</Form.Label>
-                  <Form.Control
-                    className="form-control-underlined"
-                    type="email"
-                    name="emailContact"
-                    id="email"
-                    required="required"
-                  />
-                </div>
-                <div className="mb-4">
-                  <Form.Label htmlFor="messageContact">
-                    Votre message
-                  </Form.Label>
-             
-                </div>
-                <div className="mb-4">
-                  <textarea class="form-control" name="messageContact" type="textarea" required="required" id="exampleFormControlTextarea1" rows="4"></textarea>
-         
-         
-        </div>
-                <Button
-                  variant="outline-primary"
-                  className="mt-3"
-                  type="submit"
+        
+          <Container>
+            <Row>
+              <Col lg="3">
+                <h5
+                  className="display-2 fw-bold mb-4 mb-lg-5"
+                  style={{ lineHeight: "1" }}
                 >
-                  Envoyer
-                </Button>
-                {/* <form onSubmit={handleSubmit(onSubmitHandler)}>submit</form> */}
-              </Form>
-            </Col>
-          </Row>
-          
-        </Container>
+                  Nous contacter{" "}
+                </h5>
+                <ul className="list-inline h3 mb-6 mb-lg-0">
+                  <li className="list-inline-item me-4">
+                    <a href="https://www.instagram.com/the.soul.and.the.moon">
+                      <FontAwesomeIcon icon={faInstagram} size="6x" />
+                    </a>
+                  </li>
+                </ul>
+              </Col>
+              <Col lg="8" xl="6" className="ms-auto">
+                {/* <Form> */}
+                <form onSubmit={sendEmail} ref={form}>
+                  {/* <label>Nom</label>
+                  <input type="text" name="nom" />
+                  <label>Name</label>
+                  <input type="text" name="prenom" />
+                  <label>Email</label>
+                  <input type="email" name="email" />
+                  <label>Message</label>
+                  <textarea name="message" /> */}
+
+                  <Row>
+                      <Col sm="6">
+                        <div className="mb-4">
+                          <Form.Label htmlFor="nameContact">
+                            Votre prenom
+                          </Form.Label>
+                          <Form.Control
+                            className="form-control-underlined"
+                            type="text"
+                            name="prenom"
+                            id=""
+                            required="required"
+                          />
+                        </div>
+                      </Col>
+                      <Col sm="6">
+                        <div className="mb-4">
+                          <Form.Label
+                            htmlFor="surnameContact"
+                            placeholder="Adresse Email"
+                          >
+                            Votre nom
+                          </Form.Label>
+                          <Form.Control
+                            className="form-control-underlined"
+                            type="text"
+                            name="nom"
+                            id=""
+                            required="required"
+                          />
+                        </div>
+                      </Col>
+                    </Row>
+                    <div className="mb-4">
+                      <Form.Label htmlFor="emailContact">Votre mail</Form.Label>
+                      <Form.Control
+                        className="form-control-underlined"
+                        type="email"
+                        name="email"
+                        id=""
+                        required="required"
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <Form.Label htmlFor="messageContact">
+                        Votre message
+                      </Form.Label>
+                    </div>
+                    <div className="mb-4">
+                      <textarea
+                        class="form-control"
+                        name="message"
+                        type="textarea"
+                        required="required"
+                        id=""
+                        rows="4"
+                      ></textarea>
+                    </div>
+                  <Button
+                    variant="outline-primary"
+                    className="mt-3"
+                    type="submit"
+                    value="Send"
+                  >
+                    Envoyer
+                  </Button>
+
+{/* <input type="submit" value="Send" /> */}
+                  {/* <form onSubmit={handleSubmit(onSubmitHandler)}>submit</form> */}
+                {/* </Form> */}
+                </form>
+              </Col>
+            </Row>
+          </Container>
+       
       </section>
     </React.Fragment>
   )

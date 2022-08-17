@@ -72,7 +72,7 @@ const Index = () => {
           
         <Row >
           
-          <Card className=" shadow-0 border-0 text-muted text-hover-gray-800  text-center">
+          <Card className=" shadow-1 border-0 text-muted text-hover-gray-800 text-center">
             <div>
               <Image
                 className="img-scale card-img mb-2"
@@ -82,11 +82,12 @@ const Index = () => {
                 sizes="(max-width: 150px) calc(150vw - 30px), 50vw"
               />
 
-              <Card.ImgOverlay className="d-flex align-items-center">
+              <Card.ImgOverlay className="d-flex align-items-center ">
+                
                 <div className="w-100 py-3">
-                  <Button variant="outline-dark">
+                  <Button className="opacity-75 bg-gray-500" >
                       <a href="#ok">
-                        <h1 className="display-3 fw-light mb-2">
+                      <h1 className="display-3 text-white fw-light mb-2 opacity-100">
                             LA BOUTIQUE
                           </h1>
                           </a>
@@ -111,10 +112,10 @@ const Index = () => {
               <Row  className="justify-content-center">
                 {categoryList.map((category) => (
                   <Col key={category.name} sm="2" xs="6" md="2" className="mb-5 mb-sm-0">
-                    <Card className="card-scale shadow-0 border-0  text-hover-gray-900 overlay-hover-light text-center">
+                    <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
                       <div>
                         <Image
-                          className="img-scale card-img mb-2"
+                          className="img-scale card-img mb-2 "
                           src={category.image}
                           alt={category.name}
                           width={10}
@@ -123,7 +124,7 @@ const Index = () => {
                         />
                         <Card.ImgOverlay className="d-flex align-items-center">
                           <div className="w-100 py-3">
-                            <h2 className="display-0 fw-lighter mb-1 ">
+                            <h2 className="display-0 fw-lighter mb-1 text-white">
                               {category.name}
                             </h2>
                             <Link href={category.url}>

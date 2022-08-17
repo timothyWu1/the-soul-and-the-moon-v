@@ -100,7 +100,7 @@ const Contact = () => {
               }}
             >
               <Link href="/" passHref>
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
+                <Breadcrumb.Item>Accueil</Breadcrumb.Item>
               </Link>
               <Breadcrumb.Item active>Contact</Breadcrumb.Item>
             </Breadcrumb>

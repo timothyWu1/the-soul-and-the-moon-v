@@ -13,7 +13,9 @@ import ModalQuickView from "../ModalQuickView"
 
 import { FaInfo } from "react-icons/fa"
 
-const CardProductDefault = ({ product, masonry, addToCart, addToWishlist }) => {
+import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
+
+const CardProductDefault = ({ product}) => {
   const [quickView, setQuickView] = React.useState(false)
 
   const [cartItems, dispatch] = useState([])
@@ -43,7 +45,7 @@ const CardProductDefault = ({ product, masonry, addToCart, addToWishlist }) => {
             Sold out
           </Badge>
         )}
-        <a onClick={() => setQuickView(!quickView)} >
+        <a onClick={() => setQuickView(!quickView)}>
           <Image
             className="img-fluid"
             src={product.image?.url}
@@ -79,6 +81,11 @@ const CardProductDefault = ({ product, masonry, addToCart, addToWishlist }) => {
                   toggle={() => setQuickView()}
                   product={product}
                 />
+                {/* <FerrisWheelSpinner loading={loading} size={20} /> */}
+                {/* <CircleSpinnerOverlay
+                  loading={loading}
+                  overlayColor="rgba(0,153,255,0.2)"
+                /> */}
               </li>
               <li className="my-2">
                 {product.inventory.available !== 0 ? (
@@ -94,7 +101,13 @@ const CardProductDefault = ({ product, masonry, addToCart, addToWishlist }) => {
                     }
                     aria-label="add to cart"
                   >
-                    <span className="product-animated-text">Ajouter</span>
+                    <span
+                      className="product-animated-text"
+                      // onClick={setLoading(true)}
+                    >
+                      Ajouter
+                    </span>
+
                     <span className="product-animated-icon">
                       <Icon
                         className="svg-icon-sm svg-icon-heavy"

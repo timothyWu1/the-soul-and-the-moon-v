@@ -7,12 +7,7 @@ import Image from "./Image"
 import getStripe, { commerce } from "../lib/commerce"
 import Link from "next/link"
 import { loadStripe } from "@stripe/stripe-js"
-import { Elements } from "@stripe/react-stripe-js"
-import CheckoutForm from "../components/CheckoutForm"
 import toast from "react-hot-toast"
-
-import { removeCartItem, addCartItem } from "../hooks/UseCart"
-
 import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
 
 // const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
@@ -37,7 +32,7 @@ const fetchCart = () => {
 }
 
 const SidebarCart = (props) => {
-  const [loading, setLoading] = useState( false)
+  const [loading, setLoading] = useState(false)
   const [cartItems, dispatch] = useState([])
   const [total, addTotal] = useState(0)
   const [cart, setCart] = useState([])
@@ -91,15 +86,20 @@ const SidebarCart = (props) => {
     stripe.redirectToCheckout({ sessionId: data.id })
   }
 
-  const decreaseQuantity = (product) => {
+  const decreaseQuantity = async (product) => {
     
     if (product.quantity > 1) {
       setLoading(true)
-      commerce.cart.add(product.product_id, -1).then((response) => {
-
-        document.dispatchEvent(new Event("newCardItem"))
-        setLoading(false)
-      })
+      setIsDisabled(true)
+      const response = await commerce.cart.add(product.product_id, -1)
+      document.dispatchEvent(new Event("newCardItem"))
+      
+      setLoading(false)
+      setIsDisabled(false)
+      // commerce.cart.add(product.product_id, -1).then((response) => {
+      //   document.dispatchEvent(new Event("newCardItem"))
+      //   setLoading(false)
+      // })
     } else {
       removeFromCart(product)
     }
@@ -108,7 +108,11 @@ const SidebarCart = (props) => {
 
   // Increase product quantity
   const increaseQuantity = async (product) => {
+    console.log(product.price.formatted_with_symbol)
+
+    // if (product.quantity < product.inventory.available) {
     setLoading(true)
+    setIsDisabled(true)
     const response = await commerce.cart.add(product.product_id, 1)
     // commerce.cart.add(product.product_id, 1).then((response) => {
     //   document.dispatchEvent(new Event("newCardItem"))
@@ -116,6 +120,8 @@ const SidebarCart = (props) => {
     // })
     document.dispatchEvent(new Event("newCardItem"))
     setLoading(false)
+    setIsDisabled(false)
+  // }
   }
 
   const deleteFromCart = (product) => {
@@ -167,6 +173,8 @@ const SidebarCart = (props) => {
   }, [])
 
   if (cartItems != []) {
+    
+   
 
     
     return (
@@ -176,14 +184,15 @@ const SidebarCart = (props) => {
         show={props.isOpen}
         onHide={props.toggle}
       >
-        <Modal.Header className="border-0 mb-3">{headerClose}</Modal.Header>
-
-        <Modal.Body className="px-5 sidebar-cart-body">
-          <FerrisWheelSpinner loading={loading} size={28} />
+        <FerrisWheelSpinner loading={loading} size={20} />
           <CircleSpinnerOverlay
             loading={loading}
             overlayColor="rgba(0,153,255,0.2)"
           />
+        <Modal.Header className="border-0 mb-3" onClick={fetchCard}>{headerClose}</Modal.Header>
+
+        <Modal.Body className="px-5 sidebar-cart-body">
+          
           {cartItems.length > 0 ? (
             <div className="sidebar-cart-product-wrapper custom-scrollbar">
               {cartItems.map((item) => (
@@ -211,7 +220,6 @@ const SidebarCart = (props) => {
                       </a>
                       <div className="ps-3">
                         {item.name}
-
                         <strong className="d-block text-sm">
                           {item.quantity ? item.price.raw : item.price.raw}€
                         </strong>
@@ -286,5 +294,6 @@ const SidebarCart = (props) => {
     )
   }
 }
+
 
 export default SidebarCart

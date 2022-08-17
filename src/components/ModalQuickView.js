@@ -27,6 +27,7 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
   const [currentIndex, updateCurrentIndex] = React.useState(0) // Swiper current image index
   const [cartItems, dispatch] = React.useContext(CartContext) // Cart context
   const [wishlistItems, wishlistDispatch] = React.useContext(WishlistContext) // Wishlist context
+  let qtt = +quantity
 
   const [activeType, setActiveType] = useState("material_0_modal")
 
@@ -57,7 +58,7 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
     const value = e.target.value
     setQuantity(value)
   }
-  
+
   return (
     <Modal show={isOpen} onHide={toggle} size="xl">
       {/* CLOSE BUTTON */}
@@ -157,6 +158,7 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
                   onChange={(e) => onChange(e)}
                 />
                 {/* END QUANTITY INPUT */}
+                
 
                 {/* ADD TO CART */}
 
@@ -164,7 +166,7 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
                   size="lg"
                   onClick={() => {
                     commerce.cart
-                      .add(product.id, 1)
+                      .add(product.id, qtt)
                       .then((response) =>
                         document.dispatchEvent(new Event("newCardItem"))
                       )

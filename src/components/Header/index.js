@@ -107,7 +107,7 @@ const Header = ({ header }) => {
         <Col
           md="1"
           sm="3"
-          className="text-start text-md-center d-none d-sm-block"
+          className="text-start text-md-center d-none d-lg-block"
         >
           <Link className="" href="/" passHref>
             <Navbar.Brand>
@@ -144,7 +144,7 @@ const Header = ({ header }) => {
           md="1"
           sm="3"
           xs="4"
-          className=" text-start text-md-center text-primary mt-6 d-none d-sm-block"
+          className=" text-start text-md-center text-primary mt-6 d-none d-md-block"
         >
           <Nav className="mt-3 mt-lg-0 text-primary" navbar>
             {menu.map((item, index) => {
@@ -174,7 +174,7 @@ const Header = ({ header }) => {
             })}
 
             <div className="mt-1 text-start text-md-center ">
-              <MainIcons className="d-none d-lg-block" sidebarRight />
+              <MainIcons className="d-block" sidebarRight />
             </div>
           </Nav>
         </Col>

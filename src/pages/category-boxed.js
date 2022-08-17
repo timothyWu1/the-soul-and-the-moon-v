@@ -18,9 +18,12 @@ export async function getStaticProps() {
 
 const CategoryBoxed = () => {
   const [productsFull, setProductsFull] = useState([])
+  
+  
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list()
+    // const [categoryList, setCategory] = useState([])
     var products = []
 
     var vars = {}
@@ -46,16 +49,86 @@ const CategoryBoxed = () => {
     
     setProductsFull(products)
   }
+  // const getCategories = async () => {
+  //   commerce.categories.list().then((categorylist) => {
+  //     // console.log(categorylist.data[0].assets[0].url)
+  //     var list = []
+  //     categorylist.data.map((category) => {
+  //       list.push({
+  //         name: category.name,
+  //         image: category.assets[0].url,
+  //         url: "/category-boxed?category=" + category.slug,
+  //       })
+  //     })
+  //     setCategory(list)
+  //   })
+  // }
 
-  useEffect( () => { fetchProducts() });
 
+  
+  useEffect(() => {
+    fetchProducts()
+    // getCategories()
+  }, [])
+  
+  // if (categoryList[0] != undefined) {
   if (productsFull != []) {
     return (
     
       <Container className="py-8">
+        
           <Container className="py-7">
+
         
         </Container>
+        
+        {/* {categoryList && (
+          <div className="bg-gray-200 position-sticky ">
+            <Container fluid className="py-6 categories">
+              <Row className="justify-content-center">
+                {categoryList.map((category) => (
+                  <Col
+                    key={category.name}
+                    xs="6"
+                    sm="5"
+                    md="3"
+                    lg="2"
+                    xl="2"
+                    className="mb-5 mb-sm-0"
+                  >
+                    <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
+                      <div>
+                        <Image
+                          className="img-scale card-img mb-2 "
+                          src={category.image}
+                          alt={category.name}
+                          width={10}
+                          height={10}
+                          sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
+                        />
+                        <Card.ImgOverlay className="d-flex align-items-center">
+                          <div className="w-100 py-3">
+                            <h2 className="display-0 fw-lighter mb-1 text-white">
+                              {category.name}
+                            </h2>
+                            <Link href={category.url}>
+                              <a className="stretched-link">
+                                <span className="sr-only">
+                                  {category.button}
+                                </span>
+                              </a>
+                            </Link>
+                          </div>
+                        </Card.ImgOverlay>
+                      </div>
+                    </Card>
+                  </Col>
+                ))}
+                <div id="ok"></div>
+              </Row>
+            </Container>
+          </div>
+        )} */}
         <div className="products-grid">
           <div className="hero-content pb-5">
             <h1>Nos produits</h1>
@@ -89,6 +162,7 @@ const CategoryBoxed = () => {
       </Container>
     )
   }
+// }
 }
 
 export default CategoryBoxed

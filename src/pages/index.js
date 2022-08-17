@@ -23,7 +23,7 @@ export async function getStaticProps() {
 }
 
 const Index = () => {
-
+  const [loading, setLoading] = useState(false)
   const [productsFull, setProductsFull] = useState([])
   const [categoryList, setCategory] = useState([])
 
@@ -111,7 +111,7 @@ const Index = () => {
             <Container fluid className="py-6 categories">
               <Row  className="justify-content-center">
                 {categoryList.map((category) => (
-                  <Col key={category.name} sm="2" xs="6" md="2" className="mb-5 mb-sm-0">
+                  <Col key={category.name} xs="6" sm="5" md="3" lg="2" xl="2" className="mb-5 mb-sm-0">
                     <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
                       <div>
                         <Image

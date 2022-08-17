@@ -17,7 +17,7 @@ import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
 
 const CardProductDefault = ({ product}) => {
   const [quickView, setQuickView] = React.useState(false)
-
+  const [loading, setLoading] = useState(false)
   const [cartItems, dispatch] = useState([])
 
   const fetchCard = async () => {

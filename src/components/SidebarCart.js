@@ -90,12 +90,11 @@ const SidebarCart = (props) => {
     
     if (product.quantity > 1) {
       setLoading(true)
-      setIsDisabled(true)
+
       const response = await commerce.cart.add(product.product_id, -1)
       document.dispatchEvent(new Event("newCardItem"))
-      
+
       setLoading(false)
-      setIsDisabled(false)
       // commerce.cart.add(product.product_id, -1).then((response) => {
       //   document.dispatchEvent(new Event("newCardItem"))
       //   setLoading(false)
@@ -112,7 +111,7 @@ const SidebarCart = (props) => {
 
     // if (product.quantity < product.inventory.available) {
     setLoading(true)
-    setIsDisabled(true)
+    
     const response = await commerce.cart.add(product.product_id, 1)
     // commerce.cart.add(product.product_id, 1).then((response) => {
     //   document.dispatchEvent(new Event("newCardItem"))
@@ -120,7 +119,7 @@ const SidebarCart = (props) => {
     // })
     document.dispatchEvent(new Event("newCardItem"))
     setLoading(false)
-    setIsDisabled(false)
+    // fetchCard()
   // }
   }
 
@@ -133,7 +132,8 @@ const SidebarCart = (props) => {
     cartItems.splice(0, length)
 
     dispatch(cartItems)
-    document.dispatchEvent(new Event("newCardItem"))
+    // fetchCard()
+    // document.dispatchEvent(new Event("newCardItem"))
   }
 
   const removeFromCart = (product) => {
@@ -144,7 +144,8 @@ const SidebarCart = (props) => {
     cartItems.splice(removeId, 1)
 
     dispatch(cartItems)
-    document.dispatchEvent(new Event("newCardItem"))
+    // fetchCard()
+    // document.dispatchEvent(new Event("newCardItem"))
 
     // console.log("OK sidebarCart")
   }
@@ -184,15 +185,15 @@ const SidebarCart = (props) => {
         show={props.isOpen}
         onHide={props.toggle}
       >
-        <FerrisWheelSpinner loading={loading} size={20} />
+       
+        <Modal.Header className="border-0 mb-3" onClick={fetchCard}>{headerClose}</Modal.Header>
+
+        <Modal.Body className="px-5 sidebar-cart-body">
+        {/* <FerrisWheelSpinner loading={loading} size={20} /> */}
           <CircleSpinnerOverlay
             loading={loading}
             overlayColor="rgba(0,153,255,0.2)"
           />
-        <Modal.Header className="border-0 mb-3" onClick={fetchCard}>{headerClose}</Modal.Header>
-
-        <Modal.Body className="px-5 sidebar-cart-body">
-          
           {cartItems.length > 0 ? (
             <div className="sidebar-cart-product-wrapper custom-scrollbar">
               {cartItems.map((item) => (
@@ -210,6 +211,7 @@ const SidebarCart = (props) => {
                     />
                     {/* </a>
                   </Link> */}
+         
                     <div className="w-100">
                       <a
                         className="navbar-cart-product-remove"
@@ -232,6 +234,7 @@ const SidebarCart = (props) => {
                         - 1
                       </Button>
                       
+                      
                       <small className=" text-muted">
                         Quantité: {item.quantity ? item.quantity : 1}
                       </small>
@@ -241,10 +244,15 @@ const SidebarCart = (props) => {
                         className="w-20 m-1 rounded-pill"
                       >
                         + 1
+                        
                       </Button>
+                      
                     </div>
+                    
                   </div>
+                  
                 </div>
+                
               ))}
             </div>
           ) : (
@@ -259,6 +267,7 @@ const SidebarCart = (props) => {
         </Modal.Body>
         <Modal.Footer className="sidebar-cart-footer">
           <div className="w-100">
+          
             <h5 className="mb-4">
               Total: <span className="float-end">{total}€</span>
             </h5>

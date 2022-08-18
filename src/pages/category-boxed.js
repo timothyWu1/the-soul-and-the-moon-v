@@ -6,6 +6,8 @@ import CardProduct from "../components/CardProduct"
 
 import { commerce } from "../lib/commerce"
 import Image from "../components/Image"
+import DeleayComponent from "../components/Delay"
+import { Route, Routes } from "react-router-dom"
 
 export async function getStaticProps() {
   return {
@@ -14,6 +16,19 @@ export async function getStaticProps() {
     },
   }
 }
+<Routes>
+<Route path="" element={<Layout />}>
+  <Route index element={<Home />} />
+  <Route path="about" element={<About />} />
+  <Route path="dashboard" element={<Dashboard />} />
+
+  {/* Using path="*"" means "match anything", so this route
+        acts like a catch-all for URLs that we don't have explicit
+        routes for. */}
+  <Route path="*" element={<NoMatch />} />
+</Route>
+</Routes>
+
 
 
 
@@ -22,6 +37,7 @@ const CategoryBoxed = () => {
   const [categoryList, setCategory] = useState([])
   
 
+ 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list()
    
@@ -46,6 +62,16 @@ const CategoryBoxed = () => {
     
     setProductsFull(products)
   }
+
+  function refreshPage() {
+    setTimeout(()=>{
+        window.location.reload(false);
+    }, 500);
+    console.log('page to reload')
+}
+
+
+
   const getCategories = async () => {
     commerce.categories.list().then((categorylist) => {
       // console.log(categorylist.data[0].assets[0].url)
@@ -83,7 +109,7 @@ const CategoryBoxed = () => {
         </Container>
         
         {categoryList && (
-          <div className="bg-gray-200 position-sticky ">
+          <div className=" position-sticky ">
             <Container fluid className="py-5 categories">
               <Row className="justify-content-center">
                 {categoryList.map((category) => (
@@ -97,10 +123,10 @@ const CategoryBoxed = () => {
                     className="mb-5 mb-sm-0"
                   >
                     
-                    <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
+                    <Card className="d-flex card-scale shadow-0 border-0 overlay-hover-light text-center">
                       <div>
                         <Image
-                          className="img-scale card-img mb-2 "
+                          className="img-scale card-img mb-1"
                           src={category.image}
                           alt={category.name}
                           width={10}
@@ -112,7 +138,7 @@ const CategoryBoxed = () => {
                             <h2 className="display-0 fw-lighter mb-1 text-white">
                               {category.name}
                             </h2>
-                            <Link href={category.url}>
+                            <Link to={category.url}>
                               <a className="stretched-link">
                                 <span className="sr-only">
                                   {category.button}
@@ -125,7 +151,7 @@ const CategoryBoxed = () => {
                     </Card>
                   </Col>
                 ))}
-                <div id="ok"></div>
+              
               </Row>
             </Container>
           </div>

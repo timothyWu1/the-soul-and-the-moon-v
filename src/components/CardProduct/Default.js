@@ -45,26 +45,25 @@ const CardProductDefault = ({ product}) => {
             Sold out
           </Badge>
         )}
-        <a onClick={() => setQuickView(!quickView)}>
+        
           <Image
             className="img-fluid"
             src={product.image?.url}
-            href=""
-            onClick={() => setQuickView(!quickView)}
+            href="/#"
+            
             // alt={product.img.category[0].alt}
             layout="responsive"
             width={500}
             height={500}
           />
-        </a>
-
+      
         <div className="product-hover-overlay">
           <div className="product-hover-overlay-buttons">
             <ul className="list-unstyled">
               <li className="my-2">
                 <Button
                   variant="outline-dark"
-                  className="product-btn-animated d-none d-sm-inline-block w-100 px-3 py-0"
+                  className="product-btn-animated d-sm-inline-block w-100 px-3 py-0"
                   onClick={() => setQuickView(!quickView)}
                   aria-label="open quickview"
                 >
@@ -81,17 +80,13 @@ const CardProductDefault = ({ product}) => {
                   toggle={() => setQuickView()}
                   product={product}
                 />
-                {/* <FerrisWheelSpinner loading={loading} size={20} /> */}
-                {/* <CircleSpinnerOverlay
-                  loading={loading}
-                  overlayColor="rgba(0,153,255,0.2)"
-                /> */}
+          
               </li>
               <li className="my-2">
                 {product.inventory.available !== 0 ? (
                   <Button
                     variant="outline-dark"
-                    className="product-btn-animated d-none d-sm-inline-block w-100 px-3 py-0"
+                    className="product-btn-animated d-sm-inline-block w-100 px-3 py-0"
                     onClick={(e) =>
                       commerce.cart
                         .add(product.id, 1)
@@ -107,7 +102,6 @@ const CardProductDefault = ({ product}) => {
                     >
                       Ajouter
                     </span>
-
                     <span className="product-animated-icon">
                       <Icon
                         className="svg-icon-sm svg-icon-heavy"

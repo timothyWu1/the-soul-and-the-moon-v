@@ -54,10 +54,6 @@ const Index = () => {
   if (categoryList[0] != undefined) {
     return (
       <React.Fragment>
-        {/* <Container className="py-6 categories">
-
-</Container> */}
-
         <Container className="py-8 categories">
           <Row>
             <Card className=" shadow-1 border-0 text-muted text-hover-gray-800 text-center">
@@ -74,7 +70,7 @@ const Index = () => {
                   <div className="w-100 py-3">
                     <Button className="opacity-75 bg-gray-500 border-0">
                       <a href="#ok">
-                        <h1 className="display-3 text-white fw-light mb-2  opacity-100">
+                        <h1 className="display-4 text-white fw-light mb-2 opacity-100">
                           LA BOUTIQUE
                         </h1>
                       </a>
@@ -101,7 +97,7 @@ const Index = () => {
                     xs="6"
                     sm="5"
                     md="3"
-                    lg="2"
+                    lg="3"
                     xl="2"
                     className="mb-5 mb-sm-0"
                   >

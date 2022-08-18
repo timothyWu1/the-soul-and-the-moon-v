@@ -96,7 +96,7 @@ const SidebarCart = (props) => {
       setLoading(true)
 
       const response = await commerce.cart.add(product.product_id, -1)
-      document.dispatchEvent(new Event("newCardItem"))
+      document.dispatchEvent(new CustomEvent(response.event))
 
       setLoading(false)
       // commerce.cart.add(product.product_id, -1).then((response) => {
@@ -111,22 +111,27 @@ const SidebarCart = (props) => {
 
   // Increase product quantity
   const increaseQuantity = async (product) => {
-    console.log(product.price.formatted_with_symbol)
-
-    // if (product.quantity < product.inventory.available) {
     setLoading(true)
-    
     const response = await commerce.cart.add(product.product_id, 1)
-    // commerce.cart.add(product.product_id, 1).then((response) => {
-    //   document.dispatchEvent(new Event("newCardItem"))
-    //   setLoading(false)
-    // })
-    document.dispatchEvent(new Event("newCardItem"))
+    document.dispatchEvent(new CustomEvent(response.event))
+    console.log(response.event)
+    console.log(typeof(response.event))
     setLoading(false)
-    // fetchCard()
-  // }
   }
 
+
+//   <h1 id="elem">Hello for John!</h1>
+
+// <script>
+//   // additional details come with the event to the handler
+//   elem.addEventListener("hello", function(event) {
+//     alert(event.detail.name);
+//   });
+
+//   elem.dispatchEvent(new CustomEvent("hello", {
+//     detail: { name: "John" }
+//   }));
+// </script>
   const deleteFromCart = (product) => {
     commerce.cart.remove(product).then((response) => fetchCard())
 
@@ -137,10 +142,11 @@ const SidebarCart = (props) => {
 
     dispatch(cartItems)
     // fetchCard()
-    // document.dispatchEvent(new Event("newCardItem"))
+    // document.dispatchEvent(new CustomEvent())
   }
 
   const removeFromCart = (product) => {
+    setLoading(true)
     commerce.cart.remove(product.id).then((response) => fetchCard())
 
     var removeId = cartItems.indexOf(product)
@@ -148,8 +154,9 @@ const SidebarCart = (props) => {
     cartItems.splice(removeId, 1)
 
     dispatch(cartItems)
+    setLoading(false)
     // fetchCard()
-    // document.dispatchEvent(new Event("newCardItem"))
+    document.dispatchEvent(new CustomEvent(response.event))
 
     // console.log("OK sidebarCart")
   }
@@ -174,14 +181,10 @@ const SidebarCart = (props) => {
 
   useEffect(() => {
     fetchCard()
-    document.addEventListener("newCardItem", (e) => fetchCard())
+    document.addEventListener("Cart.Item.Added", (e) => fetchCard())
   }, [])
 
   if (cartItems != []) {
-    
-   
-
-    
     return (
       <Modal
         className="modal-right"
@@ -196,7 +199,7 @@ const SidebarCart = (props) => {
         {/* <FerrisWheelSpinner loading={loading} size={20} /> */}
           <CircleSpinnerOverlay
             loading={loading}
-            overlayColor="rgba(0,153,255,0.2)"
+            overlayColor="rgba(0,0,0,0)"
             zIndex={99999}
           />
           {cartItems.length > 0 ? (

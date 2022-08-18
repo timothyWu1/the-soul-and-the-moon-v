@@ -43,7 +43,7 @@ const MainIcons = (props) => {
 
   useEffect(() => {
     fetchCard();
-    document.addEventListener("newCardItem", (e) => fetchCard());
+    document.addEventListener("Cart.Item.Added", (e) => fetchCard());
   }, [])
 
   return (

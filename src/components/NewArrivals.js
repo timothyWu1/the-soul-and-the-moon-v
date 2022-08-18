@@ -149,10 +149,12 @@ const NewArrivals = (props) => {
               <Masonry className="row">
                 {products.map((product, index) => (
                   <Col key={index} className="item">
+                    
                     <CardProduct
                       product={product}
                       showQuickView={props.showQuickView}
                     />
+                    
                   </Col>
                 ))}
               </Masonry>

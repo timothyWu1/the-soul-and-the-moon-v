@@ -16,38 +16,11 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 // function Cart() {
 
-
 const SidebarCart = (props) => {
   const [loading, setLoading] = useState(false)
   const [cartItems, dispatch] = useState([])
   const [total, addTotal] = useState(0)
   const [cart, setCart] = useState([])
-
-  const getPrice = async () => {
-    var pTab = []
-
-    cartItems.map(async (item) => {
-      stripe.products
-        .create({
-          name: item.name,
-        })
-        .then((response) => {})
-
-      var price = await stripe.prices.create({
-        currency: "eur",
-        unit_amount: "{item.price.raw}",
-        product: item.id,
-      })
-
-      if (price != undefined) {
-        pTab.push({ price: price, quantity: 1 })
-      }
-    })
-
-    const paymentLink = await stripe.paymentLinks.create({ line_items: pTab })
-
-    window.location.href = paymentLink
-  }
 
   const fetchCart = () => {
     setLoading(true)
@@ -58,118 +31,60 @@ const SidebarCart = (props) => {
         window.location.replace(
           "https://checkout.chec.io/cart/" +
             cart.id +
-            "?return_url=http://20.199.80.153"
+            "?return_url=" +
+            window.location.origin
         )
-        setLoading(false)
       })
       .catch((error) => {
         console.log("erreur de fetching :", error)
       })
   }
 
-  const handleCheckout = async () => {
-    const [cartItems, dispatch] = useContext(CartContext) // Cart context
-    const stripe = await getStripe()
-
-    const response = await fetch("/api/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(cartItems),
-    })
-  
-
-    if (response.statusCode === 500) return
-
-    const data = await response.json()
-
-    // console.log ('OK');
-    toast.loading("Redirecting...")
-
-    stripe.redirectToCheckout({ sessionId: data.id })
-  }
-
   const decreaseQuantity = async (product) => {
-    
     if (product.quantity > 1) {
       setLoading(true)
 
-      const response = await commerce.cart.add(product.product_id, -1)
-      document.dispatchEvent(new CustomEvent(response.event))
+      var response = await commerce.cart.add(product.product_id, -1)
+      document.dispatchEvent(
+        new CustomEvent("newCardItem", { detail: response.cart.line_items })
+      )
 
       setLoading(false)
-      // commerce.cart.add(product.product_id, -1).then((response) => {
-      //   document.dispatchEvent(new Event("newCardItem"))
-      //   setLoading(false)
-      // })
     } else {
-      removeFromCart(product)
+      await removeFromCart(product)
     }
   }
-
 
   // Increase product quantity
   const increaseQuantity = async (product) => {
     setLoading(true)
-    const response = await commerce.cart.add(product.product_id, 1)
-    document.dispatchEvent(new CustomEvent(response.event))
-    console.log(response.event)
-    console.log(typeof(response.event))
+
+    var response = await commerce.cart.add(product.product_id, 1)
+    document.dispatchEvent(
+      new CustomEvent("newCardItem", { detail: response.cart.line_items })
+    )
+
     setLoading(false)
   }
 
-
-//   <h1 id="elem">Hello for John!</h1>
-
-// <script>
-//   // additional details come with the event to the handler
-//   elem.addEventListener("hello", function(event) {
-//     alert(event.detail.name);
-//   });
-
-//   elem.dispatchEvent(new CustomEvent("hello", {
-//     detail: { name: "John" }
-//   }));
-// </script>
-  const deleteFromCart = (product) => {
-    commerce.cart.remove(product).then((response) => fetchCard())
-
-    var length = cartItems.length - 1
-    console.log(length)
-    console.log(product)
-    cartItems.splice(0, length)
-
-    dispatch(cartItems)
-    // fetchCard()
-    // document.dispatchEvent(new CustomEvent())
-  }
-
-  const removeFromCart = (product) => {
+  const removeFromCart = async (product) => {
     setLoading(true)
-    commerce.cart.remove(product.id).then((response) => fetchCard())
 
-    var removeId = cartItems.indexOf(product)
+    var response = await commerce.cart.remove(product.id)
+    document.dispatchEvent(
+      new CustomEvent("newCardItem", { detail: response.cart.line_items })
+    )
 
-    cartItems.splice(removeId, 1)
-
-    dispatch(cartItems)
     setLoading(false)
-    // fetchCard()
-    document.dispatchEvent(new CustomEvent(response.event))
-
-    // console.log("OK sidebarCart")
   }
-  const headerClose = (
-    <CloseButton
-      className="modal-close  btn-close-lg btn-close-rotate opacity-8"
-      type="button"
-      onClick={props.toggle}
-    />
-  )
 
-  const fetchCard = async () => {
-    const data2 = await commerce.cart.contents()
+  const fetchCard = async (data2) => {
+    if (data2 == undefined) {
+      console.log("Data null")
+      return
+    }
+
+    //const data2 = await commerce.cart.contents()
     data2 = data2.filter((item) => item.product_id !== null)
 
     var price = 0
@@ -180,8 +95,13 @@ const SidebarCart = (props) => {
   }
 
   useEffect(() => {
-    fetchCard()
-    document.addEventListener("Cart.Item.Added", (e) => fetchCard())
+    commerce.cart
+      .contents()
+      .then((d) =>
+        document.dispatchEvent(new CustomEvent("newCardItem", { detail: d }))
+      )
+
+    document.addEventListener("newCardItem", (e) => fetchCard(e.detail))
   }, [])
 
   if (cartItems != []) {
@@ -192,14 +112,19 @@ const SidebarCart = (props) => {
         show={props.isOpen}
         onHide={props.toggle}
       >
-       
-        <Modal.Header className="border-0 mb-3" onClick={fetchCard}>{headerClose}</Modal.Header>
+        <Modal.Header className="border-0 mb-3">
+          <CloseButton
+            className="modal-close  btn-close-lg btn-close-rotate opacity-8"
+            type="button"
+            onClick={props.toggle}
+          />
+        </Modal.Header>
 
         <Modal.Body className="px-5 sidebar-cart-body">
-        {/* <FerrisWheelSpinner loading={loading} size={20} /> */}
+          {/* <FerrisWheelSpinner loading={loading} size={20} /> */}
           <CircleSpinnerOverlay
             loading={loading}
-            overlayColor="rgba(0,0,0,0)"
+            overlayColor="rgba(0,0,0,0.7)"
             zIndex={99999}
           />
           {cartItems.length > 0 ? (
@@ -219,7 +144,7 @@ const SidebarCart = (props) => {
                     />
                     {/* </a>
                   </Link> */}
-         
+
                     <div className="w-100">
                       <a
                         className="navbar-cart-product-remove"
@@ -241,8 +166,7 @@ const SidebarCart = (props) => {
                       >
                         - 1
                       </Button>
-                      
-                      
+
                       <small className=" text-muted">
                         Quantité: {item.quantity ? item.quantity : 1}
                       </small>
@@ -252,15 +176,10 @@ const SidebarCart = (props) => {
                         className="w-20 m-1 rounded-pill"
                       >
                         + 1
-                        
                       </Button>
-                      
                     </div>
-                    
                   </div>
-                  
                 </div>
-                
               ))}
             </div>
           ) : (
@@ -275,7 +194,6 @@ const SidebarCart = (props) => {
         </Modal.Body>
         <Modal.Footer className="sidebar-cart-footer">
           <div className="w-100">
-          
             <h5 className="mb-4">
               Total: <span className="float-end">{total}€</span>
             </h5>
@@ -298,7 +216,7 @@ const SidebarCart = (props) => {
                   // href="/payement.html"
                   onClick={fetchCart}
                   // variant="dark"
-                  className="w-100"
+                  className="w-100 rounded-pill"
                   disabled
                 >
                   Payer
@@ -311,6 +229,5 @@ const SidebarCart = (props) => {
     )
   }
 }
-
 
 export default SidebarCart

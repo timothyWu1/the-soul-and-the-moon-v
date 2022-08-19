@@ -16,18 +16,7 @@ export async function getStaticProps() {
     },
   }
 }
-<Routes>
-<Route path="" element={<Layout />}>
-  <Route index element={<Home />} />
-  <Route path="about" element={<About />} />
-  <Route path="dashboard" element={<Dashboard />} />
 
-  {/* Using path="*"" means "match anything", so this route
-        acts like a catch-all for URLs that we don't have explicit
-        routes for. */}
-  <Route path="*" element={<NoMatch />} />
-</Route>
-</Routes>
 
 
 
@@ -55,7 +44,7 @@ const CategoryBoxed = () => {
       if (item.categories[0] !== undefined) {
         if (vars.category == item.categories[0].slug) {
           products.push(item)
-          console.log(products)
+         
         }
       }
     })
@@ -66,6 +55,7 @@ const CategoryBoxed = () => {
   function refreshPage() {
     setTimeout(()=>{
         window.location.reload(false);
+        console.log("refreshed")
     }, 500);
     console.log('page to reload')
 }
@@ -83,9 +73,11 @@ const CategoryBoxed = () => {
           url: "/category-boxed?category=" + category.slug,
           
         })
+        // console.log(category.url)
         
       })
       setCategory(list)
+      
       
     })
   }
@@ -117,9 +109,9 @@ const CategoryBoxed = () => {
                     key={category.name}
                     xs="6"
                     sm="5"
-                    md="3"
-                    lg="2"
-                    xl="2"
+                    md="5"
+                    lg="3"
+                    xl="3"
                     className="mb-5 mb-sm-0"
                   >
                     
@@ -138,8 +130,8 @@ const CategoryBoxed = () => {
                             <h2 className="display-0 fw-lighter mb-1 text-white">
                               {category.name}
                             </h2>
-                            <Link to={category.url}>
-                              <a className="stretched-link">
+                            <Link href={category.url} >
+                              <a className="stretched-link" onClick={refreshPage}>
                                 <span className="sr-only">
                                   {category.button}
                                 </span>

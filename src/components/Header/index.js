@@ -141,13 +141,14 @@ const Header = ({ header }) => {
           </Col>
 
         <Col
+          lg="2"
           md="1"
           sm="3"
-          xs="4"
+          xs="2"
           className=" text-start text-md-center text-primary mt-6 d-none d-md-block"
         >
           <Nav className="mt-3 mt-lg-0 text-primary" navbar>
-            {menu.map((item, index) => {
+            {/* {menu.map((item, index) => {
               // Mapping through menu items
 
               return item.link ? ( // If item has property link than simple link
@@ -171,7 +172,7 @@ const Header = ({ header }) => {
                   viewportWidth={size.width}
                 />
               )
-            })}
+            })} */}
 
             <div className="mt-1 text-start text-md-center ">
               <MainIcons className="d-block" sidebarRight />

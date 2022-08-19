@@ -24,11 +24,24 @@ const CardProductDefault = ({ product}) => {
     const data2 = await commerce.cart.contents()
     dispatch(data2)
   }
+  const increaseQuantity = async (product) => {
+    setLoading(true)
+
+    var response = await commerce.cart.add(product.id, 1)
+    document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
+
+    setLoading(false)
+  }
 
   useEffect(() => {}, [])
 
   return (
     <div className={`product product-type-1`}>
+      <CircleSpinnerOverlay
+            loading={loading}
+            overlayColor="rgba(0,0,0,0.7)"
+            zIndex={99999}
+          />
       <div className="product-image mb-md-3">
         {product.new && (
           <Badge bg="secondary" className="product-badge">
@@ -84,16 +97,11 @@ const CardProductDefault = ({ product}) => {
               </li>
               <li className="my-2">
                 {product.inventory.available !== 0 ? (
+                  
                   <Button
                     variant="outline-dark"
                     className="product-btn-animated d-sm-inline-block w-100 px-3 py-0"
-                    onClick={(e) =>
-                      commerce.cart
-                        .add(product.id, 1)
-                        .then((response) =>
-                          document.dispatchEvent(new Event("newCardItem"))
-                        )
-                    }
+                    onClick={() => increaseQuantity(product)}
                     aria-label="add to cart"
                   >
                     <span

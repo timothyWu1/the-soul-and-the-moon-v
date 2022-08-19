@@ -138,8 +138,8 @@ const Detail1 = () => {
                                   commerce.cart
                                     .add(product.id, 1)
                                     .then((response) =>
-                                      document.dispatchEvent(new Event("newCardItem"))
-                                    )
+                                      document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items })
+                                    ))
                                 }}
                                 
                               >

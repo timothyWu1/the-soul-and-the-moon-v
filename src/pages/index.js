@@ -53,9 +53,11 @@ const Index = () => {
 
   if (categoryList[0] != undefined) {
     return (
+   
       <React.Fragment>
         <Container className="py-8 categories">
           <Row>
+            <div id="boutique"></div>
             <Card className=" shadow-1 border-0 text-muted text-hover-gray-800 text-center">
               <div>
                 <Image
@@ -75,18 +77,16 @@ const Index = () => {
                         </h1>
                       </a>
                     </Button>
-                    {/* <Link >
-                            <a className="stretched-link" href="#ok">
-                           
-                            </a>
-                          </Link> */}
                   </div>
                 </Card.ImgOverlay>
               </div>
             </Card>
           </Row>
         </Container>
+        
 
+
+        
         {categoryList && (
           <div className="bg-gray-200 position-sticky ">
             <Container fluid className="py-6 categories">
@@ -96,37 +96,40 @@ const Index = () => {
                     key={category.name}
                     xs="6"
                     sm="5"
-                    md="3"
+                    md="5"
                     lg="3"
                     xl="2"
                     className="mb-5 mb-sm-0"
                   >
-                    <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
-                      <div>
-                        <Image
-                          className="img-scale card-img mb-2 "
-                          src={category.image}
-                          alt={category.name}
-                          width={10}
-                          height={10}
-                          sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
-                        />
-                        <Card.ImgOverlay className="d-flex align-items-center">
-                          <div className="w-100 py-3">
-                            <h2 className="display-0 fw-lighter mb-1 text-white">
-                              {category.name}
-                            </h2>
-                            <Link href={category.url}>
-                              <a className="stretched-link">
-                                <span className="sr-only">
-                                  {category.button}
-                                </span>
-                              </a>
-                            </Link>
-                          </div>
-                        </Card.ImgOverlay>
-                      </div>
-                    </Card>
+                    {window.innerWidth >= 992 ?
+                      <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
+                        <div>
+                          <Image
+                            className="img-scale card-img mb-2 "
+                            src={category.image}
+                            alt={category.name}
+                            width={10}
+                            height={10}
+                            sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
+                          />
+                          <Card.ImgOverlay className="d-flex align-items-center">
+                            <div className="w-100 py-3">
+                              <h2 className="display-0 fw-lighter mb-1 text-white">
+                                {category.name}
+                              </h2>
+                              <Link href={category.url}>
+                                <a className="stretched-link">
+                                  <span className="sr-only">
+                                    {category.button}
+                                  </span>
+                                </a>
+                              </Link>
+                            </div>
+                          </Card.ImgOverlay>
+                        </div>
+                      </Card>
+                      : null
+                    }
                   </Col>
                 ))}
                 <div id="ok"></div>
@@ -134,8 +137,10 @@ const Index = () => {
             </Container>
           </div>
         )}
+            
 
         <NewArrivals fluid headCenter products={productsFull} />
+        
       </React.Fragment>
     )
   } else {

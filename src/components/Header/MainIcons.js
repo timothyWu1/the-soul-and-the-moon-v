@@ -26,8 +26,14 @@ const MainIcons = (props) => {
   const [wishlistContext] = React.useContext(WishlistContext)
   const [cartItems, dispatch1] = useState([])
 
-  const fetchCard = async () => {
-    const data2 = await commerce.cart.contents()
+  const fetchCard = async (data2) => {
+    
+    if (data2 == undefined){
+      console.log("Data null")
+      return;
+    }
+    
+    //const data2 = await commerce.cart.contents()
     data2 = data2.filter((item) => item.product_id !== null);
     var nb = 0
     data2.map((item) => (nb += item.quantity))
@@ -35,15 +41,11 @@ const MainIcons = (props) => {
     addVignette(nb)
     dispatch1(data2)
     dispatch2(data2)
-
-
-   
   }
   // fetchCard();
 
   useEffect(() => {
-    fetchCard();
-    document.addEventListener("Cart.Item.Added", (e) => fetchCard());
+    document.addEventListener("newCardItem", (e) => fetchCard(e.detail));
   }, [])
 
   return (

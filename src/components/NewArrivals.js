@@ -38,6 +38,7 @@ const NewArrivals = (props) => {
   if (products != []){
     
     return (
+      
       <div
         className={`py-6 ${
           props.masonry ? "position-relative overflow-hidden" : ""
@@ -47,6 +48,7 @@ const NewArrivals = (props) => {
           fluid={props.fluid}
           className={props.fluid ? "container-fluid-px" : ""}
         >
+          <div id="boutiques"></div>
           {props.blob1 && (
             <Icon
               icon={props.blob1}

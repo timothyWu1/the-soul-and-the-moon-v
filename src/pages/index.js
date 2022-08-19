@@ -61,7 +61,7 @@ const Index = () => {
             <Card className=" shadow-1 border-0 text-muted text-hover-gray-800 text-center">
               <div>
                 <Image
-                  className="img-scale card-img mb-2"
+                  className="img-scale card-img mb-5 mt-5"
                   src="/img/product/E.png"
                   width={40}
                   height={30}

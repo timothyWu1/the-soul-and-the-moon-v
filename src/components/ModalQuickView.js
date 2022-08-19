@@ -79,17 +79,24 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
       document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
       setLoading(false)
     } else {
-
+      
     }
   }
 
  
   // On quantity change
   const onChange = (e) => {
-    
+    if (qtt < product.inventory.available  ) {
     const value = e.target.value
     setQuantity(value)
-    togglePopup()
+    } else if (qtt = product.inventory.available){
+      const value = e.target.value -1
+    setQuantity(value)
+    }
+    else {
+      const value = e.target.value
+      setQuantity(value-1)
+    }
   }
 
   return (
@@ -187,6 +194,7 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
             { product.inventory.available !== 0 ?
             
             <Form>
+              {/* {cartItems.map((item) =>  */}
               {/* ADD TO CART BUTTON */}
               <InputGroup className="w-100 mb-4">
                 {/* QUANTITY INPUT */}
@@ -217,7 +225,7 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
                 {/* END ADD TO CART */}
               </InputGroup>
               {/* END ADD TO CART BUTTON */}
-
+            
              
             </Form>
             : null

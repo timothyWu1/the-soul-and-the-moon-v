@@ -7,8 +7,8 @@ import Image from "./Image"
 import getStripe, { commerce } from "../lib/commerce"
 import Link from "next/link"
 import { loadStripe } from "@stripe/stripe-js"
-import toast from "react-hot-toast"
 import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
+import Commerce from "@chec/commerce.js"
 
 // const stripe = require('stripe')('pk_live_51L4DlCGZOykemseI7QGccARPB0ifDIwTrNv1ucgchguUdEEYhGd2JxunYC7Zr4inB22OC9zLyDD6ptjHHOMvKcCh00iujxFfz0');
 
@@ -21,6 +21,7 @@ const SidebarCart = (props) => {
   const [cartItems, dispatch] = useState([])
   const [total, addTotal] = useState(0)
   const [cart, setCart] = useState([])
+
 
   const fetchCart = () => {
     setLoading(true)
@@ -43,6 +44,7 @@ const SidebarCart = (props) => {
   const decreaseQuantity = async (product) => {
     if (product.quantity > 1) {
       setLoading(true)
+      console.log(product.quantity)
 
       var response = await commerce.cart.add(product.product_id, -1)
       document.dispatchEvent(
@@ -58,7 +60,7 @@ const SidebarCart = (props) => {
   // Increase product quantity
   const increaseQuantity = async (product) => {
     setLoading(true)
-
+    console.log(cartItems)
     var response = await commerce.cart.add(product.product_id, 1)
     document.dispatchEvent(
       new CustomEvent("newCardItem", { detail: response.cart.line_items })
@@ -166,7 +168,6 @@ const SidebarCart = (props) => {
                       >
                         - 1
                       </Button>
-
                       <small className=" text-muted">
                         Quantité: {item.quantity ? item.quantity : 1}
                       </small>

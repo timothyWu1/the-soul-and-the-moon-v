@@ -26,7 +26,7 @@ const CardProductDefault = ({ product}) => {
   }
   const increaseQuantity = async (product) => {
     setLoading(true)
-
+   
     var response = await commerce.cart.add(product.id, 1)
     document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
 

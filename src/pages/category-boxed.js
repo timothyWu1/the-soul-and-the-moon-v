@@ -6,8 +6,6 @@ import CardProduct from "../components/CardProduct"
 
 import { commerce } from "../lib/commerce"
 import Image from "../components/Image"
-import DeleayComponent from "../components/Delay"
-import { Route, Routes } from "react-router-dom"
 
 export async function getStaticProps() {
   return {
@@ -16,10 +14,6 @@ export async function getStaticProps() {
     },
   }
 }
-
-
-
-
 
 const CategoryBoxed = () => {
   const [productsFull, setProductsFull] = useState([])
@@ -99,7 +93,7 @@ const CategoryBoxed = () => {
 
         
         </Container>
-        
+{/*         
         {categoryList && (
           <div className=" position-sticky ">
             <Container fluid className="py-5 categories">
@@ -147,7 +141,7 @@ const CategoryBoxed = () => {
               </Row>
             </Container>
           </div>
-        )}
+        )} */}
         <div className="products-grid">
         {/* {categoryList.map((category) => ( */}
           <div className="hero-content pb-5">

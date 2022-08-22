@@ -40,7 +40,7 @@ const Footer = () => {
               
             </Col>
             <Col lg="3">
-            <li className="list-inline-item text-center">
+            <li className="list-inline-item text-center d-flex align-items-center">
               
                 <a
                   className="text-reset text-hover-primary text-center"

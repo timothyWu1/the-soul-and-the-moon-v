@@ -22,7 +22,7 @@ import { commerce } from "../lib/commerce"
 import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
 // swiper core styles
 import "swiper/css"
-import Popup from './Popup'
+import Popup from "./Popup"
 const ModalQuickView = ({ isOpen, toggle, product }) => {
   const [loading, setLoading] = useState(false)
   const swiperRef = React.useRef(null) // Swiper reference for slideTo method
@@ -31,9 +31,6 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
   const [cartItems, dispatch] = React.useContext(CartContext) // Cart context
   const [wishlistItems, wishlistDispatch] = React.useContext(WishlistContext) // Wishlist context
   let qtt = +quantity
-
- 
-  
 
   const [activeType, setActiveType] = useState("material_0_modal")
 
@@ -73,29 +70,28 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
   // }
 
   const increaseQuantity = async (product) => {
-    if (qtt <= product.inventory.available  ) {
+    if (qtt <= product.inventory.available) {
       setLoading(true)
       var response = await commerce.cart.add(product.id, qtt)
-      document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
+      document.dispatchEvent(
+        new CustomEvent("newCardItem", { detail: response.cart.line_items })
+      )
       setLoading(false)
     } else {
-      
     }
   }
 
- 
   // On quantity change
   const onChange = (e) => {
-    if (qtt < product.inventory.available  ) {
-    const value = e.target.value
-    setQuantity(value)
-    } else if (qtt = product.inventory.available){
-      const value = e.target.value -1
-    setQuantity(value)
-    }
-    else {
+    if (qtt < product.inventory.available) {
       const value = e.target.value
-      setQuantity(value-1)
+      setQuantity(value)
+    } else if ((qtt = product.inventory.available)) {
+      const value = e.target.value - 1
+      setQuantity(value)
+    } else {
+      const value = e.target.value
+      setQuantity(value - 1)
     }
   }
 
@@ -108,15 +104,14 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
         type="button"
       />
       {/* END CLOSE BUTTON */}
-    
 
       {/* MODAL BODY */}
       <Modal.Body className="quickview-body">
-      <CircleSpinnerOverlay
-            loading={loading}
-            overlayColor="rgba(0,0,0,0.7)"
-            zIndex={99999}
-          />
+        <CircleSpinnerOverlay
+          loading={loading}
+          overlayColor="rgba(0,0,0,0.7)"
+          zIndex={99999}
+        />
         <Row>
           <Col lg="6">
             <div className="detail-carousel">
@@ -134,7 +129,6 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
               )}
               {/* END PRODUCT BADGES */}
 
-                
               {/* SWIPER GALLERY */}
               <Swiper {...params} loop ref={swiperRef}>
                 {product.assets.map((image, index) => (
@@ -191,53 +185,44 @@ const ModalQuickView = ({ isOpen, toggle, product }) => {
               dangerouslySetInnerHTML={{ __html: product.description }}
             ></p>
             {/* END PRODUCT DESCRIPTION */}
-            { product.inventory.available !== 0 ?
-            
-            <Form>
-              {/* {cartItems.map((item) =>  */}
-              {/* ADD TO CART BUTTON */}
-              <InputGroup className="w-100 mb-4">
-                {/* QUANTITY INPUT */}
-                <Form.Control
-                  size="lg"
-                  className="detail-quantity"
-                  name="items"
-                  type="number"
-                  value={(quantity > 0 && quantity) || ""}
-                  onChange={(e) => onChange(e)}
-                />
-                {/* END QUANTITY INPUT */}
-                
-
-                {/* ADD TO CART */}
-
-                <Button
-                  size="lg"
-                  onClick={() => increaseQuantity(product)}
-                
-                >
-                  <FontAwesomeIcon
-                    icon={faShoppingCart}
-                    className="me-2 flex-grow-1 "
+            {product.inventory.available !== 0 ? (
+              <Form>
+                {/* {cartItems.map((item) =>  */}
+                {/* ADD TO CART BUTTON */}
+                <InputGroup className="w-100 mb-4">
+                  {/* QUANTITY INPUT */}
+                  <Form.Control
+                    size="lg"
+                    className="detail-quantity"
+                    name="items"
+                    type="number"
+                    value={(quantity > 0 && quantity) || ""}
+                    onChange={(e) => onChange(e)}
                   />
-                  Ajouter au panier
-                </Button>
-                {/* END ADD TO CART */}
-              </InputGroup>
-              {/* END ADD TO CART BUTTON */}
-            
-             
-            </Form>
-            : null
-            }
-             <ul className="list-unstyled">
-                {/* PRODUCT CATEGORIES */}
-                <li>
-                  <strong>categorie: </strong>
-                  {product.categories.map((c) => c.name).join(", ")}
-                </li>
-                {/* END PRODUCT CATEGORIES */}
-              </ul>
+                  {/* END QUANTITY INPUT */}
+
+                  {/* ADD TO CART */}
+
+                  <Button size="lg" onClick={() => increaseQuantity(product)}>
+                    <FontAwesomeIcon
+                      icon={faShoppingCart}
+                      className="me-2 flex-grow-1 "
+                    />
+                    Ajouter au panier
+                  </Button>
+                  {/* END ADD TO CART */}
+                </InputGroup>
+                {/* END ADD TO CART BUTTON */}
+              </Form>
+            ) : null}
+            <ul className="list-unstyled">
+              {/* PRODUCT CATEGORIES */}
+              <li>
+                <strong>categorie: </strong>
+                {product.categories.map((c) => c.name).join(", ")}
+              </li>
+              {/* END PRODUCT CATEGORIES */}
+            </ul>
           </Col>
         </Row>
       </Modal.Body>

@@ -50,19 +50,19 @@ const MainIcons = (props) => {
 
   return (
     <React.Fragment>
-      <ul className={`list-inline mb-0 ${props.className}`}>
-        <li className="list-inline-item position-relative me-5">
+      <ul className={`list-inline d-block mb-0 ${props.className}`}>
+        <li className="list-inline-item  position-relative me-5">
           <a
-            className={`text-${
+            className={`d-block text-${
               props.light ? "light" : "dark"
             } text-hover-primary `}
             href="#"
             aria-label="show cart "
             onClick={(e) => preventAnchor(e, () => toggleModal("sidebarCart"))}
           >
-            <Icon icon="cart-1" className="navbar-icon" />
+            <Icon icon="cart-1" className=" navbar-icon d-block" />
             {cartItems.map((item) => (
-            <div className="navbar-icon-badge">{vignette}</div>
+            <div className="navbar-icon-badge d-block">{vignette}</div>
         ))}
       
           </a>
@@ -71,10 +71,6 @@ const MainIcons = (props) => {
       <SidebarCart
         toggle={() => toggleModal("sidebarCart")}
         isOpen={modal.sidebarCart}
-      />
-      <SidebarRight
-        toggle={() => toggleModal("sidebarRight")}
-        isOpen={modal.sidebarRight}
       />
     </React.Fragment>
   )

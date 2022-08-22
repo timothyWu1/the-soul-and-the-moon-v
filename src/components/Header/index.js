@@ -136,7 +136,7 @@ const Header = ({ header }) => {
         {/* MENU */}
 
 
-        <Col xs="2" className="text-start text-md-center d-block d-sm-none">
+        <Col xs="2" className="text-start text-md-center d-block d-md-none">
             <MainIcons className="d-block d-lg-none" CartContext={cartItems} />
           </Col>
 

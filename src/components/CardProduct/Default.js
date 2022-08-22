@@ -24,6 +24,8 @@ const CardProductDefault = ({ product}) => {
     const data2 = await commerce.cart.contents()
     dispatch(data2)
   }
+
+  
   const increaseQuantity = async (product) => {
     setLoading(true)
    
@@ -43,21 +45,7 @@ const CardProductDefault = ({ product}) => {
             zIndex={99999}
           />
       <div className="product-image mb-md-3">
-        {product.new && (
-          <Badge bg="secondary" className="product-badge">
-            Fresh
-          </Badge>
-        )}
-        {product.sale && (
-          <Badge bg="primary" className="product-badge">
-            Sale
-          </Badge>
-        )}
-        {product.soldout && (
-          <Badge bg="dark" className="product-badge">
-            Sold out
-          </Badge>
-        )}
+      
         
           <Image
             className="img-fluid"
@@ -101,7 +89,7 @@ const CardProductDefault = ({ product}) => {
                   <Button
                     variant="outline-dark"
                     className="product-btn-animated d-sm-inline-block w-100 px-3 py-0"
-                    onClick={() => increaseQuantity(product)}
+                    onClick={() => increaseQuantity(product)} 
                     aria-label="add to cart"
                   >
                     <span

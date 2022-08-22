@@ -101,7 +101,7 @@ const Index = () => {
                     xl="2"
                     className="mb-5 mb-sm-0"
                   >
-                    {window.innerWidth >= 992 ?
+                    {/* {window.innerWidth >= 992 ? */}
                       <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
                         <div>
                           <Image
@@ -128,8 +128,8 @@ const Index = () => {
                           </Card.ImgOverlay>
                         </div>
                       </Card>
-                      : null
-                    }
+                      {/* : null
+                    } */}
                   </Col>
                 ))}
                 <div id="ok"></div>

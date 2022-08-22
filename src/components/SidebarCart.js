@@ -22,7 +22,6 @@ const SidebarCart = (props) => {
   const [total, addTotal] = useState(0)
   const [cart, setCart] = useState([])
 
-
   const fetchCart = () => {
     setLoading(true)
     commerce.cart
@@ -41,6 +40,48 @@ const SidebarCart = (props) => {
       })
   }
 
+  const testQuantity = () => {
+    if (cartItems[0] !== undefined) {
+      
+    }
+    // console.log("false")
+    // return false
+  }
+
+//   if (product.inventory.available < item.quantity) {
+//     console.log("test")
+//     item.isDisabled = true;
+//   }else {
+//     item.isDisabled = false
+//   }
+//   console.log(" ")
+
+
+// if (product.inventory.available < item.quantity) {
+//   item.isDisabled = true
+//   console.log("true")
+//   return true
+// }
+
+  // Increase product quantity
+  const increaseQuantity = async (product) => {
+    // if (testQuantity() == true) {
+      
+      setLoading(true)
+      var response = await commerce.cart.add(product.product_id, 1)
+      document.dispatchEvent(
+        
+        new CustomEvent("newCardItem", { detail: response.cart.line_items })
+        
+      )
+
+      setLoading(false)
+    // } else {
+    //   console.log("bloqués")
+      
+    // }
+  }
+
   const decreaseQuantity = async (product) => {
     if (product.quantity > 1) {
       setLoading(true)
@@ -55,18 +96,6 @@ const SidebarCart = (props) => {
     } else {
       await removeFromCart(product)
     }
-  }
-
-  // Increase product quantity
-  const increaseQuantity = async (product) => {
-    setLoading(true)
-    console.log(cartItems)
-    var response = await commerce.cart.add(product.product_id, 1)
-    document.dispatchEvent(
-      new CustomEvent("newCardItem", { detail: response.cart.line_items })
-    )
-
-    setLoading(false)
   }
 
   const removeFromCart = async (product) => {
@@ -85,7 +114,19 @@ const SidebarCart = (props) => {
       console.log("Data null")
       return
     }
-
+    data2.map((item) => {
+      commerce.products.retrieve(item.product_id).then((product) => {
+        console.log("quantité panier :", item.quantity)
+        console.log("stock :", product.inventory.available)
+         if (product.inventory.available <= item.quantity) {
+           console.log("test")
+           item.isDisabled = true
+         } else {
+           item.isDisabled = false
+         }
+         console.log(" ")
+      })
+    })
     //const data2 = await commerce.cart.contents()
     data2 = data2.filter((item) => item.product_id !== null)
 
@@ -97,6 +138,7 @@ const SidebarCart = (props) => {
   }
 
   useEffect(() => {
+    // testQuantity()
     commerce.cart
       .contents()
       .then((d) =>
@@ -132,7 +174,9 @@ const SidebarCart = (props) => {
           {cartItems.length > 0 ? (
             <div className="sidebar-cart-product-wrapper custom-scrollbar">
               {cartItems.map((item) => (
+                
                 <div key={item.slug} className="navbar-cart-product">
+                  {console.log(item.isDisabled)}
                   <div className="d-flex align-items-center">
                     {/* <Link href={`/${item.category[1]}/${item.slug}`}>
                     <a> */}
@@ -174,6 +218,7 @@ const SidebarCart = (props) => {
                       <Button
                         onClick={() => increaseQuantity(item)}
                         //  variant="dark"
+                        disabled={item.isDisabled}
                         className="w-20 m-1 rounded-pill"
                       >
                         + 1

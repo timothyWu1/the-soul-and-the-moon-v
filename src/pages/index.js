@@ -26,6 +26,9 @@ const Index = () => {
   const [productsFull, setProductsFull] = useState([])
   const [categoryList, setCategory] = useState([])
 
+
+  var impair = commerce.categories.retrieve({pots})
+
   const fetchProducts = async () => {
     const { data } = await commerce.products.list()
 
@@ -101,7 +104,7 @@ const Index = () => {
                     xl="2"
                     className="mb-5 mb-sm-0"
                   >
-                    {/* {window.innerWidth >= 992 ? */}
+                    {window.innerWidth >= 992 ?
                       <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
                         <div>
                           <Image
@@ -128,7 +131,66 @@ const Index = () => {
                           </Card.ImgOverlay>
                         </div>
                       </Card>
+                       :
+                       
+                       <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
+                        {categoryList.map((categorie) => (
+                          
+                        <div>
+                          
+                          <Image
+                            className="img-scale card-img mb-2 "
+                            src={categorie.image}
+                            alt={categorie.name}
+                            width={10}
+                            height={10}
+                            sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
+                          />
+                          <Card.ImgOverlay className="d-flex align-items-center">
+                            <div className="w-100 py-3">
+                              <h2 className="display-0 fw-lighter mb-1 text-white">
+                                {categorie.name}
+                              </h2>
+                              <Link href={categorie.url}>
+                                <a className="stretched-link">
+                                  <span className="sr-only">
+                                    {categorie.button}
+                                  </span>
+                                </a>
+                              </Link>
+                            </div>
+                          </Card.ImgOverlay>
+                          <Image
+                            className="img-scale card-img mb-2 "
+                            src={categorie.image}
+                            alt={categorie.name}
+                            width={10}
+                            height={10}
+                            sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
+                          />
+                          <Card.ImgOverlay className="d-flex align-items-center">
+                            <div className="w-100 py-3">
+                              <h2 className="display-0 fw-lighter mb-1 text-white">
+                                {categorie.name}
+                              </h2>
+                              <Link href={categorie.url}>
+                                <a className="stretched-link">
+                                  <span className="sr-only">
+                                    {categorie.button}
+                                  </span>
+                                </a>
+                              </Link>
+                            </div>
+                          </Card.ImgOverlay>
+                        </div>
+                        
+                        ))}
+                      </Card>
+                   
+                      
+                    }
                   </Col>
+                 
                 ))}
                 <div id="ok"></div>
               </Row>

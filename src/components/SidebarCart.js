@@ -22,6 +22,7 @@ const SidebarCart = (props) => {
   const [total, addTotal] = useState(0)
   const [cart, setCart] = useState([])
 
+
   const fetchCart = () => {
     setLoading(true)
     commerce.cart
@@ -62,6 +63,16 @@ const SidebarCart = (props) => {
 //   console.log("true")
 //   return true
 // }
+const decreaseStock = (product) => {
+console.log("le produit :",product)
+console.log("le stock :", stock)
+console.log("type :",typeof(product))
+console.log('stock avant modif :',stock)
+stock = stock - 1
+// product.stock= product.stock -1
+console.log('stock apres modif:', stock)
+console.log('stock reduit de 1')
+}
 
   // Increase product quantity
   const increaseQuantity = async (product) => {
@@ -71,7 +82,7 @@ const SidebarCart = (props) => {
       var response = await commerce.cart.add(product.product_id, 1)
       document.dispatchEvent(
         
-        new CustomEvent("newCardItem", { detail: response.cart.line_items })
+        new CustomEvent("newCardItem", { detail: { Cart: response.cart.line_items, Products: responseProduct } })
         
       )
 
@@ -89,7 +100,7 @@ const SidebarCart = (props) => {
 
       var response = await commerce.cart.add(product.product_id, -1)
       document.dispatchEvent(
-        new CustomEvent("newCardItem", { detail: response.cart.line_items })
+        new CustomEvent("newCardItem", { detail: { Cart: response.cart.line_items, Products: responseProduct } })
       )
 
       setLoading(false)
@@ -101,33 +112,41 @@ const SidebarCart = (props) => {
   const removeFromCart = async (product) => {
     setLoading(true)
 
-    var response = await commerce.cart.remove(product.id)
+    var responseCart = await commerce.cart.remove(product.id)
+    var responseProduct = await commerce.products.retrieve();
+
     document.dispatchEvent(
-      new CustomEvent("newCardItem", { detail: response.cart.line_items })
+      new CustomEvent("newCardItem", { detail: { Cart: response.cart.line_items, Products: responseProduct }})
     )
 
     setLoading(false)
   }
 
-  const fetchCard = async (data2) => {
+
+  const fetchCard = async (data2, products) => {
     if (data2 == undefined) {
-      // console.log("Data null")
+      console.log("Data null")
       return
     }
     data2.map((item) => {
-      commerce.products.retrieve(item.product_id).then((product) => {
-        // console.log("quantité panier :", item.quantity)
-        // console.log("stock :", product.inventory.available)
-         if (product.inventory.available <= item.quantity) {
-          //  console.log("test")
-           item.isDisabled = true
-           fetchCard()
-         } else {
-           item.isDisabled = false
-           fetchCard()
-         }
-         console.log(" ")
-      })
+      var product = products.filter(p => p.product_id == item.product_id);
+      if (product != null && product.inventory.available <= item.quantity) {
+        //  console.log("test")
+         item.isDisabled = true
+       } else {
+         item.isDisabled = false
+       }
+      // commerce.products.retrieve(item.product_id).then((product) => {
+      //   // console.log("quantité panier :", item.quantity)
+      //   // console.log("stock :", product.inventory.available)
+      //    if (product.inventory.available <= item.quantity) {
+      //     //  console.log("test")
+      //      item.isDisabled = true
+      //    } else {
+      //      item.isDisabled = false
+      //    }
+      //    console.log(" ")
+      // })
     })
     //const data2 = await commerce.cart.contents()
     data2 = data2.filter((item) => item.product_id !== null)
@@ -147,7 +166,7 @@ const SidebarCart = (props) => {
         document.dispatchEvent(new CustomEvent("newCardItem", { detail: d }))
       )
 
-    document.addEventListener("newCardItem", (e) => fetchCard(e.detail))
+    document.addEventListener("newCardItem", (e) => fetchCard(e.detail.Cart, e.detail.Products))
   }, [])
 
   if (cartItems != []) {

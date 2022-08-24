@@ -17,18 +17,23 @@ const CardProductDefault = ({ product}) => {
   const [quickView, setQuickView] = React.useState(false)
   const [loading, setLoading] = useState(false)
   const [cartItems, dispatch] = useState([])
-  let stock = product.inventory.available
+  var stock = product.inventory.available
+  
   const fetchCard = async () => {
     const data2 = await commerce.cart.contents()
     dispatch(data2)
   }
 
-  const decreaseStock = async (product) => {
-    console.log(product.id)
-    console.log('stock avant modif :', stock)
+  const decreaseStock = (product) => {
+      
+      console.log("le produit :",product)
+      console.log("le stock :", stock)
+      console.log("type :",typeof(product))
+      console.log('stock avant modif :',stock)
       stock = stock - 1
+      // product.stock= product.stock -1
       console.log('stock apres modif:', stock)
-      console.log('reduit de 1')
+      console.log('stock reduit de 1')
     }
   
 
@@ -125,8 +130,8 @@ const CardProductDefault = ({ product}) => {
 
         <span className="text-gray-500 text-sm ms-4">
           <br/>
-          Disponible en stock : {stock},
-          Disponible: {product.inventory.available}
+          Disponible : {stock}
+          {/* Disponible: {product.inventory.available} */}
         </span>
       </div>
     </div>

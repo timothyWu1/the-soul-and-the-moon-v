@@ -27,7 +27,8 @@ const Index = () => {
   const [categoryList, setCategory] = useState([])
 
 
-  var impair = commerce.categories.retrieve({pots})
+  var impair = commerce.categories.retrieve('category', { type: 'slug' })
+  // .then(categories4)
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list()
@@ -120,9 +121,9 @@ const Index = () => {
                               <h2 className="display-0 fw-lighter mb-1 text-white">
                                 {category.name}
                               </h2>
-                              <Link href={category.url}>
+                              <Link href={category.url} >
                                 <a className="stretched-link">
-                                  <span className="sr-only">
+                                  <span className="sr-only" >
                                     {category.button}
                                   </span>
                                 </a>

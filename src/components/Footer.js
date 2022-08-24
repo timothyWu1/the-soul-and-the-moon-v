@@ -39,18 +39,18 @@ const Footer = () => {
               </p>
               
             </Col>
-            <Col lg="3">
+            <Col lg="3" className="text-center mx-auto">
             <li className="list-inline-item text-center d-flex align-items-center">
               
                 <a
-                  className="text-reset text-hover-primary text-center"
+                  className="text-reset text-hover-primary text-center display-6"
                   href="https://www.instagram.com/the.soul.and.the.moon"
                   aria-label="Go to instagram"
                 >
                   
                   <FontAwesomeIcon icon={faInstagram} />
 
-                  <h7> | Visiter notre instagram </h7>
+                  <h6> Visiter notre instagram </h6>
                   </a>
               </li>
 

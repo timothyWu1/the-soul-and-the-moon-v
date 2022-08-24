@@ -128,8 +128,6 @@ const Index = () => {
                           </Card.ImgOverlay>
                         </div>
                       </Card>
-                      {/* : null
-                    } */}
                   </Col>
                 ))}
                 <div id="ok"></div>

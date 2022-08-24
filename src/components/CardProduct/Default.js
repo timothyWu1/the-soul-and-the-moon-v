@@ -3,15 +3,13 @@ import Link from "next/link"
 
 import { Badge, Button } from "react-bootstrap"
 
-import Stars from "../Stars"
 import Icon from "../Icon"
 
 import Image from "../Image"
+
 import { commerce } from "../../lib/commerce"
 
 import ModalQuickView from "../ModalQuickView"
-
-import { FaInfo } from "react-icons/fa"
 
 import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
 
@@ -19,16 +17,24 @@ const CardProductDefault = ({ product}) => {
   const [quickView, setQuickView] = React.useState(false)
   const [loading, setLoading] = useState(false)
   const [cartItems, dispatch] = useState([])
-
+  let stock = product.inventory.available
   const fetchCard = async () => {
     const data2 = await commerce.cart.contents()
     dispatch(data2)
   }
 
+  const decreaseStock = async (product) => {
+    console.log(product.id)
+    console.log('stock avant modif :', stock)
+      stock = stock - 1
+      console.log('stock apres modif:', stock)
+      console.log('reduit de 1')
+    }
   
+
   const increaseQuantity = async (product) => {
     setLoading(true)
-   
+    decreaseStock(product)
     var response = await commerce.cart.add(product.id, 1)
     document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
 
@@ -94,7 +100,7 @@ const CardProductDefault = ({ product}) => {
                   >
                     <span
                       className="product-animated-text"
-                      // onClick={setLoading(true)}
+                     
                     >
                       Ajouter
                     </span>
@@ -118,7 +124,9 @@ const CardProductDefault = ({ product}) => {
         </span>
 
         <span className="text-gray-500 text-sm ms-4">
-          reste: {product.inventory.available}
+          <br/>
+          Disponible en stock : {stock},
+          Disponible: {product.inventory.available}
         </span>
       </div>
     </div>

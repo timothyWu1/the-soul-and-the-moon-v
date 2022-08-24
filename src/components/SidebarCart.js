@@ -111,18 +111,20 @@ const SidebarCart = (props) => {
 
   const fetchCard = async (data2) => {
     if (data2 == undefined) {
-      console.log("Data null")
+      // console.log("Data null")
       return
     }
     data2.map((item) => {
       commerce.products.retrieve(item.product_id).then((product) => {
-        console.log("quantité panier :", item.quantity)
-        console.log("stock :", product.inventory.available)
+        // console.log("quantité panier :", item.quantity)
+        // console.log("stock :", product.inventory.available)
          if (product.inventory.available <= item.quantity) {
-           console.log("test")
+          //  console.log("test")
            item.isDisabled = true
+           fetchCard()
          } else {
            item.isDisabled = false
+           fetchCard()
          }
          console.log(" ")
       })
@@ -138,7 +140,7 @@ const SidebarCart = (props) => {
   }
 
   useEffect(() => {
-    // testQuantity()
+   
     commerce.cart
       .contents()
       .then((d) =>

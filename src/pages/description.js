@@ -147,13 +147,6 @@ const detail = (id, props) => {
                       type="submit"
                       className=" text-sm"
                       aria-label="add to cart"
-                      // onClick={() => {
-                      //   commerce.cart.add(product.id, 1).then((response) => document.dispatchEvent(new Event('newCardItem')))
-                      //     .add(product.id, 1)
-                      //     .then((response) =>
-                      //       document.dispatchEvent(new Event("newCardItem"))
-                      //     )
-                      // }}
                     >
                       <Icon
                         className="text-hover-primary svg-icon-heavy d-sm-none"

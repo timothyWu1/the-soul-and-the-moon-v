@@ -79,13 +79,6 @@ fetch(url, {
     }
   }
 
-  // onClick={() => {
-  //   commerce.cart
-  //     .add(product.id, qtt)
-  //     .then((response) =>
-  //       document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
-  //     )
-  // }}
 
   // const looker = (product) => {
   //   if (qtt <= product.inventory.available  ) {
@@ -96,7 +89,6 @@ fetch(url, {
     if (qtt <= product.inventory.available  ) {
       setLoading(true)
       var response = await commerce.cart.add(product.id, qtt)
-      document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
       setLoading(false)
     } else {
 

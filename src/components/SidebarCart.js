@@ -20,7 +20,7 @@ const SidebarCart = (props) => {
   const [loading, setLoading] = useState(false)
   const [cartItems, dispatch] = useState([])
   const [total, addTotal] = useState(0)
-  const [cart, setCart] = useState([])
+  const [products, setProducts] = useState([])
 
 
   const fetchCart = () => {
@@ -82,7 +82,7 @@ console.log('stock reduit de 1')
       var response = await commerce.cart.add(product.product_id, 1)
       document.dispatchEvent(
         
-        new CustomEvent("newCardItem", { detail: { Cart: response.cart.line_items, Products: responseProduct } })
+        new CustomEvent("newCardItem", { detail: response.cart.line_items })
         
       )
 
@@ -100,7 +100,7 @@ console.log('stock reduit de 1')
 
       var response = await commerce.cart.add(product.product_id, -1)
       document.dispatchEvent(
-        new CustomEvent("newCardItem", { detail: { Cart: response.cart.line_items, Products: responseProduct } })
+        new CustomEvent("newCardItem", { detail: response.cart.line_items })
       )
 
       setLoading(false)
@@ -112,64 +112,59 @@ console.log('stock reduit de 1')
   const removeFromCart = async (product) => {
     setLoading(true)
 
-    var responseCart = await commerce.cart.remove(product.id)
-    var responseProduct = await commerce.products.retrieve();
+    var response = await commerce.cart.remove(product.id)
 
     document.dispatchEvent(
-      new CustomEvent("newCardItem", { detail: { Cart: response.cart.line_items, Products: responseProduct }})
+      new CustomEvent("newCardItem", { detail:  response.cart.line_items })
     )
 
     setLoading(false)
   }
 
 
-  const fetchCard = async (data2, products) => {
-    if (data2 == undefined) {
+  const fetchCard = async (newCart) => {
+    if (newCart == undefined) {
       console.log("Data null")
       return
     }
-    data2.map((item) => {
-      var product = products.filter(p => p.product_id == item.product_id);
-      if (product != null && product.inventory.available <= item.quantity) {
+    
+    //const data2 = await commerce.cart.contents()
+    newCart = newCart.filter((item) => item.product_id !== null)
+
+    var price = 0
+    newCart.map((item) => (price += item.price.raw * item.quantity))
+
+    addTotal(price)
+    dispatch(newCart)
+  }
+
+  useEffect(() => {
+   
+    commerce.cart.contents().then((d) =>{
+      document.dispatchEvent(new CustomEvent("newCardItem", { detail: d }));
+    });
+
+    commerce.products.list().then((p) => {
+      console.log(p);
+      setProducts(p.data);
+    });
+    
+    document.addEventListener("newCardItem", (e) => fetchCard(e.detail));
+
+  }, [])
+
+  if (cartItems != []) {
+
+    cartItems.map((item) => {
+      var product = products.find(p => p.id == item.product_id);
+      if (product != undefined && product != null && product.inventory.available <= item.quantity) {
         //  console.log("test")
          item.isDisabled = true
        } else {
          item.isDisabled = false
        }
-      // commerce.products.retrieve(item.product_id).then((product) => {
-      //   // console.log("quantité panier :", item.quantity)
-      //   // console.log("stock :", product.inventory.available)
-      //    if (product.inventory.available <= item.quantity) {
-      //     //  console.log("test")
-      //      item.isDisabled = true
-      //    } else {
-      //      item.isDisabled = false
-      //    }
-      //    console.log(" ")
-      // })
     })
-    //const data2 = await commerce.cart.contents()
-    data2 = data2.filter((item) => item.product_id !== null)
 
-    var price = 0
-    data2.map((item) => (price += item.price.raw * item.quantity))
-
-    addTotal(price)
-    dispatch(data2)
-  }
-
-  useEffect(() => {
-   
-    commerce.cart
-      .contents()
-      .then((d) =>
-        document.dispatchEvent(new CustomEvent("newCardItem", { detail: d }))
-      )
-
-    document.addEventListener("newCardItem", (e) => fetchCard(e.detail.Cart, e.detail.Products))
-  }, [])
-
-  if (cartItems != []) {
     return (
       <Modal
         className="modal-right"

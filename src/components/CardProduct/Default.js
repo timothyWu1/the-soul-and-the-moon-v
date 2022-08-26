@@ -16,37 +16,33 @@ import { CircleSpinnerOverlay, FerrisWheelSpinner } from "react-spinner-overlay"
 const CardProductDefault = ({ product}) => {
   const [quickView, setQuickView] = React.useState(false)
   const [loading, setLoading] = useState(false)
-  const [cartItems, dispatch] = useState([])
-  var stock = product.inventory.available
+  const [hasStock, setHasStock] = useState(false)
   
-  const fetchCard = async () => {
-    const data2 = await commerce.cart.contents()
-    dispatch(data2)
-  }
-
-  const decreaseStock = (product) => {
-      
-      console.log("le produit :",product)
-      console.log("le stock :", stock)
-      console.log("type :",typeof(product))
-      console.log('stock avant modif :',stock)
-      stock = stock - 1
-      // product.stock= product.stock -1
-      console.log('stock apres modif:', stock)
-      console.log('stock reduit de 1')
-    }
-  
+  setHasStock(product.inventory.available > 0)
 
   const increaseQuantity = async (product) => {
     setLoading(true)
-    decreaseStock(product)
+    
     var response = await commerce.cart.add(product.id, 1)
     document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
 
     setLoading(false)
   }
 
-  useEffect(() => {}, [])
+  const refreshStock = (cartItems) => {
+    var cartItemOfProduct = cartItems.find(p => p.product_id == product.id);
+
+    if (cartItemOfProduct != undefined && product != null)
+    {
+      setHasStock(product.inventory.available <= item.quantity)
+    }
+  }
+
+  useEffect(() => {
+
+    document.addEventListener("newCardItem", (e) => refreshStock(e.detail));
+
+  }, [])
 
   return (
     <div className={`product product-type-1`}>
@@ -130,7 +126,7 @@ const CardProductDefault = ({ product}) => {
 
         <span className="text-gray-500 text-sm ms-4">
           <br/>
-          Disponible : {stock}
+          Disponible : 
           {/* Disponible: {product.inventory.available} */}
         </span>
       </div>

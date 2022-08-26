@@ -9,6 +9,8 @@ import NewArrivals from "../components/NewArrivals"
 import Image from "../components/Image"
 import { commerce } from "../lib/commerce"
 
+import Figure from "react-bootstrap/Figure"
+
 export async function getStaticProps() {
   return {
     props: {
@@ -60,6 +62,7 @@ const Index = () => {
    
       <React.Fragment>
         <Container className="py-8 categories">
+        {window.innerWidth >= 992 ?
           <Row>
             <div id="boutique"></div>
             <Card className=" shadow-1 border-0 text-muted text-hover-gray-800 text-center">
@@ -71,12 +74,26 @@ const Index = () => {
                   height={30}
                   sizes="(max-width: 150px) calc(150vw - 30px), 50vw"
                 />
+                  <Card.ImgOverlay className="d-flex opacity-25 align-items-center ">
+                  <div className="w-100 py-1">
+                    {" "}
+                    <Figure>
+                      {" "}
+                      <Figure.Image
+                        width={550}
+                        height={200}
+                        src="/img/product/grey.jpg"
+                        sizes="(max-width: 200px) calc(150vw - 30px), 50vw"
+                      />
+                    </Figure>
+                  </div>
+                </Card.ImgOverlay>
 
                 <Card.ImgOverlay className="d-flex align-items-center ">
-                  <div className="w-100 py-3">
-                    <Button className="opacity-75 bg-gray-500 border-0">
+                <div className="w-100 py-1">
+                    <Button className="bg-transparent border-0">
                       <a href="#ok">
-                        <h1 className="display-4 text-white fw-light mb-2 opacity-100">
+                        <h1 className="display-4 text-white fw-light mb-1 opacity-100">
                           LA BOUTIQUE
                         </h1>
                       </a>
@@ -86,6 +103,47 @@ const Index = () => {
               </div>
             </Card>
           </Row>
+          :
+          <Row>
+          <div id="boutique"></div>
+          <Card className=" shadow-1 border-0 text-muted text-hover-gray-800 text-center">
+            <div>
+              <Image
+                className="img-scale card-img mb-5 mt-5"
+                src="/img/product/E.png"
+                width={40}
+                height={30}
+                sizes="(max-width: 150px) calc(150vw - 30px), 50vw"
+              />
+              <Card.ImgOverlay className="d-flex opacity-25 align-items-center ">
+                <div className="w-100 mt-6  pb-3">
+                  {" "}
+                  <Figure>
+                    {" "}
+                    <Figure.Image
+                      width={220}
+                      height={120}
+                      src="/img/product/grey.jpg"
+                      sizes="(max-width: 200px) calc(150vw - 30px), 50vw"
+                    />
+                  </Figure>
+                </div>
+              </Card.ImgOverlay>
+              <Card.ImgOverlay className="d-flex align-items-center ">
+                <div className="w-100 py-1">
+                  <Button className="bg-transparent border-0">
+                    <a href="#ok">
+                      <h2 className="display-9 text-white fw-light mb-1 mt-5 opacity-100">
+                        LA BOUTIQUE
+                      </h2>
+                    </a>
+                  </Button>
+                </div>
+              </Card.ImgOverlay>
+            </div>
+          </Card>
+        </Row>
+        }
         </Container>
         
 

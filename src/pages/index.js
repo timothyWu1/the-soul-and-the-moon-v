@@ -74,15 +74,15 @@ const Index = () => {
                   height={30}
                   sizes="(max-width: 150px) calc(150vw - 30px), 50vw"
                 />
-                  <Card.ImgOverlay className="d-flex opacity-25 align-items-center ">
+                  <Card.ImgOverlay className="d-flex opacity-25 mt-2 align-items-center ">
                   <div className="w-100 py-1">
                     {" "}
                     <Figure>
                       {" "}
                       <Figure.Image
-                        width={550}
-                        height={200}
-                        src="/img/product/grey.jpg"
+                        width={600}
+                        height={120}
+                        src="/img/product/greyr.png"
                         sizes="(max-width: 200px) calc(150vw - 30px), 50vw"
                       />
                     </Figure>
@@ -93,7 +93,7 @@ const Index = () => {
                 <div className="w-100 py-1">
                     <Button className="bg-transparent border-0">
                       <a href="#ok">
-                        <h1 className="display-4 text-white fw-light mb-1 opacity-100">
+                        <h1 className="display-4 text-white fw-light  opacity-100">
                           LA BOUTIQUE
                         </h1>
                       </a>
@@ -152,8 +152,9 @@ const Index = () => {
         {categoryList && (
           <div className="bg-gray-200 position-sticky ">
             <Container fluid className="py-6 categories">
+              
               <Row className="justify-content-center">
-                {categoryList.map((category) => (
+              {categoryList.map((category) => (
                   <Col
                     key={category.name}
                     xs="6"
@@ -163,7 +164,7 @@ const Index = () => {
                     xl="2"
                     className="mb-5 mb-sm-0"
                   >
-                    {window.innerWidth >= 992 ?
+                    {/* {window.innerWidth >= 992 ? */}
                       <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
                         <div>
                           <Image
@@ -189,70 +190,11 @@ const Index = () => {
                             </div>
                           </Card.ImgOverlay>
                         </div>
-                      </Card>
-                       :
-                       
-                       <Card className="d-flex card-scale shadow-0 border-0 bg-gray-200  overlay-hover-light text-center ">
-                        {categoryList.map((categorie) => (
-                          
-                        <div>
-                          
-                          <Image
-                            className="img-scale card-img mb-2 "
-                            src={categorie.image}
-                            alt={categorie.name}
-                            width={10}
-                            height={10}
-                            sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
-                          />
-                          <Card.ImgOverlay className="d-flex align-items-center">
-                            <div className="w-100 py-3">
-                              <h2 className="display-0 fw-lighter mb-1 text-white">
-                                {categorie.name}
-                              </h2>
-                              <Link href={categorie.url}>
-                                <a className="stretched-link">
-                                  <span className="sr-only">
-                                    {categorie.button}
-                                  </span>
-                                </a>
-                              </Link>
-                            </div>
-                          </Card.ImgOverlay>
-                          <Image
-                            className="img-scale card-img mb-2 "
-                            src={categorie.image}
-                            alt={categorie.name}
-                            width={10}
-                            height={10}
-                            sizes="(max-width: 576px) calc(100vw - 30px), 50vw"
-                          />
-                          <Card.ImgOverlay className="d-flex align-items-center">
-                            <div className="w-100 py-3">
-                              <h2 className="display-0 fw-lighter mb-1 text-white">
-                                {categorie.name}
-                              </h2>
-                              <Link href={categorie.url}>
-                                <a className="stretched-link">
-                                  <span className="sr-only">
-                                    {categorie.button}
-                                  </span>
-                                </a>
-                              </Link>
-                            </div>
-                          </Card.ImgOverlay>
-                        </div>
-                        
-                        ))}
-                      </Card>
-                   
-                      
-                    }
+                      </Card>  
                   </Col>
-                 
-                ))}
-                <div id="ok"></div>
+                  ))}
               </Row>
+           
             </Container>
           </div>
         )}

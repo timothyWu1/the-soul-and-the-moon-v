@@ -50,9 +50,12 @@ const MainIcons = (props) => {
 
   return (
     <React.Fragment>
+      
       <ul className={`list-inline d-block mb-0 ${props.className}`}>
-        <li className="list-inline-item  position-relative me-5">
+        <li  className="list-inline-item  position-relative me-5">
+          
           <a
+             
             className={`d-block text-${
               props.light ? "light" : "dark"
             } text-hover-primary `}
@@ -62,13 +65,14 @@ const MainIcons = (props) => {
           >
             <Icon icon="cart-1" className=" navbar-icon d-block" />
             {cartItems.map((item) => (
-            <div className="navbar-icon-badge d-block">{vignette}</div>
+            <div key={item.id} className="navbar-icon-badge d-block">{vignette}</div>
         ))}
       
           </a>
         </li>
       </ul>
       <SidebarCart
+      
         toggle={() => toggleModal("sidebarCart")}
         isOpen={modal.sidebarCart}
       />

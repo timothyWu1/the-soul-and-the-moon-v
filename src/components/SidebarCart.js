@@ -132,8 +132,8 @@ console.log('stock reduit de 1')
     newCart = newCart.filter((item) => item.product_id !== null)
 
     var price = 0
-    newCart.map((item) => (price += item.price.raw * item.quantity))
-
+    newCart.map((item)  => ( price += item.price.raw * item.quantity))
+    
     addTotal(price)
     dispatch(newCart)
   }
@@ -150,12 +150,14 @@ console.log('stock reduit de 1')
     });
     
     document.addEventListener("newCardItem", (e) => fetchCard(e.detail));
+    
 
   }, [])
 
   if (cartItems != []) {
 
     cartItems.map((item) => {
+      <div key={item.id}></div>
       var product = products.find(p => p.id == item.product_id);
       if (product != undefined && product != null && product.inventory.available <= item.quantity) {
         //  console.log("test")
@@ -166,7 +168,9 @@ console.log('stock reduit de 1')
     })
 
     return (
+      
       <Modal
+        key={props}
         className="modal-right"
         contentClassName="sidebar-cart-content"
         show={props.isOpen}
@@ -174,6 +178,7 @@ console.log('stock reduit de 1')
       >
         <Modal.Header className="border-0 mb-3">
           <CloseButton
+            key={props}
             className="modal-close  btn-close-lg btn-close-rotate opacity-8"
             type="button"
             onClick={props.toggle}
@@ -190,7 +195,6 @@ console.log('stock reduit de 1')
           {cartItems.length > 0 ? (
             <div className="sidebar-cart-product-wrapper custom-scrollbar">
               {cartItems.map((item) => (
-                
                 <div key={item.slug} className="navbar-cart-product">
                   {console.log(item.isDisabled)}
                   <div className="d-flex align-items-center">

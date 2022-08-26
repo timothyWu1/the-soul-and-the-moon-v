@@ -17,12 +17,26 @@ const CardProductDefault = ({ product}) => {
   const [quickView, setQuickView] = React.useState(false)
   const [loading, setLoading] = useState(false)
   const [hasStock, setHasStock] = useState(false)
+  var stock = product.inventory.available
   
-  setHasStock(product.inventory.available > 0)
+  
+
+  const decreaseStock = (product) => {
+      
+      console.log("le produit :",product)
+      console.log("le stock :", stock)
+      console.log("type :",typeof(product))
+      console.log('stock avant modif :',stock)
+      stock = stock - 1
+      // product.stock= product.stock -1
+      console.log('stock apres modif:', stock)
+      console.log('stock reduit de 1')
+    }
+  
 
   const increaseQuantity = async (product) => {
     setLoading(true)
-    
+    decreaseStock(product)
     var response = await commerce.cart.add(product.id, 1)
     document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
 
@@ -34,7 +48,7 @@ const CardProductDefault = ({ product}) => {
 
     if (cartItemOfProduct != undefined && product != null)
     {
-      setHasStock(product.inventory.available <= item.quantity)
+      setHasStock(product.inventory.available <= cartItems.quantity)
     }
   }
 
@@ -126,7 +140,7 @@ const CardProductDefault = ({ product}) => {
 
         <span className="text-gray-500 text-sm ms-4">
           <br/>
-          Disponible : 
+          Disponible : {stock}
           {/* Disponible: {product.inventory.available} */}
         </span>
       </div>

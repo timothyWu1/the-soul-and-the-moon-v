@@ -61,7 +61,7 @@ const CategoryBoxed = () => {
         list.push({
           name: category.name,
           image: category.assets[0].url,
-          url: "/category-boxed?category=" + category.slug,
+          url: "/category-boxed.html?category=" + category.slug,
         })
         // console.log(category.url)
       })

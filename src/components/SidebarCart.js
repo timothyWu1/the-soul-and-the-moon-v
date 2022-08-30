@@ -102,7 +102,6 @@ console.log('stock reduit de 1')
       document.dispatchEvent(
         new CustomEvent("newCardItem", { detail: response.cart.line_items })
       )
-
       setLoading(false)
     } else {
       await removeFromCart(product)

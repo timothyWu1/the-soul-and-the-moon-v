@@ -21,22 +21,22 @@ const CardProductDefault = ({ product}) => {
   
   
 
-  const decreaseStock = (product) => {
+  // const decreaseStock = (product) => {
       
-      console.log("le produit :",product)
-      console.log("le stock :", stock)
-      console.log("type :",typeof(product))
-      console.log('stock avant modif :',stock)
-      stock = stock - 1
-      // product.stock= product.stock -1
-      console.log('stock apres modif:', stock)
-      console.log('stock reduit de 1')
-    }
+  //     console.log("le produit :",product)
+  //     console.log("le stock :", stock)
+  //     console.log("type :",typeof(product))
+  //     console.log('stock avant modif :',stock)
+  //     stock = stock - 1
+  //     // product.stock= product.stock -1
+  //     console.log('stock apres modif:', stock)
+  //     console.log('stock reduit de 1')
+  //   }
   
 
   const increaseQuantity = async (product) => {
     setLoading(true)
-    decreaseStock(product)
+    // decreaseStock(product)
     var response = await commerce.cart.add(product.id, 1)
     document.dispatchEvent(new CustomEvent("newCardItem", { detail:response.cart.line_items }))
 
